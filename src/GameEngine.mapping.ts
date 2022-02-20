@@ -1,6 +1,21 @@
 import {
   Paused,
-  Unpaused
+  Unpaused,
+  SetOfTokenOutGoldInSwapped,
+  TokenOutGoldInSwapped,
+  TokenInGoldOutSwapped,
+  PausedGame,
+  UnpausedGame,
+  ActivatedPlotType,
+  AddedTimeBreakdown,
+  UpdatedTimeBreakdownAddress,
+  UpdatedTimeBreakdown,
+  ActivatedTimeBreakdown,
+  DeactivatedTimeBreakdown,
+  AddedYieldConfig,
+  UpdatedYieldConfig,
+  ActivatedYieldConfig,
+  DeactivatedYieldConfig
 } from "../generated/GameEngine/GameEngine";
 import {
   Plot,
@@ -19,65 +34,65 @@ export function handlePause(
 ): void {}
 
 export function handleUnpause(
-  event: Paused
+  event: Unpaused
 ): void {}
 
 export function handleComplexPurchase(
-  event: Paused
+  event: SetOfTokenOutGoldInSwapped
 ): void {}
 
 export function handleSimplePurchase(
-  event: Paused
+  event: TokenOutGoldInSwapped
 ): void {}
 
 export function handleSimpleSell(
-  event: Paused
+  event: TokenInGoldOutSwapped
 ): void {}
 
 export function handlePauseGame(
-  event: Paused
+  event: PausedGame
 ): void {}
 
 export function handleUnpauseGame(
-  event: Paused
+  event: UnpausedGame
 ): void {}
 
 export function handleActivatePlotType(
-  event: Paused
+  event: ActivatedPlotType
 ): void {}
 
 export function handleAddTimeBreakdown(
-  event: Paused
+  event: AddedTimeBreakdown
 ): void {}
 
 export function handleUpdateTimeBreakdownAddress(
-  event: Paused
+  event: UpdatedTimeBreakdownAddress
 ): void {}
 
 export function handleUpdateTimeBreakdown(
-  event: Paused
+  event: UpdatedTimeBreakdown
 ): void {}
 
 export function handleActivateTimeBreakdown(
-  event: Paused
+  event: ActivatedTimeBreakdown
 ): void {}
 
 export function handleDeactivateTimeBreakdown(
-  event: Paused
+  event: DeactivatedTimeBreakdown
 ): void {}
 
 export function handleAddYieldConfig(
-  event: Paused
+  event: AddedYieldConfig
 ): void {}
 
 export function handleUpdateYieldConfig(
-  event: Paused
+  event: UpdatedYieldConfig
 ): void {}
 
 export function handleActivateYieldConfig(
-  event: Paused
+  event: ActivatedYieldConfig
 ): void {}
 
 export function handleDeactivateYieldConfig(
-  event: Paused
+  event: DeactivatedYieldConfig
 ): void {}

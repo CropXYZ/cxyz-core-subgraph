@@ -1,7 +1,12 @@
 import {
   Paused,
-  Unpaused
+  Unpaused,
+  MintedPlot,
+  HarvestedPlot,
+  ClearedDiedHarvest,
+  ClearedHarvest
 } from "../generated/Plot/Plot";
+
 import {
   Plot,
   Crop,
@@ -17,16 +22,23 @@ import {
 export function handlePause(
   event: Paused
 ): void {}
+
 export function handleUnpause(
-  event: Paused
+  event: Unpaused
 ): void {}
-export function handleMint(event: Paused): void {}
+
+export function handleMint(
+  event: MintedPlot
+): void {}
+
 export function handleHarvestPlot(
-  event: Paused
+  event: HarvestedPlot
 ): void {}
+
 export function handleClearDiedHarvest(
-  event: Paused
+  event: ClearedDiedHarvest
 ): void {}
+
 export function handleClearedHarvest(
-  event: Paused
+  event: ClearedHarvest
 ): void {}
