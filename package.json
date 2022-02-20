@@ -1,0 +1,21 @@
+{
+  "name": "cxyz-core-subgraph",
+  "scripts": {
+    "prepare:polygon": "mustache config/polygon.json subgraph.template.yaml > subgraph.yaml",
+    "prepare:test": "mustache config/mumbai.json subgraph.template.yaml > subgraph.yaml",
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy-polygon ": "npm prepare:polygon && graph deploy --node https://api.studio.thegraph.com/deploy/ cxyz-core",
+    "deploy-test ": "npm prepare:test && graph deploy --node https://api.studio.thegraph.com/deploy/ cxyz-core-test",
+    "create-local": "graph create --node http://localhost:8020/ cxyz-core-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ cxyz-core-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 cxyz-core-subgraph"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.22.2",
+    "@graphprotocol/graph-ts": "0.22.1"
+  },
+  "devDependencies": {
+    "mustache": "^4.2.0"
+  }
+}

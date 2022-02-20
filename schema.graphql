@@ -1,0 +1,133 @@
+type Plot @entity {
+  id: ID!
+  # The season of the plot
+  season: BigInt!
+  # Dimensions
+  # (bits 1 - 4) width || (bits 5 - 8) height
+  width: BigInt!
+  # (bits 5 - 8) height
+  height: BigInt!
+  # Amount that needs to be staked in each tile
+  tileArea: BigInt!
+
+  # Base stats
+  baseProductionStats: BigInt!
+  # The plot type
+  plotType: PlotType!
+
+  # ----- ----- ----- ----- -----
+  # Count of clears that were not the result of a death or harvest
+  countClears: BigInt!
+  # Count of clears because of a death
+  countDeathClears: BigInt!
+  # Count of clears because of a successful harvest
+  countHarvests: BigInt!
+
+  # ----- ----- ----- ----- -----
+  # Keeping track of how much was staked and how long
+  # The currently staked element
+  stakedCrop: Crop
+  # Keeping track of how much was staked
+  amountStaked: BigInt!
+  # The time it was staked
+  timeStartStaked: BigInt!
+  # The time it can be reclaimed staked
+  timeReadyDelta: BigInt!
+  # The time it can no longer be claimed and must be cleared
+  timeExpiredDelta: BigInt!
+}
+
+# ----- ----- ----- ----- -----
+# ----- ----- ----- ----- -----
+# ----- ----- ----- ----- -----
+
+type Crop @entity {
+  id: ID!
+  # The token being moved
+  token: Token!
+  plotType: PlotType!
+  growthTimeBreakdown: GrowthTime!
+  addressStoreName: String!
+  addressStoreNameHash: Bytes!
+  stakedElementName: String!
+  yieldConfig: YieldConfig!
+}
+
+type YieldConfig @entity {
+  id: ID!
+  isActive: Boolean!
+  baseYield: BigInt!
+  plotType: PlotType!
+
+  # Yield Details
+  minYield: BigInt!
+  maxYield: BigInt!
+
+  # Dimensions
+  # (bits 1 - 4) width || (bits 5 - 8) height
+  width: BigInt!
+  # (bits 5 - 8) height
+  height: BigInt!
+  # Amount that needs to be staked in each tile
+  tileArea: BigInt!
+}
+
+type GrowthTime @entity {
+  id: ID!
+  isActive: Boolean!
+
+  # Time set
+  deltaNothingToStart: BigInt!
+  deltaStartToEarly: BigInt!
+  deltaEarlyToMature: BigInt!
+  deltaMatureToExpire: BigInt!
+}
+
+type PlotType @entity {
+  id: ID!
+  name: String!
+}
+
+# ----- ----- ----- ----- -----
+# ----- ----- ----- ----- -----
+# ----- ----- ----- ----- -----
+
+type Pool @entity {
+  id: ID!
+  # The token that is being moved into the system
+  poolAddress: Bytes! # address
+  totalGoldBalance: BigInt!
+}
+
+type Token @entity {
+  id: ID!
+  # The token that is being moved into the system
+  tokenAddress: Bytes! # address
+  totalBalance: BigInt!
+}
+
+type TransactionFlow @entity {
+  id: ID!
+  # Time stamp
+  timestamp: BigInt!
+  # The pool of the pool being operated on
+  pool: Pool!
+  # The token that is being moved into the system
+  flowIn: TokenFlow!
+  # The token that is being moved out of the system
+  flowOut: TokenFlow!
+}
+
+type TokenFlow @entity {
+  id: ID!
+  # Time stamp
+  timestamp: BigInt!
+  # The address of the pool that is being moved into or out of
+  pool: Pool!
+  # The token being moved
+  token: Token!
+  # True if the token is being moved into the pool
+  isDirectionIntoPool: Boolean!
+  # The amount of token being moved
+  tokenAmount: BigInt!
+}

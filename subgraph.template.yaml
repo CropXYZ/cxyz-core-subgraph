@@ -1,0 +1,120 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: GameEngine
+    network: {{network}}
+    source:
+      address: "{{engineAddress}}"
+      abi: GameEngine
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/GameEngine.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - GameState
+        - PlotClearStats
+        - StakedElementStats
+      abis:
+        - name: GameEngine
+          file: ./abis/{{engineAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: SetOfTokenOutGoldInSwapped(indexed address,indexed address,address[],uint256[],uint256[],uint256[],uint256[],uint256)
+          handler: handleComplexPurchase
+        - event: TokenOutGoldInSwapped(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256)
+          handler: handleSimplePurchase
+        - event: TokenInGoldOutSwapped(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256)
+          handler: handleSimpleSell
+        - event: PausedGame(indexed address)
+          handler: handlePauseGame
+        - event: UnpausedGame(indexed address)
+          handler: handleUnpauseGame
+
+        - event: ActivatedPlotType(indexed address,indexed uint256,string)
+          handler: handleActivatePlotType
+
+        - event: AddedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,bytes32,bool)
+          handler: handleAddTimeBreakdown
+        - event: UpdatedTimeBreakdownAddress(indexed address,indexed bytes32,string,indexed uint256,bytes32,bytes32)
+          handler: handleUpdateTimeBreakdownAddress
+        - event: UpdatedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,uint24,uint24,uint24,uint24)
+          handler: handleUpdateTimeBreakdown
+        - event: ActivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
+          handler: handleActivateTimeBreakdown
+        - event: DeactivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
+          handler: handleDeactivateTimeBreakdown
+
+        - event: AddedYieldConfig(indexed address,indexed uint8,indexed uint8,uint8,uint8,uint8,string,uint256,uint16,uint16,bool)
+          handler: handleAddYieldConfig
+        - event: UpdatedYieldConfig(indexed address,indexed uint8,indexed uint8,uint8,uint8,uint8,string,uint256,uint16,uint16)
+          handler: handleUpdateYieldConfig
+        - event: ActivatedYieldConfig(indexed address,indexed uint8,indexed uint8,uint8,uint8,uint8,string,uint256)
+          handler: handleActivateYieldConfig
+        - event: DeactivatedYieldConfig(indexed address,indexed uint8,indexed uint8,uint8,uint8,uint8,string,uint256)
+          handler: handleDeactivateYieldConfig
+  - kind: ethereum/contract
+    name: Plot
+    network: {{network}}
+    source:
+      address: "{{plotAddress}}"
+      abi: Plot
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/Plot.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - Plot
+        - PlotDimensions
+        - PlotClearStats
+        - StakedElementStats
+      abis:
+        - name: Plot
+          file: ./abis/{{plotAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: MintedPlot(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
+          handler: handleMint
+        - event: HarvestedPlot(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint16,uint24)
+          handler: handleHarvestPlot
+        - event: ClearedDiedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
+          handler: handleClearDiedHarvest
+        - event: ClearedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
+          handler: handleClearedHarvest
+  - kind: ethereum/contract
+    name: DynamicPool
+    network: {{network}}
+    source:
+      address: "{{poolAddress}}"
+      abi: DynamicPool
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/DynamicPool.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - Transaction
+        - TokenFlow
+        - Token
+      abis:
+        - name: DynamicPool
+          file: ./abis/{{dynamicPoolAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
