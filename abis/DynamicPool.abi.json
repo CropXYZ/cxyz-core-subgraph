@@ -220,6 +220,12 @@
         "type": "address"
       },
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "goldAddress",
+        "type": "address"
+      },
+      {
         "indexed": false,
         "internalType": "uint256",
         "name": "originalInputAmount",
@@ -235,6 +241,18 @@
         "indexed": false,
         "internalType": "uint256",
         "name": "tokenDelta",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "updatedGoldBalance",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "updatedTokenBalance",
         "type": "uint256"
       },
       {
@@ -270,7 +288,7 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "address",
         "name": "operator",
         "type": "address"
@@ -282,7 +300,7 @@
         "type": "address"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "uint256",
         "name": "oldGoldReserveAmount",
         "type": "uint256"

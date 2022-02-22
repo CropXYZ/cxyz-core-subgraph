@@ -83,32 +83,36 @@ export class ActivatedYieldConfig__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get season(): i32 {
-    return this._event.parameters[1].value.toI32();
+  get yieldTableId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get plotWidth(): i32 {
+  get season(): i32 {
     return this._event.parameters[2].value.toI32();
   }
 
-  get plotHeight(): i32 {
+  get plotWidth(): i32 {
     return this._event.parameters[3].value.toI32();
   }
 
-  get tileArea(): i32 {
+  get plotHeight(): i32 {
     return this._event.parameters[4].value.toI32();
   }
 
-  get baseYield(): i32 {
+  get tileArea(): i32 {
     return this._event.parameters[5].value.toI32();
   }
 
+  get baseYield(): i32 {
+    return this._event.parameters[6].value.toI32();
+  }
+
   get plotType(): string {
-    return this._event.parameters[6].value.toString();
+    return this._event.parameters[7].value.toString();
   }
 
   get plotTypeId(): BigInt {
-    return this._event.parameters[7].value.toBigInt();
+    return this._event.parameters[8].value.toBigInt();
   }
 }
 
@@ -183,44 +187,48 @@ export class AddedYieldConfig__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get season(): i32 {
-    return this._event.parameters[1].value.toI32();
+  get yieldTableId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get plotWidth(): i32 {
+  get season(): i32 {
     return this._event.parameters[2].value.toI32();
   }
 
-  get plotHeight(): i32 {
+  get plotWidth(): i32 {
     return this._event.parameters[3].value.toI32();
   }
 
-  get tileArea(): i32 {
+  get plotHeight(): i32 {
     return this._event.parameters[4].value.toI32();
   }
 
-  get baseYield(): i32 {
+  get tileArea(): i32 {
     return this._event.parameters[5].value.toI32();
   }
 
+  get baseYield(): i32 {
+    return this._event.parameters[6].value.toI32();
+  }
+
   get plotType(): string {
-    return this._event.parameters[6].value.toString();
+    return this._event.parameters[7].value.toString();
   }
 
   get plotTypeId(): BigInt {
-    return this._event.parameters[7].value.toBigInt();
+    return this._event.parameters[8].value.toBigInt();
   }
 
   get minYield(): i32 {
-    return this._event.parameters[8].value.toI32();
-  }
-
-  get maxYield(): i32 {
     return this._event.parameters[9].value.toI32();
   }
 
+  get maxYield(): i32 {
+    return this._event.parameters[10].value.toI32();
+  }
+
   get isActive(): boolean {
-    return this._event.parameters[10].value.toBoolean();
+    return this._event.parameters[11].value.toBoolean();
   }
 }
 
@@ -337,32 +345,36 @@ export class DeactivatedYieldConfig__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get season(): i32 {
-    return this._event.parameters[1].value.toI32();
+  get yieldTableId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get plotWidth(): i32 {
+  get season(): i32 {
     return this._event.parameters[2].value.toI32();
   }
 
-  get plotHeight(): i32 {
+  get plotWidth(): i32 {
     return this._event.parameters[3].value.toI32();
   }
 
-  get tileArea(): i32 {
+  get plotHeight(): i32 {
     return this._event.parameters[4].value.toI32();
   }
 
-  get baseYield(): i32 {
+  get tileArea(): i32 {
     return this._event.parameters[5].value.toI32();
   }
 
+  get baseYield(): i32 {
+    return this._event.parameters[6].value.toI32();
+  }
+
   get plotType(): string {
-    return this._event.parameters[6].value.toString();
+    return this._event.parameters[7].value.toString();
   }
 
   get plotTypeId(): BigInt {
-    return this._event.parameters[7].value.toBigInt();
+    return this._event.parameters[8].value.toBigInt();
   }
 }
 
@@ -715,40 +727,44 @@ export class UpdatedYieldConfig__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get season(): i32 {
-    return this._event.parameters[1].value.toI32();
+  get yieldTableId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get plotWidth(): i32 {
+  get season(): i32 {
     return this._event.parameters[2].value.toI32();
   }
 
-  get plotHeight(): i32 {
+  get plotWidth(): i32 {
     return this._event.parameters[3].value.toI32();
   }
 
-  get tileArea(): i32 {
+  get plotHeight(): i32 {
     return this._event.parameters[4].value.toI32();
   }
 
-  get baseYield(): i32 {
+  get tileArea(): i32 {
     return this._event.parameters[5].value.toI32();
   }
 
+  get baseYield(): i32 {
+    return this._event.parameters[6].value.toI32();
+  }
+
   get plotType(): string {
-    return this._event.parameters[6].value.toString();
+    return this._event.parameters[7].value.toString();
   }
 
   get plotTypeId(): BigInt {
-    return this._event.parameters[7].value.toBigInt();
+    return this._event.parameters[8].value.toBigInt();
   }
 
   get minYield(): i32 {
-    return this._event.parameters[8].value.toI32();
+    return this._event.parameters[9].value.toI32();
   }
 
   get maxYield(): i32 {
-    return this._event.parameters[9].value.toI32();
+    return this._event.parameters[10].value.toI32();
   }
 }
 

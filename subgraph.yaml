@@ -52,13 +52,13 @@ dataSources:
         - event: DeactivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
           handler: handleDeactivateTimeBreakdown
 
-        - event: AddedYieldConfig(indexed address,indexed uint8,indexed uint8,uint8,uint8,uint8,string,uint256,uint16,uint16,bool)
+        - event: AddedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256,uint16,uint16,bool)
           handler: handleAddYieldConfig
-        - event: UpdatedYieldConfig(indexed address,indexed uint8,indexed uint8,uint8,uint8,uint8,string,uint256,uint16,uint16)
+        - event: UpdatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256,uint16,uint16)
           handler: handleUpdateYieldConfig
-        - event: ActivatedYieldConfig(indexed address,indexed uint8,indexed uint8,uint8,uint8,uint8,string,uint256)
+        - event: ActivatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256)
           handler: handleActivateYieldConfig
-        - event: DeactivatedYieldConfig(indexed address,indexed uint8,indexed uint8,uint8,uint8,uint8,string,uint256)
+        - event: DeactivatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256)
           handler: handleDeactivateYieldConfig
   - kind: ethereum/contract
     name: Plot
@@ -118,3 +118,16 @@ dataSources:
           handler: handlePause
         - event: Unpaused(address)
           handler: handleUnpause
+
+        - event: UpdatedGoldReserveAmount(address,indexed address,indexed uint256,indexed uint256)
+          handler: handleUpdateGoldReserve
+        - event: UpdatedTokenReserveAmount(address,indexed address,indexed uint256,indexed uint256)
+          handler: handleUpdateTokenReserve
+        - event: TransferredFromPool(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,bool,bool)
+          handler: handleTransferFromPool
+        - event: ScaledPoolBalances(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleScalePoolBalances
+        - event: InitializedPool(indexed address,indexed address,uint256,uint256,uint256,uint256)
+          handler: handleInitializePool
+        - event: SentToTreasury(address,address,uint256)
+          handler: handleSendToTreasury

@@ -1,3 +1,9 @@
+type GameState @entity {
+  id: ID!
+  # The paused state
+  isPaused: Boolean!
+}
+
 type Plot @entity {
   id: ID!
   # The season of the plot
@@ -10,8 +16,11 @@ type Plot @entity {
   # Amount that needs to be staked in each tile
   tileArea: BigInt!
 
-  # Base stats
-  baseProductionStats: BigInt!
+  # ----- ----- ----- ----- -----
+  # Base speed
+  baseSpeed: BigInt!
+  # Base yield
+  baseYield: BigInt!
   # The plot type
   plotType: PlotType!
 
@@ -46,7 +55,7 @@ type Crop @entity {
   # The token being moved
   token: Token!
   plotType: PlotType!
-  growthTimeBreakdown: GrowthTime!
+  growthTimeTable: GrowthTimeTable!
   addressStoreName: String!
   addressStoreNameHash: Bytes!
   stakedElementName: String!
@@ -72,9 +81,13 @@ type YieldConfig @entity {
   tileArea: BigInt!
 }
 
-type GrowthTime @entity {
+type GrowthTimeTable @entity {
   id: ID!
   isActive: Boolean!
+
+  elementName: String!
+  elementNameHash: Bytes!
+  addressNameHash: Bytes!
 
   # Time set
   deltaNothingToStart: BigInt!
@@ -94,9 +107,17 @@ type PlotType @entity {
 
 type Pool @entity {
   id: ID!
+
   # The token that is being moved into the system
-  poolAddress: Bytes! # address
-  totalGoldBalance: BigInt!
+  crop: Crop!
+
+  # Token balance
+  tokenTrackedAmount: BigInt!
+  tokenReserveAmount: BigInt!
+
+  # Gold balance
+  goldTrackedAmount: BigInt!
+  goldReserveAmount: BigInt!
 }
 
 type Token @entity {
@@ -110,8 +131,14 @@ type TransactionFlow @entity {
   id: ID!
   # Time stamp
   timestamp: BigInt!
+  # The index that the transaction is within the block
+  blockIndex: BigInt!
   # The pool of the pool being operated on
   pool: Pool!
+  # The user that is initiating the transaction
+  counterParty: Bytes! # address
+  # True if the token is gold beign added
+  isGoldInbound: Boolean!
   # The token that is being moved into the system
   flowIn: TokenFlow!
   # The token that is being moved out of the system
@@ -122,12 +149,18 @@ type TokenFlow @entity {
   id: ID!
   # Time stamp
   timestamp: BigInt!
+  # The index that the transaction is within the block
+  blockIndex: BigInt!
   # The address of the pool that is being moved into or out of
   pool: Pool!
+  # The user that is initiating the transaction
+  counterParty: Bytes! # address
   # The token being moved
   token: Token!
   # True if the token is being moved into the pool
   isDirectionIntoPool: Boolean!
+  # True if the token is gold
+  isGold: Boolean!
   # The amount of token being moved
   tokenAmount: BigInt!
 }

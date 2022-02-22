@@ -23,6 +23,12 @@
         "bracketSpacing": false,
         "parser": "yaml"
       }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "printWidth": 80
+      }
     }
   ]
 }

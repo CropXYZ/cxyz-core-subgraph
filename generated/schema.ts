@@ -12,6 +12,50 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
+export class GameState extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("isPaused", Value.fromBoolean(false));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save GameState entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        "Cannot save GameState entity with non-string ID. " +
+          'Considering using .toHex() to convert the "id" to a string.'
+      );
+      store.set("GameState", id.toString(), this);
+    }
+  }
+
+  static load(id: string): GameState | null {
+    return changetype<GameState | null>(store.get("GameState", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get isPaused(): boolean {
+    let value = this.get("isPaused");
+    return value!.toBoolean();
+  }
+
+  set isPaused(value: boolean) {
+    this.set("isPaused", Value.fromBoolean(value));
+  }
+}
+
 export class Plot extends Entity {
   constructor(id: string) {
     super();
@@ -21,7 +65,8 @@ export class Plot extends Entity {
     this.set("width", Value.fromBigInt(BigInt.zero()));
     this.set("height", Value.fromBigInt(BigInt.zero()));
     this.set("tileArea", Value.fromBigInt(BigInt.zero()));
-    this.set("baseProductionStats", Value.fromBigInt(BigInt.zero()));
+    this.set("baseSpeed", Value.fromBigInt(BigInt.zero()));
+    this.set("baseYield", Value.fromBigInt(BigInt.zero()));
     this.set("plotType", Value.fromString(""));
     this.set("countClears", Value.fromBigInt(BigInt.zero()));
     this.set("countDeathClears", Value.fromBigInt(BigInt.zero()));
@@ -94,13 +139,22 @@ export class Plot extends Entity {
     this.set("tileArea", Value.fromBigInt(value));
   }
 
-  get baseProductionStats(): BigInt {
-    let value = this.get("baseProductionStats");
+  get baseSpeed(): BigInt {
+    let value = this.get("baseSpeed");
     return value!.toBigInt();
   }
 
-  set baseProductionStats(value: BigInt) {
-    this.set("baseProductionStats", Value.fromBigInt(value));
+  set baseSpeed(value: BigInt) {
+    this.set("baseSpeed", Value.fromBigInt(value));
+  }
+
+  get baseYield(): BigInt {
+    let value = this.get("baseYield");
+    return value!.toBigInt();
+  }
+
+  set baseYield(value: BigInt) {
+    this.set("baseYield", Value.fromBigInt(value));
   }
 
   get plotType(): string {
@@ -200,7 +254,7 @@ export class Crop extends Entity {
 
     this.set("token", Value.fromString(""));
     this.set("plotType", Value.fromString(""));
-    this.set("growthTimeBreakdown", Value.fromString(""));
+    this.set("growthTimeTable", Value.fromString(""));
     this.set("addressStoreName", Value.fromString(""));
     this.set("addressStoreNameHash", Value.fromBytes(Bytes.empty()));
     this.set("stakedElementName", Value.fromString(""));
@@ -251,13 +305,13 @@ export class Crop extends Entity {
     this.set("plotType", Value.fromString(value));
   }
 
-  get growthTimeBreakdown(): string {
-    let value = this.get("growthTimeBreakdown");
+  get growthTimeTable(): string {
+    let value = this.get("growthTimeTable");
     return value!.toString();
   }
 
-  set growthTimeBreakdown(value: string) {
-    this.set("growthTimeBreakdown", Value.fromString(value));
+  set growthTimeTable(value: string) {
+    this.set("growthTimeTable", Value.fromString(value));
   }
 
   get addressStoreName(): string {
@@ -411,12 +465,16 @@ export class YieldConfig extends Entity {
   }
 }
 
-export class GrowthTime extends Entity {
+export class GrowthTimeTable extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
 
     this.set("isActive", Value.fromBoolean(false));
+    this.set("elementName", Value.fromString(""));
+    this.set("addressName", Value.fromString(""));
+    this.set("elementNameHash", Value.fromBytes(Bytes.empty()));
+    this.set("addressNameHash", Value.fromBytes(Bytes.empty()));
     this.set("deltaNothingToStart", Value.fromBigInt(BigInt.zero()));
     this.set("deltaStartToEarly", Value.fromBigInt(BigInt.zero()));
     this.set("deltaEarlyToMature", Value.fromBigInt(BigInt.zero()));
@@ -425,19 +483,19 @@ export class GrowthTime extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save GrowthTime entity without an ID");
+    assert(id != null, "Cannot save GrowthTimeTable entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save GrowthTime entity with non-string ID. " +
+        "Cannot save GrowthTimeTable entity with non-string ID. " +
           'Considering using .toHex() to convert the "id" to a string.'
       );
-      store.set("GrowthTime", id.toString(), this);
+      store.set("GrowthTimeTable", id.toString(), this);
     }
   }
 
-  static load(id: string): GrowthTime | null {
-    return changetype<GrowthTime | null>(store.get("GrowthTime", id));
+  static load(id: string): GrowthTimeTable | null {
+    return changetype<GrowthTimeTable | null>(store.get("GrowthTimeTable", id));
   }
 
   get id(): string {
@@ -456,6 +514,42 @@ export class GrowthTime extends Entity {
 
   set isActive(value: boolean) {
     this.set("isActive", Value.fromBoolean(value));
+  }
+
+  get elementName(): string {
+    let value = this.get("elementName");
+    return value!.toString();
+  }
+
+  set elementName(value: string) {
+    this.set("elementName", Value.fromString(value));
+  }
+
+  get addressName(): string {
+    let value = this.get("addressName");
+    return value!.toString();
+  }
+
+  set addressName(value: string) {
+    this.set("addressName", Value.fromString(value));
+  }
+
+  get elementNameHash(): Bytes {
+    let value = this.get("elementNameHash");
+    return value!.toBytes();
+  }
+
+  set elementNameHash(value: Bytes) {
+    this.set("elementNameHash", Value.fromBytes(value));
+  }
+
+  get addressNameHash(): Bytes {
+    let value = this.get("addressNameHash");
+    return value!.toBytes();
+  }
+
+  set addressNameHash(value: Bytes) {
+    this.set("addressNameHash", Value.fromBytes(value));
   }
 
   get deltaNothingToStart(): BigInt {
@@ -544,8 +638,11 @@ export class Pool extends Entity {
     super();
     this.set("id", Value.fromString(id));
 
-    this.set("poolAddress", Value.fromBytes(Bytes.empty()));
-    this.set("totalGoldBalance", Value.fromBigInt(BigInt.zero()));
+    this.set("crop", Value.fromString(""));
+    this.set("tokenTrackedAmount", Value.fromBigInt(BigInt.zero()));
+    this.set("tokenReserveAmount", Value.fromBigInt(BigInt.zero()));
+    this.set("goldTrackedAmount", Value.fromBigInt(BigInt.zero()));
+    this.set("goldReserveAmount", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -574,22 +671,49 @@ export class Pool extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get poolAddress(): Bytes {
-    let value = this.get("poolAddress");
-    return value!.toBytes();
+  get crop(): string {
+    let value = this.get("crop");
+    return value!.toString();
   }
 
-  set poolAddress(value: Bytes) {
-    this.set("poolAddress", Value.fromBytes(value));
+  set crop(value: string) {
+    this.set("crop", Value.fromString(value));
   }
 
-  get totalGoldBalance(): BigInt {
-    let value = this.get("totalGoldBalance");
+  get tokenTrackedAmount(): BigInt {
+    let value = this.get("tokenTrackedAmount");
     return value!.toBigInt();
   }
 
-  set totalGoldBalance(value: BigInt) {
-    this.set("totalGoldBalance", Value.fromBigInt(value));
+  set tokenTrackedAmount(value: BigInt) {
+    this.set("tokenTrackedAmount", Value.fromBigInt(value));
+  }
+
+  get tokenReserveAmount(): BigInt {
+    let value = this.get("tokenReserveAmount");
+    return value!.toBigInt();
+  }
+
+  set tokenReserveAmount(value: BigInt) {
+    this.set("tokenReserveAmount", Value.fromBigInt(value));
+  }
+
+  get goldTrackedAmount(): BigInt {
+    let value = this.get("goldTrackedAmount");
+    return value!.toBigInt();
+  }
+
+  set goldTrackedAmount(value: BigInt) {
+    this.set("goldTrackedAmount", Value.fromBigInt(value));
+  }
+
+  get goldReserveAmount(): BigInt {
+    let value = this.get("goldReserveAmount");
+    return value!.toBigInt();
+  }
+
+  set goldReserveAmount(value: BigInt) {
+    this.set("goldReserveAmount", Value.fromBigInt(value));
   }
 }
 
@@ -653,7 +777,10 @@ export class TransactionFlow extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("timestamp", Value.fromBigInt(BigInt.zero()));
+    this.set("blockIndex", Value.fromBigInt(BigInt.zero()));
     this.set("pool", Value.fromString(""));
+    this.set("counterParty", Value.fromBytes(Bytes.empty()));
+    this.set("isGoldInbound", Value.fromBoolean(false));
     this.set("flowIn", Value.fromString(""));
     this.set("flowOut", Value.fromString(""));
   }
@@ -693,6 +820,15 @@ export class TransactionFlow extends Entity {
     this.set("timestamp", Value.fromBigInt(value));
   }
 
+  get blockIndex(): BigInt {
+    let value = this.get("blockIndex");
+    return value!.toBigInt();
+  }
+
+  set blockIndex(value: BigInt) {
+    this.set("blockIndex", Value.fromBigInt(value));
+  }
+
   get pool(): string {
     let value = this.get("pool");
     return value!.toString();
@@ -700,6 +836,24 @@ export class TransactionFlow extends Entity {
 
   set pool(value: string) {
     this.set("pool", Value.fromString(value));
+  }
+
+  get counterParty(): Bytes {
+    let value = this.get("counterParty");
+    return value!.toBytes();
+  }
+
+  set counterParty(value: Bytes) {
+    this.set("counterParty", Value.fromBytes(value));
+  }
+
+  get isGoldInbound(): boolean {
+    let value = this.get("isGoldInbound");
+    return value!.toBoolean();
+  }
+
+  set isGoldInbound(value: boolean) {
+    this.set("isGoldInbound", Value.fromBoolean(value));
   }
 
   get flowIn(): string {
@@ -727,9 +881,12 @@ export class TokenFlow extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("timestamp", Value.fromBigInt(BigInt.zero()));
+    this.set("blockIndex", Value.fromBigInt(BigInt.zero()));
     this.set("pool", Value.fromString(""));
+    this.set("counterParty", Value.fromBytes(Bytes.empty()));
     this.set("token", Value.fromString(""));
     this.set("isDirectionIntoPool", Value.fromBoolean(false));
+    this.set("isGold", Value.fromBoolean(false));
     this.set("tokenAmount", Value.fromBigInt(BigInt.zero()));
   }
 
@@ -768,6 +925,15 @@ export class TokenFlow extends Entity {
     this.set("timestamp", Value.fromBigInt(value));
   }
 
+  get blockIndex(): BigInt {
+    let value = this.get("blockIndex");
+    return value!.toBigInt();
+  }
+
+  set blockIndex(value: BigInt) {
+    this.set("blockIndex", Value.fromBigInt(value));
+  }
+
   get pool(): string {
     let value = this.get("pool");
     return value!.toString();
@@ -775,6 +941,15 @@ export class TokenFlow extends Entity {
 
   set pool(value: string) {
     this.set("pool", Value.fromString(value));
+  }
+
+  get counterParty(): Bytes {
+    let value = this.get("counterParty");
+    return value!.toBytes();
+  }
+
+  set counterParty(value: Bytes) {
+    this.set("counterParty", Value.fromBytes(value));
   }
 
   get token(): string {
@@ -793,6 +968,15 @@ export class TokenFlow extends Entity {
 
   set isDirectionIntoPool(value: boolean) {
     this.set("isDirectionIntoPool", Value.fromBoolean(value));
+  }
+
+  get isGold(): boolean {
+    let value = this.get("isGold");
+    return value!.toBoolean();
+  }
+
+  set isGold(value: boolean) {
+    this.set("isGold", Value.fromBoolean(value));
   }
 
   get tokenAmount(): BigInt {

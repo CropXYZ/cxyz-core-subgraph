@@ -66,12 +66,18 @@
       },
       {
         "indexed": true,
+        "internalType": "uint48",
+        "name": "yieldTableId",
+        "type": "uint48"
+      },
+      {
+        "indexed": true,
         "internalType": "uint8",
         "name": "season",
         "type": "uint8"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint8",
         "name": "plotWidth",
         "type": "uint8"
@@ -188,12 +194,18 @@
       },
       {
         "indexed": true,
+        "internalType": "uint48",
+        "name": "yieldTableId",
+        "type": "uint48"
+      },
+      {
+        "indexed": true,
         "internalType": "uint8",
         "name": "season",
         "type": "uint8"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint8",
         "name": "plotWidth",
         "type": "uint8"
@@ -349,12 +361,18 @@
       },
       {
         "indexed": true,
+        "internalType": "uint48",
+        "name": "yieldTableId",
+        "type": "uint48"
+      },
+      {
+        "indexed": true,
         "internalType": "uint8",
         "name": "season",
         "type": "uint8"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint8",
         "name": "plotWidth",
         "type": "uint8"
@@ -762,12 +780,18 @@
       },
       {
         "indexed": true,
+        "internalType": "uint48",
+        "name": "yieldTableId",
+        "type": "uint48"
+      },
+      {
+        "indexed": true,
         "internalType": "uint8",
         "name": "season",
         "type": "uint8"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint8",
         "name": "plotWidth",
         "type": "uint8"
