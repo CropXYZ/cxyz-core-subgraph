@@ -145,6 +145,12 @@
       },
       {
         "indexed": false,
+        "internalType": "bool",
+        "name": "isActive",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
         "internalType": "uint24",
         "name": "nothingToStart",
         "type": "uint24"
@@ -175,9 +181,9 @@
       },
       {
         "indexed": false,
-        "internalType": "bool",
-        "name": "isActive",
-        "type": "bool"
+        "internalType": "uint256",
+        "name": "tokenPlotTypeId",
+        "type": "uint256"
       }
     ],
     "name": "AddedTimeBreakdown",

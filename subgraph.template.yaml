@@ -3,6 +3,36 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
+    name: AddressStore
+    network: {{network}}
+    source:
+      address: "{{addrStrAddress}}"
+      abi: AddressStore
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/AddressStore.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - AddressMapping
+        - Token
+      abis:
+        - name: AddressStore
+          file: ./abis/{{addrStrAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: AddedResolveAddress(indexed address,string,indexed bytes32,indexed address)
+          handler: handleAddAddress
+        - event: UpdatedResolveAddress(address,string,indexed bytes32,indexed address,indexed address)
+          handler: handleUpdateAddress
+        - event: DeactivatedResolveAddressName(indexed address,string,indexed bytes32,indexed address)
+          handler: handleDeactivateAddress
+  - kind: ethereum/contract
     name: GameEngine
     network: {{network}}
     source:
@@ -41,7 +71,7 @@ dataSources:
         - event: ActivatedPlotType(indexed address,indexed uint256,string)
           handler: handleActivatePlotType
 
-        - event: AddedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,bytes32,bool)
+        - event: AddedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,bool,uint24,uint24,uint24,uint24,bytes32,uint256)
           handler: handleAddTimeBreakdown
         - event: UpdatedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,uint24,uint24,uint24,uint24)
           handler: handleUpdateTimeBreakdown

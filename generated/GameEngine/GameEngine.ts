@@ -145,28 +145,32 @@ export class AddedTimeBreakdown__Params {
     return this._event.parameters[3].value.toBigInt();
   }
 
-  get nothingToStart(): i32 {
-    return this._event.parameters[4].value.toI32();
+  get isActive(): boolean {
+    return this._event.parameters[4].value.toBoolean();
   }
 
-  get startToEarly(): i32 {
+  get nothingToStart(): i32 {
     return this._event.parameters[5].value.toI32();
   }
 
-  get earlyToMature(): i32 {
+  get startToEarly(): i32 {
     return this._event.parameters[6].value.toI32();
   }
 
-  get matureToExpire(): i32 {
+  get earlyToMature(): i32 {
     return this._event.parameters[7].value.toI32();
   }
 
-  get addressStoreNameHash(): Bytes {
-    return this._event.parameters[8].value.toBytes();
+  get matureToExpire(): i32 {
+    return this._event.parameters[8].value.toI32();
   }
 
-  get isActive(): boolean {
-    return this._event.parameters[9].value.toBoolean();
+  get addressStoreNameHash(): Bytes {
+    return this._event.parameters[9].value.toBytes();
+  }
+
+  get tokenPlotTypeId(): BigInt {
+    return this._event.parameters[10].value.toBigInt();
   }
 }
 

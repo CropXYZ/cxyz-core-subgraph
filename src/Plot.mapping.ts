@@ -16,7 +16,7 @@ import {
   PlotType
 } from "../generated/schema";
 
-export function handlePaused(event: Paused): void {
+export function handlePause(event: Paused): void {
   let gameState = GameState.load("Plot");
 
   if (gameState == null) {
@@ -26,7 +26,7 @@ export function handlePaused(event: Paused): void {
   gameState.save();
 }
 
-export function handleUnpaused(event: Unpaused): void {
+export function handleUnpause(event: Unpaused): void {
   let gameState = GameState.load("Plot");
 
   if (gameState == null) {

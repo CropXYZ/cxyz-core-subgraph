@@ -3,8 +3,38 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
+    name: AddressStore
+    network: mainnet
+    source:
+      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+      abi: AddressStore
+      startBlock: 0
+    mapping:
+      file: ./src/AddressStore.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - AddressMapping
+        - Token
+      abis:
+        - name: AddressStore
+          file: ./abis/AddressStore.abi.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: AddedResolveAddress(indexed address,string,indexed bytes32,indexed address)
+          handler: handleAddAddress
+        - event: UpdatedResolveAddress(address,string,indexed bytes32,indexed address,indexed address)
+          handler: handleUpdateAddress
+        - event: DeactivatedResolveAddressName(indexed address,string,indexed bytes32,indexed address)
+          handler: handleDeactivateAddress
+  - kind: ethereum/contract
     name: GameEngine
-    network: hardhat
+    network: mainnet
     source:
       address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d"
       abi: GameEngine
@@ -41,7 +71,7 @@ dataSources:
         - event: ActivatedPlotType(indexed address,indexed uint256,string)
           handler: handleActivatePlotType
 
-        - event: AddedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,bytes32,bool)
+        - event: AddedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,bool,uint24,uint24,uint24,uint24,bytes32,uint256)
           handler: handleAddTimeBreakdown
         - event: UpdatedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,uint24,uint24,uint24,uint24)
           handler: handleUpdateTimeBreakdown
@@ -62,7 +92,7 @@ dataSources:
           handler: handleDeactivateYieldConfig
   - kind: ethereum/contract
     name: Plot
-    network: hardhat
+    network: mainnet
     source:
       address: "0x998abeb3E57409262aE5b751f60747921B33613E"
       abi: Plot
@@ -96,7 +126,7 @@ dataSources:
           handler: handleClearedHarvest
   - kind: ethereum/contract
     name: DynamicPool
-    network: hardhat
+    network: mainnet
     source:
       address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1"
       abi: DynamicPool

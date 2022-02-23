@@ -19,19 +19,19 @@ import {
   DeactivatedYieldConfig
 } from "../generated/GameEngine/GameEngine";
 import {
+  AddressMapping,
   Crop,
   GameState,
   GrowthTimeTable,
   Plot,
   PlotType,
   Pool,
-  Token,
   TokenFlow,
   TransactionFlow,
   YieldConfig
 } from "../generated/schema";
 
-export function handlePaused(event: Paused): void {
+export function handlePause(event: Paused): void {
   let gameState = GameState.load("GameEngine");
 
   if (gameState == null) {
@@ -41,7 +41,7 @@ export function handlePaused(event: Paused): void {
   gameState.save();
 }
 
-export function handleUnpaused(event: Unpaused): void {
+export function handleUnpause(event: Unpaused): void {
   let gameState = GameState.load("GameEngine");
 
   if (gameState == null) {
@@ -86,13 +86,10 @@ export function handleActivatePlotType(event: ActivatedPlotType): void {
 }
 
 export function handleAddTimeBreakdown(event: AddedTimeBreakdown): void {
+  // Create time table
   const timeTable = new GrowthTimeTable(
     event.params.timeBreakdownId.toString()
   );
-
-  timeTable.elementName = event.params.stakedElementName;
-  timeTable.elementNameHash = event.params.stakedElementNameHash;
-  timeTable.addressNameHash = event.params.addressStoreNameHash;
 
   timeTable.deltaNothingToStart = BigInt.fromI32(event.params.nothingToStart);
   timeTable.deltaStartToEarly = BigInt.fromI32(event.params.startToEarly);
@@ -100,6 +97,21 @@ export function handleAddTimeBreakdown(event: AddedTimeBreakdown): void {
   timeTable.deltaMatureToExpire = BigInt.fromI32(event.params.matureToExpire);
 
   timeTable.save();
+
+  // Create crop
+  let crop = Crop.load(event.params.stakedElementNameHash.toString());
+
+  if (crop == null) {
+    crop = new Crop(event.params.stakedElementNameHash.toString());
+    crop.addressMapping = event.params.addressStoreNameHash.toString();
+    crop.plotType = event.params.tokenPlotTypeId.toString();
+
+    crop.elementName = event.params.stakedElementName;
+    crop.elementNameHash = event.params.stakedElementNameHash;
+  }
+  crop.growthTimeTable = timeTable.id;
+
+  crop.save();
 }
 
 export function handleUpdateTimeBreakdown(event: UpdatedTimeBreakdown): void {
@@ -119,19 +131,30 @@ export function handleUpdateTimeBreakdown(event: UpdatedTimeBreakdown): void {
   );
 
   timeTable.save();
+
+  // Create crop
+  let crop = Crop.load(event.params.stakedElementNameHash.toString());
+
+  if (crop == null) {
+    crop = new Crop(event.params.stakedElementNameHash.toString());
+  }
+  crop.growthTimeTable = timeTable.id;
+
+  crop.save();
 }
 
 export function handleUpdateTimeBreakdownAddress(
   event: UpdatedTimeBreakdownAddress
 ): void {
-  let timeTable = GrowthTimeTable.load(event.params.timeBreakdownId.toString());
+  // Load crop
+  let crop = Crop.load(event.params.stakedElementNameHash.toString());
 
-  if (timeTable == null) {
-    timeTable = new GrowthTimeTable(event.params.timeBreakdownId.toString());
+  if (crop == null) {
+    crop = new Crop(event.params.stakedElementNameHash.toString());
   }
+  crop.addressMapping = event.params.newAddressStoreNameHash.toString();
 
-  timeTable.addressNameHash = event.params.newAddressStoreNameHash;
-  timeTable.save();
+  crop.save();
 }
 
 export function handleActivateTimeBreakdown(

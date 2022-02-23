@@ -9,15 +9,13 @@ import {
   SentToTreasury
 } from "../generated/DynamicPool/DynamicPool";
 import {
-  Crop,
   GameState,
   Pool,
-  Token,
   TokenFlow,
   TransactionFlow
 } from "../generated/schema";
 
-export function handlePaused(event: Paused): void {
+export function handlePause(event: Paused): void {
   let gameState = GameState.load("DynamicPool");
 
   if (gameState == null) {
@@ -27,7 +25,7 @@ export function handlePaused(event: Paused): void {
   gameState.save();
 }
 
-export function handleUnpaused(event: Unpaused): void {
+export function handleUnpause(event: Unpaused): void {
   let gameState = GameState.load("DynamicPool");
 
   if (gameState == null) {
@@ -82,7 +80,7 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   goldFlow.blockIndex = event.transaction.index;
   goldFlow.pool = pool.id;
   goldFlow.counterParty = event.params.destinationAddress;
-  goldFlow.token = event.params.goldAddress.toString();
+  goldFlow.tokenAddress = event.params.goldAddress;
   goldFlow.tokenAmount = event.params.goldDelta;
   goldFlow.isGold = true;
   goldFlow.isDirectionIntoPool =
@@ -96,7 +94,7 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   tokenFlow.blockIndex = event.transaction.index;
   tokenFlow.pool = pool.id;
   tokenFlow.counterParty = event.params.destinationAddress;
-  tokenFlow.token = event.params.tokenAddress.toString();
+  tokenFlow.tokenAddress = event.params.tokenAddress;
   tokenFlow.tokenAmount = event.params.tokenDelta;
   tokenFlow.isGold = false;
   tokenFlow.isDirectionIntoPool =
@@ -141,7 +139,7 @@ export function handleScalePoolBalances(event: ScaledPoolBalances): void {
 export function handleInitializePool(event: InitializedPool): void {
   const pool = new Pool(event.params.tokenAddress.toString());
 
-  pool.crop = event.params.tokenAddress.toString();
+  pool.tokenAddress = event.params.tokenAddress;
 
   pool.tokenTrackedAmount = event.params.tokenAmount;
   pool.tokenReserveAmount = event.params.tokenReserveAmount;

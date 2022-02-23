@@ -52,14 +52,13 @@ type Plot @entity {
 
 type Crop @entity {
   id: ID!
-  # The token being moved
-  token: Token!
-  plotType: PlotType!
+
+  addressMapping: AddressMapping!
   growthTimeTable: GrowthTimeTable!
-  addressStoreName: String!
-  addressStoreNameHash: Bytes!
-  stakedElementName: String!
-  yieldConfig: YieldConfig!
+  plotType: PlotType!
+
+  elementName: String!
+  elementNameHash: Bytes!
 }
 
 type YieldConfig @entity {
@@ -85,10 +84,6 @@ type GrowthTimeTable @entity {
   id: ID!
   isActive: Boolean!
 
-  elementName: String!
-  elementNameHash: Bytes!
-  addressNameHash: Bytes!
-
   # Time set
   deltaNothingToStart: BigInt!
   deltaStartToEarly: BigInt!
@@ -105,12 +100,23 @@ type PlotType @entity {
 # ----- ----- ----- ----- -----
 # ----- ----- ----- ----- -----
 
+type AddressMapping @entity {
+  id: ID!
+  tokenAddress: Bytes! # address
+  addressNameHash: Bytes!
+  addressName: String!
+  isActive: Boolean!
+}
+
+# ----- ----- ----- ----- -----
+# ----- ----- ----- ----- -----
+# ----- ----- ----- ----- -----
+
 type Pool @entity {
   id: ID!
 
   # The token that is being moved into the system
-  crop: Crop!
-
+  tokenAddress: Bytes! # address
   # Token balance
   tokenTrackedAmount: BigInt!
   tokenReserveAmount: BigInt!
@@ -118,13 +124,6 @@ type Pool @entity {
   # Gold balance
   goldTrackedAmount: BigInt!
   goldReserveAmount: BigInt!
-}
-
-type Token @entity {
-  id: ID!
-  # The token that is being moved into the system
-  tokenAddress: Bytes! # address
-  totalBalance: BigInt!
 }
 
 type TransactionFlow @entity {
@@ -156,7 +155,7 @@ type TokenFlow @entity {
   # The user that is initiating the transaction
   counterParty: Bytes! # address
   # The token being moved
-  token: Token!
+  tokenAddress: Bytes! # address
   # True if the token is being moved into the pool
   isDirectionIntoPool: Boolean!
   # True if the token is gold
