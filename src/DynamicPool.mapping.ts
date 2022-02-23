@@ -38,7 +38,11 @@ export function handleUnpaused(event: Unpaused): void {
 }
 
 export function handleUpdateGoldReserve(event: UpdatedGoldReserveAmount): void {
-  const pool = Pool.load(event.params.tokenAddress.toString());
+  let pool = Pool.load(event.params.tokenAddress.toString());
+
+  if (pool == null) {
+    pool = new Pool(event.params.tokenAddress.toString());
+  }
 
   pool.goldReserveAmount = event.params.newGoldReserveAmount;
 
@@ -48,7 +52,11 @@ export function handleUpdateGoldReserve(event: UpdatedGoldReserveAmount): void {
 export function handleUpdateTokenReserve(
   event: UpdatedTokenReserveAmount
 ): void {
-  const pool = Pool.load(event.params.tokenAddress.toString());
+  let pool = Pool.load(event.params.tokenAddress.toString());
+
+  if (pool == null) {
+    pool = new Pool(event.params.tokenAddress.toString());
+  }
 
   pool.tokenReserveAmount = event.params.newTokenReserveAmount;
 
@@ -57,7 +65,11 @@ export function handleUpdateTokenReserve(
 
 export function handleTransferFromPool(event: TransferredFromPool): void {
   // Update the overall pool details
-  const pool = Pool.load(event.params.tokenAddress.toString());
+  let pool = Pool.load(event.params.tokenAddress.toString());
+
+  if (pool == null) {
+    pool = new Pool(event.params.tokenAddress.toString());
+  }
 
   pool.tokenTrackedAmount = event.params.updatedTokenBalance;
   pool.goldTrackedAmount = event.params.updatedGoldBalance;
@@ -70,7 +82,7 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   goldFlow.blockIndex = event.transaction.index;
   goldFlow.pool = pool.id;
   goldFlow.counterParty = event.params.destinationAddress;
-  goldFlow.token = Token.load(event.params.goldAddress.toString()).id;
+  goldFlow.token = event.params.goldAddress.toString();
   goldFlow.tokenAmount = event.params.goldDelta;
   goldFlow.isGold = true;
   goldFlow.isDirectionIntoPool =
@@ -84,7 +96,7 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   tokenFlow.blockIndex = event.transaction.index;
   tokenFlow.pool = pool.id;
   tokenFlow.counterParty = event.params.destinationAddress;
-  tokenFlow.token = Token.load(event.params.tokenAddress.toString()).id;
+  tokenFlow.token = event.params.tokenAddress.toString();
   tokenFlow.tokenAmount = event.params.tokenDelta;
   tokenFlow.isGold = false;
   tokenFlow.isDirectionIntoPool =
@@ -114,7 +126,11 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
 }
 
 export function handleScalePoolBalances(event: ScaledPoolBalances): void {
-  const pool = Pool.load(event.params.tokenAddress.toString());
+  let pool = Pool.load(event.params.tokenAddress.toString());
+
+  if (pool == null) {
+    pool = new Pool(event.params.tokenAddress.toString());
+  }
 
   pool.tokenTrackedAmount = event.params.newTrackedTokenBalance;
   pool.goldTrackedAmount = event.params.newTrackedGoldBalance;
@@ -125,7 +141,7 @@ export function handleScalePoolBalances(event: ScaledPoolBalances): void {
 export function handleInitializePool(event: InitializedPool): void {
   const pool = new Pool(event.params.tokenAddress.toString());
 
-  pool.crop = Crop.load(event.params.tokenAddress.toString()).id;
+  pool.crop = event.params.tokenAddress.toString();
 
   pool.tokenTrackedAmount = event.params.tokenAmount;
   pool.tokenReserveAmount = event.params.tokenReserveAmount;

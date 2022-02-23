@@ -1,3 +1,4 @@
+import { BigInt } from "@graphprotocol/graph-ts";
 import {
   Paused,
   Unpaused,
@@ -93,23 +94,29 @@ export function handleAddTimeBreakdown(event: AddedTimeBreakdown): void {
   timeTable.elementNameHash = event.params.stakedElementNameHash;
   timeTable.addressNameHash = event.params.addressStoreNameHash;
 
-  timeTable.deltaNothingToStart = event.params.nothingToStart;
-  timeTable.deltaStartToEarly = event.params.startToEarly;
-  timeTable.deltaEarlyToMature = event.params.earlyToMature;
-  timeTable.deltaMatureToExpire = event.params.matureToExpire;
+  timeTable.deltaNothingToStart = BigInt.fromI32(event.params.nothingToStart);
+  timeTable.deltaStartToEarly = BigInt.fromI32(event.params.startToEarly);
+  timeTable.deltaEarlyToMature = BigInt.fromI32(event.params.earlyToMature);
+  timeTable.deltaMatureToExpire = BigInt.fromI32(event.params.matureToExpire);
 
   timeTable.save();
 }
 
 export function handleUpdateTimeBreakdown(event: UpdatedTimeBreakdown): void {
-  const timeTable = GrowthTimeTable.load(
-    event.params.timeBreakdownId.toString()
-  );
+  let timeTable = GrowthTimeTable.load(event.params.timeBreakdownId.toString());
 
-  timeTable.deltaNothingToStart = event.params.newNothingToStart;
-  timeTable.deltaStartToEarly = event.params.newStartToEarly;
-  timeTable.deltaEarlyToMature = event.params.newEarlyToMature;
-  timeTable.deltaMatureToExpire = event.params.newMatureToExpire;
+  if (timeTable == null) {
+    timeTable = new GrowthTimeTable(event.params.timeBreakdownId.toString());
+  }
+
+  timeTable.deltaNothingToStart = BigInt.fromI32(
+    event.params.newNothingToStart
+  );
+  timeTable.deltaStartToEarly = BigInt.fromI32(event.params.newStartToEarly);
+  timeTable.deltaEarlyToMature = BigInt.fromI32(event.params.newEarlyToMature);
+  timeTable.deltaMatureToExpire = BigInt.fromI32(
+    event.params.newMatureToExpire
+  );
 
   timeTable.save();
 }
@@ -117,9 +124,12 @@ export function handleUpdateTimeBreakdown(event: UpdatedTimeBreakdown): void {
 export function handleUpdateTimeBreakdownAddress(
   event: UpdatedTimeBreakdownAddress
 ): void {
-  const timeTable = GrowthTimeTable.load(
-    event.params.timeBreakdownId.toString()
-  );
+  let timeTable = GrowthTimeTable.load(event.params.timeBreakdownId.toString());
+
+  if (timeTable == null) {
+    timeTable = new GrowthTimeTable(event.params.timeBreakdownId.toString());
+  }
+
   timeTable.addressNameHash = event.params.newAddressStoreNameHash;
   timeTable.save();
 }
@@ -127,9 +137,12 @@ export function handleUpdateTimeBreakdownAddress(
 export function handleActivateTimeBreakdown(
   event: ActivatedTimeBreakdown
 ): void {
-  const timeTable = GrowthTimeTable.load(
-    event.params.timeBreakdownId.toString()
-  );
+  let timeTable = GrowthTimeTable.load(event.params.timeBreakdownId.toString());
+
+  if (timeTable == null) {
+    timeTable = new GrowthTimeTable(event.params.timeBreakdownId.toString());
+  }
+
   timeTable.isActive = true;
   timeTable.save();
 }
@@ -137,9 +150,12 @@ export function handleActivateTimeBreakdown(
 export function handleDeactivateTimeBreakdown(
   event: DeactivatedTimeBreakdown
 ): void {
-  const timeTable = GrowthTimeTable.load(
-    event.params.timeBreakdownId.toString()
-  );
+  let timeTable = GrowthTimeTable.load(event.params.timeBreakdownId.toString());
+
+  if (timeTable == null) {
+    timeTable = new GrowthTimeTable(event.params.timeBreakdownId.toString());
+  }
+
   timeTable.isActive = false;
   timeTable.save();
 }
@@ -147,39 +163,52 @@ export function handleDeactivateTimeBreakdown(
 export function handleAddYieldConfig(event: AddedYieldConfig): void {
   const yieldConfig = new YieldConfig(event.params.yieldTableId.toString());
 
-  const plotType = PlotType.load(event.params.plotTypeId.toString());
+  let plotType = PlotType.load(event.params.plotTypeId.toString());
+
+  if (plotType == null) {
+    plotType = new PlotType(event.params.plotTypeId.toString());
+  }
 
   yieldConfig.isActive = event.params.isActive;
-  yieldConfig.baseYield = event.params.baseYield;
+  yieldConfig.baseYield = BigInt.fromI32(event.params.baseYield);
   yieldConfig.plotType = plotType.id;
 
   // Yield Details
-  yieldConfig.minYield = event.params.minYield;
-  yieldConfig.maxYield = event.params.maxYield;
+  yieldConfig.minYield = BigInt.fromI32(event.params.minYield);
+  yieldConfig.maxYield = BigInt.fromI32(event.params.maxYield);
 
   // Dimensions
   // (bits 1 - 4) width || (bits 5 - 8) height
-  yieldConfig.width = event.params.plotWidth;
+  yieldConfig.width = BigInt.fromI32(event.params.plotWidth);
   // (bits 5 - 8) height
-  yieldConfig.height = event.params.plotHeight;
+  yieldConfig.height = BigInt.fromI32(event.params.plotHeight);
   // # Amount that needs to be staked in each tile
-  yieldConfig.tileArea = event.params.tileArea;
+  yieldConfig.tileArea = BigInt.fromI32(event.params.tileArea);
 
   yieldConfig.save();
 }
 
 export function handleUpdateYieldConfig(event: UpdatedYieldConfig): void {
-  const yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+  let yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+
+  if (yieldConfig == null) {
+    yieldConfig = new YieldConfig(event.params.yieldTableId.toString());
+  }
 
   // Yield Details
-  yieldConfig.minYield = event.params.minYield;
-  yieldConfig.maxYield = event.params.maxYield;
+  yieldConfig.minYield = BigInt.fromI32(event.params.minYield);
+  yieldConfig.maxYield = BigInt.fromI32(event.params.maxYield);
 
   yieldConfig.save();
 }
 
 export function handleActivateYieldConfig(event: ActivatedYieldConfig): void {
-  const yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+  let yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+
+  if (yieldConfig == null) {
+    yieldConfig = new YieldConfig(event.params.yieldTableId.toString());
+  }
+
   yieldConfig.isActive = true;
   yieldConfig.save();
 }
@@ -187,7 +216,12 @@ export function handleActivateYieldConfig(event: ActivatedYieldConfig): void {
 export function handleDeactivateYieldConfig(
   event: DeactivatedYieldConfig
 ): void {
-  const yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+  let yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+
+  if (yieldConfig == null) {
+    yieldConfig = new YieldConfig(event.params.yieldTableId.toString());
+  }
+
   yieldConfig.isActive = false;
   yieldConfig.save();
 }

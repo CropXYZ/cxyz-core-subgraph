@@ -4,7 +4,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: GameEngine
-    network: mumbai
+    network: hardhat
     source:
       address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d"
       abi: GameEngine
@@ -43,10 +43,10 @@ dataSources:
 
         - event: AddedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,bytes32,bool)
           handler: handleAddTimeBreakdown
-        - event: UpdatedTimeBreakdownAddress(indexed address,indexed bytes32,string,indexed uint256,bytes32,bytes32)
-          handler: handleUpdateTimeBreakdownAddress
         - event: UpdatedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,uint24,uint24,uint24,uint24)
           handler: handleUpdateTimeBreakdown
+        - event: UpdatedTimeBreakdownAddress(indexed address,indexed bytes32,string,indexed uint256,bytes32,bytes32)
+          handler: handleUpdateTimeBreakdownAddress
         - event: ActivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
           handler: handleActivateTimeBreakdown
         - event: DeactivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
@@ -62,7 +62,7 @@ dataSources:
           handler: handleDeactivateYieldConfig
   - kind: ethereum/contract
     name: Plot
-    network: mumbai
+    network: hardhat
     source:
       address: "0x998abeb3E57409262aE5b751f60747921B33613E"
       abi: Plot
@@ -96,7 +96,7 @@ dataSources:
           handler: handleClearedHarvest
   - kind: ethereum/contract
     name: DynamicPool
-    network: mumbai
+    network: hardhat
     source:
       address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1"
       abi: DynamicPool

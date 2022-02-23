@@ -472,7 +472,6 @@ export class GrowthTimeTable extends Entity {
 
     this.set("isActive", Value.fromBoolean(false));
     this.set("elementName", Value.fromString(""));
-    this.set("addressName", Value.fromString(""));
     this.set("elementNameHash", Value.fromBytes(Bytes.empty()));
     this.set("addressNameHash", Value.fromBytes(Bytes.empty()));
     this.set("deltaNothingToStart", Value.fromBigInt(BigInt.zero()));
@@ -523,15 +522,6 @@ export class GrowthTimeTable extends Entity {
 
   set elementName(value: string) {
     this.set("elementName", Value.fromString(value));
-  }
-
-  get addressName(): string {
-    let value = this.get("addressName");
-    return value!.toString();
-  }
-
-  set addressName(value: string) {
-    this.set("addressName", Value.fromString(value));
   }
 
   get elementNameHash(): Bytes {

@@ -40,24 +40,22 @@ export function handleMint(event: MintedPlot): void {
   const plot = new Plot(event.params.id.toString());
 
   // The season of the plot
-  plot.season = event.params.season.toHex();
+  plot.season = BigInt.fromI32(event.params.season);
   // Dimensions
   // (bits 1 - 4) width || (bits 5 - 8) height
-  plot.width = event.params.width.toHex();
+  plot.width = BigInt.fromI32(event.params.width);
   // (bits 5 - 8) height
-  plot.height = event.params.height.toHex();
+  plot.height = BigInt.fromI32(event.params.height);
   // Amount that needs to be staked in each tile
-  plot.tileArea = event.params.tileArea.toHex();
+  plot.tileArea = BigInt.fromI32(event.params.tileArea);
 
   // ----- ----- ----- ----- -----
   // Base speed
-  plot.baseSpeed = event.params.baseGrowthSpeed.toHex();
+  plot.baseSpeed = BigInt.fromI32(event.params.baseGrowthSpeed);
   // Base yield
-  plot.baseYield = event.params.baseYield.toHex();
+  plot.baseYield = BigInt.fromI32(event.params.baseYield);
   // The plot type
-  const plotTypeId = event.params.id.toString();
-  let plotType = PlotType.load(plotTypeId);
-  plot.plotType = plotType.id;
+  plot.plotType = event.params.id.toString();
 
   // ----- ----- ----- ----- -----
   // Count of clears that were not the result of a death or harvest
@@ -84,30 +82,11 @@ export function handleMint(event: MintedPlot): void {
   plot.save();
 }
 
-export function handleHarvestPlot(event: HarvestedPlot): void {
-  let plot = Plot.load(event.params.plotId.toString());
-  plot.countHarvests = event.params.plotHarvests;
-
-  updatePlotDetails(event, plot);
-}
-
-export function handleClearDiedHarvest(event: ClearedDiedHarvest): void {
-  let plot = Plot.load(event.params.plotId.toString());
-  plot.countDeathClears = event.params.plotDeaths;
-
-  updatePlotDetails(event, plot);
-}
-
-export function handleClearedHarvest(event: ClearedHarvest): void {
-  let plot = Plot.load(event.params.plotId.toString());
-  plot.countClears = event.params.plotClears;
-
-  updatePlotDetails(event, plot);
-}
-
-const updatePlotDetails = (event: any, plot: Plot) => {
-  let cropElement = Crop.load(event.params.newStakedElement.toString());
-
+const updatePlotDetails = (
+  timestamp: BigInt,
+  cropElement: Crop | null,
+  plot: Plot
+): void => {
   if (cropElement == null) {
     plot.stakedCrop = null;
     plot.amountStaked = BigInt.fromI32(0);
@@ -115,9 +94,14 @@ const updatePlotDetails = (event: any, plot: Plot) => {
     plot.timeReadyDelta = BigInt.fromI32(0);
     plot.timeExpiredDelta = BigInt.fromI32(0);
   } else {
-    const timeSet = GrowthTimeTable.load(cropElement.growthTimeTable);
+    let timeSet = GrowthTimeTable.load(cropElement.growthTimeTable);
+
+    if (timeSet == null) {
+      timeSet = new GrowthTimeTable(cropElement.growthTimeTable);
+    }
+
     plot.stakedCrop = cropElement.id;
-    plot.timeStartStaked = event.block.timestamp;
+    plot.timeStartStaked = timestamp;
     plot.timeReadyDelta = timeSet.deltaNothingToStart.plus(
       timeSet.deltaStartToEarly.plus(timeSet.deltaEarlyToMature)
     );
@@ -130,3 +114,42 @@ const updatePlotDetails = (event: any, plot: Plot) => {
 
   plot.save();
 };
+
+export function handleHarvestPlot(event: HarvestedPlot): void {
+  let plot = Plot.load(event.params.plotId.toString());
+
+  if (plot == null) {
+    plot = new Plot(event.params.plotId.toString());
+  }
+
+  plot.countHarvests = BigInt.fromI32(event.params.plotHarvests);
+
+  const cropElement = Crop.load(event.params.newStakedElement.toString());
+  updatePlotDetails(event.block.timestamp, cropElement, plot);
+}
+
+export function handleClearDiedHarvest(event: ClearedDiedHarvest): void {
+  let plot = Plot.load(event.params.plotId.toString());
+
+  if (plot == null) {
+    plot = new Plot(event.params.plotId.toString());
+  }
+
+  plot.countDeathClears = BigInt.fromI32(event.params.plotDeaths);
+
+  const cropElement = Crop.load(event.params.newStakedElement.toString());
+  updatePlotDetails(event.block.timestamp, cropElement, plot);
+}
+
+export function handleClearedHarvest(event: ClearedHarvest): void {
+  let plot = Plot.load(event.params.plotId.toString());
+
+  if (plot == null) {
+    plot = new Plot(event.params.plotId.toString());
+  }
+
+  plot.countClears = BigInt.fromI32(event.params.plotClears);
+
+  const cropElement = Crop.load(event.params.newStakedElement.toString());
+  updatePlotDetails(event.block.timestamp, cropElement, plot);
+}
