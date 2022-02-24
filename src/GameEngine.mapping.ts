@@ -99,11 +99,11 @@ export function handleAddTimeBreakdown(event: AddedTimeBreakdown): void {
   timeTable.save();
 
   // Create crop
-  let crop = Crop.load(event.params.stakedElementNameHash.toString());
+  let crop = Crop.load(event.params.stakedElementNameHash.toHexString());
 
   if (crop == null) {
-    crop = new Crop(event.params.stakedElementNameHash.toString());
-    crop.addressMapping = event.params.addressStoreNameHash.toString();
+    crop = new Crop(event.params.stakedElementNameHash.toHexString());
+    crop.addressMapping = event.params.addressStoreNameHash.toHexString();
     crop.plotType = event.params.tokenPlotTypeId.toString();
 
     crop.elementName = event.params.stakedElementName;
@@ -133,10 +133,10 @@ export function handleUpdateTimeBreakdown(event: UpdatedTimeBreakdown): void {
   timeTable.save();
 
   // Create crop
-  let crop = Crop.load(event.params.stakedElementNameHash.toString());
+  let crop = Crop.load(event.params.stakedElementNameHash.toHexString());
 
   if (crop == null) {
-    crop = new Crop(event.params.stakedElementNameHash.toString());
+    crop = new Crop(event.params.stakedElementNameHash.toHexString());
   }
   crop.growthTimeTable = timeTable.id;
 
@@ -147,12 +147,12 @@ export function handleUpdateTimeBreakdownAddress(
   event: UpdatedTimeBreakdownAddress
 ): void {
   // Load crop
-  let crop = Crop.load(event.params.stakedElementNameHash.toString());
+  let crop = Crop.load(event.params.stakedElementNameHash.toHexString());
 
   if (crop == null) {
-    crop = new Crop(event.params.stakedElementNameHash.toString());
+    crop = new Crop(event.params.stakedElementNameHash.toHexString());
   }
-  crop.addressMapping = event.params.newAddressStoreNameHash.toString();
+  crop.addressMapping = event.params.newAddressStoreNameHash.toHexString();
 
   crop.save();
 }

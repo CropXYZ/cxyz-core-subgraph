@@ -29,7 +29,7 @@ export function handleUnpause(event: Unpaused): void {
 
 export function handleAddAddress(event: AddedResolveAddress): void {
   const addressMapping = new AddressMapping(
-    event.params.addressNameHash.toString()
+    event.params.addressNameHash.toHexString()
   );
 
   addressMapping.tokenAddress = event.params.resolveAddress;
@@ -41,9 +41,16 @@ export function handleAddAddress(event: AddedResolveAddress): void {
 }
 
 export function handleUpdateAddress(event: UpdatedResolveAddress): void {
-  const addressMapping = AddressMapping.load(
-    event.params.addressNameHash.toString()
+  let addressMapping = AddressMapping.load(
+    event.params.addressNameHash.toHexString()
   );
+
+  if (addressMapping == null) {
+    addressMapping = new AddressMapping(
+      event.params.addressNameHash.toHexString()
+    );
+  }
+
   addressMapping.tokenAddress = event.params.newResolveAddress;
   addressMapping.save();
 }
@@ -51,9 +58,16 @@ export function handleUpdateAddress(event: UpdatedResolveAddress): void {
 export function handleDeactivateAddress(
   event: DeactivatedResolveAddressName
 ): void {
-  const addressMapping = AddressMapping.load(
-    event.params.addressNameHash.toString()
+  let addressMapping = AddressMapping.load(
+    event.params.addressNameHash.toHexString()
   );
+
+  if (addressMapping == null) {
+    addressMapping = new AddressMapping(
+      event.params.addressNameHash.toHexString()
+    );
+  }
+
   addressMapping.isActive = false;
   addressMapping.save();
 }
