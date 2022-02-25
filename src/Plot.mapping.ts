@@ -1,20 +1,15 @@
 import { BigInt } from "@graphprotocol/graph-ts";
 import {
-  Paused,
-  Unpaused,
-  MintedPlot,
-  HarvestedPlot,
   ClearedDiedHarvest,
-  ClearedHarvest
+  ClearedHarvest,
+  HarvestedPlot,
+  MintedPlot,
+  Paused,
+  StakedCrop,
+  Unpaused
 } from "../generated/Plot/Plot";
 
-import {
-  Crop,
-  GameState,
-  GrowthTimeTable,
-  Plot,
-  PlotType
-} from "../generated/schema";
+import { Crop, GameState, GrowthTimeTable, Plot } from "../generated/schema";
 
 export function handlePause(event: Paused): void {
   let gameState = GameState.load("Plot");
@@ -36,6 +31,23 @@ export function handleUnpause(event: Unpaused): void {
   gameState.save();
 }
 
+export function handleStaked(event: StakedCrop): void {
+  let plot = Plot.load(event.params.plotId.toString());
+
+  if (plot == null) {
+    plot = new Plot(event.params.plotId.toString());
+  }
+
+  plot.stakedCrop = event.params.stakedElement.toString();
+  plot.amountStaked = event.params.stakedAmount;
+
+  plot.timeStartStaked = event.params.timeStartStaked;
+  plot.timeReadyDelta = event.params.timeReadyDelta;
+  plot.timeExpiredDelta = event.params.timeExpiredDelta;
+
+  plot.save();
+}
+
 export function handleMint(event: MintedPlot): void {
   const plot = new Plot(event.params.id.toString());
 
@@ -55,7 +67,7 @@ export function handleMint(event: MintedPlot): void {
   // Base yield
   plot.baseYield = BigInt.fromI32(event.params.baseYield);
   // The plot type
-  plot.plotType = event.params.id.toString();
+  plot.plotType = event.params.plotTypeId.toString();
 
   // ----- ----- ----- ----- -----
   // Count of clears that were not the result of a death or harvest
@@ -94,6 +106,7 @@ const updatePlotDetails = (
     plot.timeReadyDelta = BigInt.fromI32(0);
     plot.timeExpiredDelta = BigInt.fromI32(0);
   } else {
+    // Restaking in the plot
     let timeSet = GrowthTimeTable.load(cropElement.growthTimeTable);
 
     if (timeSet == null) {

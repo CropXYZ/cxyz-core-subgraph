@@ -19,15 +19,10 @@ import {
   DeactivatedYieldConfig
 } from "../generated/GameEngine/GameEngine";
 import {
-  AddressMapping,
   Crop,
   GameState,
   GrowthTimeTable,
-  Plot,
   PlotType,
-  Pool,
-  TokenFlow,
-  TransactionFlow,
   YieldConfig
 } from "../generated/schema";
 

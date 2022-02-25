@@ -16,7 +16,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - AddressMapping
-        - Token
+        - GameState
       abis:
         - name: AddressStore
           file: ./abis/{{addrStrAbiName}}.json
@@ -45,9 +45,11 @@ dataSources:
       apiVersion: {{apiVersion}}
       language: wasm/assemblyscript
       entities:
+        - Crop
         - GameState
-        - PlotClearStats
-        - StakedElementStats
+        - GrowthTimeTable
+        - PlotType
+        - YieldConfig
       abis:
         - name: GameEngine
           file: ./abis/{{engineAbiName}}.json
@@ -103,10 +105,10 @@ dataSources:
       apiVersion: {{apiVersion}}
       language: wasm/assemblyscript
       entities:
+        - Crop
+        - GameState
+        - GrowthTimeTable
         - Plot
-        - PlotDimensions
-        - PlotClearStats
-        - StakedElementStats
       abis:
         - name: Plot
           file: ./abis/{{plotAbiName}}.json
@@ -118,6 +120,8 @@ dataSources:
 
         - event: MintedPlot(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
           handler: handleMint
+        - event: StakedCrop(indexed address,indexed uint256,indexed uint256,uint16,uint64,uint64,uint64,address,uint256,bool)
+          handler: handleStaked
         - event: HarvestedPlot(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint16,uint24)
           handler: handleHarvestPlot
         - event: ClearedDiedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
@@ -137,9 +141,10 @@ dataSources:
       apiVersion: {{apiVersion}}
       language: wasm/assemblyscript
       entities:
-        - Transaction
+        - GameState
+        - Pool
         - TokenFlow
-        - Token
+        - TransactionFlow
       abis:
         - name: DynamicPool
           file: ./abis/{{dynamicPoolAbiName}}.json
