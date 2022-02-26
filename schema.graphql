@@ -2,6 +2,7 @@ type GameState @entity {
   id: ID!
   # The paused state
   isPaused: Boolean!
+  address: Bytes! # address
 }
 
 type Plot @entity {
