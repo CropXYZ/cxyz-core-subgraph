@@ -32,6 +32,7 @@ export function handlePause(event: Paused): void {
   if (gameState == null) {
     gameState = new GameState("GameEngine");
   }
+  gameState.address = event.address;
   gameState.isPaused = true;
   gameState.save();
 }
@@ -42,6 +43,7 @@ export function handleUnpause(event: Unpaused): void {
   if (gameState == null) {
     gameState = new GameState("GameEngine");
   }
+  gameState.address = event.address;
   gameState.isPaused = false;
   gameState.save();
 }
@@ -52,6 +54,7 @@ export function handlePauseGame(event: PausedGame): void {
   if (gameState == null) {
     gameState = new GameState("OverallGameState");
   }
+  gameState.address = event.address;
   gameState.isPaused = true;
   gameState.save();
 }
@@ -62,6 +65,7 @@ export function handleUnpauseGame(event: UnpausedGame): void {
   if (gameState == null) {
     gameState = new GameState("OverallGameState");
   }
+  gameState.address = event.address;
   gameState.isPaused = false;
   gameState.save();
 }

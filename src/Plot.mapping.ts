@@ -17,6 +17,7 @@ export function handlePause(event: Paused): void {
   if (gameState == null) {
     gameState = new GameState("Plot");
   }
+  gameState.address = event.address;
   gameState.isPaused = true;
   gameState.save();
 }
@@ -27,6 +28,7 @@ export function handleUnpause(event: Unpaused): void {
   if (gameState == null) {
     gameState = new GameState("Plot");
   }
+  gameState.address = event.address;
   gameState.isPaused = false;
   gameState.save();
 }

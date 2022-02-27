@@ -17,8 +17,8 @@ export class GameState extends Entity {
     super();
     this.set("id", Value.fromString(id));
 
-    this.set("isPaused", Value.fromBoolean(false));
     this.set("address", Value.fromBytes(Bytes.empty()));
+    this.set("isPaused", Value.fromBoolean(false));
   }
 
   save(): void {
@@ -47,15 +47,6 @@ export class GameState extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get isPaused(): boolean {
-    let value = this.get("isPaused");
-    return value!.toBoolean();
-  }
-
-  set isPaused(value: boolean) {
-    this.set("isPaused", Value.fromBoolean(value));
-  }
-
   get address(): Bytes {
     let value = this.get("address");
     return value!.toBytes();
@@ -63,6 +54,15 @@ export class GameState extends Entity {
 
   set address(value: Bytes) {
     this.set("address", Value.fromBytes(value));
+  }
+
+  get isPaused(): boolean {
+    let value = this.get("isPaused");
+    return value!.toBoolean();
+  }
+
+  set isPaused(value: boolean) {
+    this.set("isPaused", Value.fromBoolean(value));
   }
 }
 
