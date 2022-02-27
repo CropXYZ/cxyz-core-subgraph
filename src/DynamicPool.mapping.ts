@@ -38,10 +38,10 @@ export function handleUnpause(event: Unpaused): void {
 }
 
 export function handleUpdateGoldReserve(event: UpdatedGoldReserveAmount): void {
-  let pool = Pool.load(event.params.tokenAddress.toString());
+  let pool = Pool.load(event.params.tokenAddress.toHexString());
 
   if (pool == null) {
-    pool = new Pool(event.params.tokenAddress.toString());
+    pool = new Pool(event.params.tokenAddress.toHexString());
   }
 
   pool.goldReserveAmount = event.params.newGoldReserveAmount;
@@ -52,10 +52,10 @@ export function handleUpdateGoldReserve(event: UpdatedGoldReserveAmount): void {
 export function handleUpdateTokenReserve(
   event: UpdatedTokenReserveAmount
 ): void {
-  let pool = Pool.load(event.params.tokenAddress.toString());
+  let pool = Pool.load(event.params.tokenAddress.toHexString());
 
   if (pool == null) {
-    pool = new Pool(event.params.tokenAddress.toString());
+    pool = new Pool(event.params.tokenAddress.toHexString());
   }
 
   pool.tokenReserveAmount = event.params.newTokenReserveAmount;
@@ -65,10 +65,10 @@ export function handleUpdateTokenReserve(
 
 export function handleTransferFromPool(event: TransferredFromPool): void {
   // Update the overall pool details
-  let pool = Pool.load(event.params.tokenAddress.toString());
+  let pool = Pool.load(event.params.tokenAddress.toHexString());
 
   if (pool == null) {
-    pool = new Pool(event.params.tokenAddress.toString());
+    pool = new Pool(event.params.tokenAddress.toHexString());
   }
 
   pool.tokenTrackedAmount = event.params.updatedTokenBalance;
@@ -130,10 +130,10 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
 }
 
 export function handleScalePoolBalances(event: ScaledPoolBalances): void {
-  let pool = Pool.load(event.params.tokenAddress.toString());
+  let pool = Pool.load(event.params.tokenAddress.toHexString());
 
   if (pool == null) {
-    pool = new Pool(event.params.tokenAddress.toString());
+    pool = new Pool(event.params.tokenAddress.toHexString());
   }
 
   pool.tokenTrackedAmount = event.params.newTrackedTokenBalance;
@@ -143,7 +143,7 @@ export function handleScalePoolBalances(event: ScaledPoolBalances): void {
 }
 
 export function handleInitializePool(event: InitializedPool): void {
-  const pool = new Pool(event.params.tokenAddress.toString());
+  const pool = new Pool(event.params.tokenAddress.toHexString());
 
   pool.tokenAddress = event.params.tokenAddress;
 
