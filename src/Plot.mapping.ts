@@ -39,7 +39,7 @@ export function handleStaked(event: StakedCrop): void {
   }
 
   plot.stakedCrop = event.params.stakedElement.toString();
-  plot.amountStaked = event.params.stakedAmount;
+  plot.amountStaked = BigInt.fromI32(event.params.stakedAmount);
 
   plot.timeStartStaked = event.params.timeStartStaked;
   plot.timeReadyDelta = event.params.timeReadyDelta;

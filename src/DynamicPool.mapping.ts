@@ -75,7 +75,9 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   pool.save();
 
   // Add a new gold flow
-  const goldFlow = new TokenFlow(`${event.transaction.hash}-gold`);
+  const goldFlow = new TokenFlow(
+    `${event.transaction.hash.toHexString()}-gold`
+  );
   goldFlow.timestamp = event.block.timestamp;
   goldFlow.blockIndex = event.transaction.index;
   goldFlow.pool = pool.id;
@@ -89,7 +91,9 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   goldFlow.save();
 
   // Add a new token flow
-  const tokenFlow = new TokenFlow(`${event.transaction.hash}-token`);
+  const tokenFlow = new TokenFlow(
+    `${event.transaction.hash.toHexString()}-token`
+  );
   tokenFlow.timestamp = event.block.timestamp;
   tokenFlow.blockIndex = event.transaction.index;
   tokenFlow.pool = pool.id;
@@ -104,7 +108,7 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
 
   // Add a new transaction flow
   const transactionFlow = new TransactionFlow(
-    `${event.transaction.hash}-${event.logIndex.toString()}`
+    `${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`
   );
   transactionFlow.timestamp = event.block.timestamp;
   transactionFlow.blockIndex = event.transaction.index;
