@@ -461,6 +461,7 @@ export class GrowthTimeTable extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("isActive", Value.fromBoolean(false));
+    this.set("crop", Value.fromString(""));
     this.set("deltaNothingToStart", Value.fromBigInt(BigInt.zero()));
     this.set("deltaStartToEarly", Value.fromBigInt(BigInt.zero()));
     this.set("deltaEarlyToMature", Value.fromBigInt(BigInt.zero()));
@@ -500,6 +501,15 @@ export class GrowthTimeTable extends Entity {
 
   set isActive(value: boolean) {
     this.set("isActive", Value.fromBoolean(value));
+  }
+
+  get crop(): string {
+    let value = this.get("crop");
+    return value!.toString();
+  }
+
+  set crop(value: string) {
+    this.set("crop", Value.fromString(value));
   }
 
   get deltaNothingToStart(): BigInt {

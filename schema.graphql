@@ -84,6 +84,7 @@ type YieldConfig @entity {
 type GrowthTimeTable @entity {
   id: ID!
   isActive: Boolean!
+  crop: Crop!
 
   # Time set
   deltaNothingToStart: BigInt!

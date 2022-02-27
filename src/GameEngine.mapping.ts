@@ -90,6 +90,7 @@ export function handleAddTimeBreakdown(event: AddedTimeBreakdown): void {
     event.params.timeBreakdownId.toString()
   );
 
+  timeTable.crop = event.params.stakedElementNameHash.toHexString();
   timeTable.deltaNothingToStart = BigInt.fromI32(event.params.nothingToStart);
   timeTable.deltaStartToEarly = BigInt.fromI32(event.params.startToEarly);
   timeTable.deltaEarlyToMature = BigInt.fromI32(event.params.earlyToMature);
@@ -120,6 +121,7 @@ export function handleUpdateTimeBreakdown(event: UpdatedTimeBreakdown): void {
     timeTable = new GrowthTimeTable(event.params.timeBreakdownId.toString());
   }
 
+  timeTable.crop = event.params.stakedElementNameHash.toHexString();
   timeTable.deltaNothingToStart = BigInt.fromI32(
     event.params.newNothingToStart
   );

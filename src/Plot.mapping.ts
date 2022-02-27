@@ -40,7 +40,15 @@ export function handleStaked(event: StakedCrop): void {
     plot = new Plot(event.params.plotId.toString());
   }
 
-  plot.stakedCrop = event.params.stakedElement.toString();
+  // The current staked element id is in reference to the time table,
+  // so it is possible to use that to pull the crop it is referenceing.
+  let timeSet = GrowthTimeTable.load(event.params.stakedElement.toString());
+
+  if (timeSet == null) {
+    timeSet = new GrowthTimeTable(event.params.stakedElement.toString());
+  }
+
+  plot.stakedCrop = timeSet.crop;
   plot.amountStaked = BigInt.fromI32(event.params.stakedAmount);
 
   plot.timeStartStaked = event.params.timeStartStaked;
