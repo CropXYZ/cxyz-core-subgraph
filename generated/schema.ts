@@ -673,6 +673,7 @@ export class Pool extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("tokenAddress", Value.fromBytes(Bytes.empty()));
+    this.set("swapFee", Value.fromBigInt(BigInt.zero()));
     this.set("tokenTrackedAmount", Value.fromBigInt(BigInt.zero()));
     this.set("tokenReserveAmount", Value.fromBigInt(BigInt.zero()));
     this.set("goldTrackedAmount", Value.fromBigInt(BigInt.zero()));
@@ -712,6 +713,15 @@ export class Pool extends Entity {
 
   set tokenAddress(value: Bytes) {
     this.set("tokenAddress", Value.fromBytes(value));
+  }
+
+  get swapFee(): BigInt {
+    let value = this.get("swapFee");
+    return value!.toBigInt();
+  }
+
+  set swapFee(value: BigInt) {
+    this.set("swapFee", Value.fromBigInt(value));
   }
 
   get tokenTrackedAmount(): BigInt {

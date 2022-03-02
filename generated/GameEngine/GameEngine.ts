@@ -462,6 +462,10 @@ export class SetOfTokenOutGoldInSwapped__Params {
   get calculatedTotalGoldIn(): BigInt {
     return this._event.parameters[7].value.toBigInt();
   }
+
+  get totalFeesPaid(): BigInt {
+    return this._event.parameters[8].value.toBigInt();
+  }
 }
 
 export class TokenInGoldOutSwapped extends ethereum.Event {
@@ -481,28 +485,28 @@ export class TokenInGoldOutSwapped__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get pool(): Address {
+  get swappingTokenAddress(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 
-  get swappingTokenAddress(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
   get inputtedTokenIn(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
+    return this._event.parameters[2].value.toBigInt();
   }
 
   get inputtedGoldMin(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
+    return this._event.parameters[3].value.toBigInt();
   }
 
   get calculatedTokenIn(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
+    return this._event.parameters[4].value.toBigInt();
   }
 
   get calculatedGoldOut(): BigInt {
-    return this._event.parameters[6].value.toBigInt();
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get feeValuePaid(): i32 {
+    return this._event.parameters[6].value.toI32();
   }
 }
 
@@ -523,28 +527,28 @@ export class TokenOutGoldInSwapped__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get pool(): Address {
+  get swappingTokenAddress(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 
-  get swappingTokenAddress(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
   get inputtedTokenOut(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
+    return this._event.parameters[2].value.toBigInt();
   }
 
   get inputtedGoldMax(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
+    return this._event.parameters[3].value.toBigInt();
   }
 
   get calculatedTokenOut(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
+    return this._event.parameters[4].value.toBigInt();
   }
 
   get calculatedGoldIn(): BigInt {
-    return this._event.parameters[6].value.toBigInt();
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get feeValuePaid(): i32 {
+    return this._event.parameters[6].value.toI32();
   }
 }
 

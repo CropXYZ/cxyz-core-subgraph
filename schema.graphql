@@ -119,6 +119,8 @@ type Pool @entity {
 
   # The token that is being moved into the system
   tokenAddress: Bytes! # address
+  # The fee (in gold) charged on each transaction
+  swapFee: BigInt!
   # Token balance
   tokenTrackedAmount: BigInt!
   tokenReserveAmount: BigInt!

@@ -94,6 +94,12 @@
         "internalType": "uint256",
         "name": "goldReserveAmount",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "swapFee",
+        "type": "uint8"
       }
     ],
     "name": "InitializedPool",
@@ -142,19 +148,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "oldTrackedTokenBalance",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
         "name": "newTrackedTokenBalance",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "oldTrackedGoldBalance",
         "type": "uint256"
       },
       {
@@ -166,14 +160,14 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "oldOverallTrackedGoldBalance",
+        "name": "newOverallTrackedGoldBalance",
         "type": "uint256"
       },
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "newOverallTrackedGoldBalance",
-        "type": "uint256"
+        "internalType": "uint8",
+        "name": "newSwapFee",
+        "type": "uint8"
       }
     ],
     "name": "ScaledPoolBalances",
@@ -757,6 +751,11 @@
         "internalType": "uint256",
         "name": "initialGoldReserveAmount",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint8",
+        "name": "initialSwapFee",
+        "type": "uint8"
       }
     ],
     "name": "initializePool",
@@ -987,6 +986,11 @@
         "internalType": "uint256",
         "name": "denominatorScaleFactor",
         "type": "uint256"
+      },
+      {
+        "internalType": "uint8",
+        "name": "newSwapFee",
+        "type": "uint8"
       }
     ],
     "name": "scalePoolBalances",
@@ -1010,6 +1014,25 @@
     "name": "sendToTreasury",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      }
+    ],
+    "name": "swapFee",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {

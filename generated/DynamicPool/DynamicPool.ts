@@ -112,6 +112,10 @@ export class InitializedPool__Params {
   get goldReserveAmount(): BigInt {
     return this._event.parameters[5].value.toBigInt();
   }
+
+  get swapFee(): i32 {
+    return this._event.parameters[6].value.toI32();
+  }
 }
 
 export class Paused extends ethereum.Event {
@@ -161,28 +165,20 @@ export class ScaledPoolBalances__Params {
     return this._event.parameters[3].value.toBigInt();
   }
 
-  get oldTrackedTokenBalance(): BigInt {
+  get newTrackedTokenBalance(): BigInt {
     return this._event.parameters[4].value.toBigInt();
   }
 
-  get newTrackedTokenBalance(): BigInt {
+  get newTrackedGoldBalance(): BigInt {
     return this._event.parameters[5].value.toBigInt();
   }
 
-  get oldTrackedGoldBalance(): BigInt {
+  get newOverallTrackedGoldBalance(): BigInt {
     return this._event.parameters[6].value.toBigInt();
   }
 
-  get newTrackedGoldBalance(): BigInt {
-    return this._event.parameters[7].value.toBigInt();
-  }
-
-  get oldOverallTrackedGoldBalance(): BigInt {
-    return this._event.parameters[8].value.toBigInt();
-  }
-
-  get newOverallTrackedGoldBalance(): BigInt {
-    return this._event.parameters[9].value.toBigInt();
+  get newSwapFee(): i32 {
+    return this._event.parameters[7].value.toI32();
   }
 }
 
@@ -1291,6 +1287,25 @@ export class DynamicPool extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  swapFee(tokenAddress: Address): i32 {
+    let result = super.call("swapFee", "swapFee(address):(uint8)", [
+      ethereum.Value.fromAddress(tokenAddress)
+    ]);
+
+    return result[0].toI32();
+  }
+
+  try_swapFee(tokenAddress: Address): ethereum.CallResult<i32> {
+    let result = super.tryCall("swapFee", "swapFee(address):(uint8)", [
+      ethereum.Value.fromAddress(tokenAddress)
+    ]);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toI32());
+  }
+
   tokenReserveAmount(tokenAddress: Address): BigInt {
     let result = super.call(
       "tokenReserveAmount",
@@ -1694,6 +1709,10 @@ export class InitializePoolCall__Inputs {
   get initialGoldReserveAmount(): BigInt {
     return this._call.inputValues[4].value.toBigInt();
   }
+
+  get initialSwapFee(): i32 {
+    return this._call.inputValues[5].value.toI32();
+  }
 }
 
 export class InitializePoolCall__Outputs {
@@ -1757,6 +1776,10 @@ export class ScalePoolBalancesCall__Inputs {
 
   get denominatorScaleFactor(): BigInt {
     return this._call.inputValues[2].value.toBigInt();
+  }
+
+  get newSwapFee(): i32 {
+    return this._call.inputValues[3].value.toI32();
   }
 }
 

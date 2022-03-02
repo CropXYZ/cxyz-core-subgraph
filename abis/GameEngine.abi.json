@@ -493,6 +493,12 @@
         "internalType": "uint256",
         "name": "calculatedTotalGoldIn",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "totalFeesPaid",
+        "type": "uint256"
       }
     ],
     "name": "SetOfTokenOutGoldInSwapped",
@@ -505,12 +511,6 @@
         "indexed": true,
         "internalType": "address",
         "name": "swapper",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "pool",
         "type": "address"
       },
       {
@@ -542,6 +542,12 @@
         "internalType": "uint256",
         "name": "calculatedGoldOut",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "feeValuePaid",
+        "type": "uint8"
       }
     ],
     "name": "TokenInGoldOutSwapped",
@@ -554,12 +560,6 @@
         "indexed": true,
         "internalType": "address",
         "name": "swapper",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "pool",
         "type": "address"
       },
       {
@@ -591,6 +591,12 @@
         "internalType": "uint256",
         "name": "calculatedGoldIn",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "feeValuePaid",
+        "type": "uint8"
       }
     ],
     "name": "TokenOutGoldInSwapped",

@@ -136,6 +136,7 @@ export function handleScalePoolBalances(event: ScaledPoolBalances): void {
     pool = new Pool(event.params.tokenAddress.toHexString());
   }
 
+  pool.swapFee = event.params.newSwapFee;
   pool.tokenTrackedAmount = event.params.newTrackedTokenBalance;
   pool.goldTrackedAmount = event.params.newTrackedGoldBalance;
 
@@ -146,6 +147,7 @@ export function handleInitializePool(event: InitializedPool): void {
   const pool = new Pool(event.params.tokenAddress.toHexString());
 
   pool.tokenAddress = event.params.tokenAddress;
+  pool.swapFee = event.params.swapFee;
 
   pool.tokenTrackedAmount = event.params.tokenAmount;
   pool.tokenReserveAmount = event.params.tokenReserveAmount;
