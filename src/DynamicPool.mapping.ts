@@ -1,3 +1,5 @@
+import { BigInt } from "@graphprotocol/graph-ts";
+
 import {
   Paused,
   Unpaused,
@@ -136,7 +138,7 @@ export function handleScalePoolBalances(event: ScaledPoolBalances): void {
     pool = new Pool(event.params.tokenAddress.toHexString());
   }
 
-  pool.swapFee = event.params.newSwapFee;
+  pool.swapFee = BigInt.fromI32(event.params.newSwapFee);
   pool.tokenTrackedAmount = event.params.newTrackedTokenBalance;
   pool.goldTrackedAmount = event.params.newTrackedGoldBalance;
 
@@ -147,7 +149,7 @@ export function handleInitializePool(event: InitializedPool): void {
   const pool = new Pool(event.params.tokenAddress.toHexString());
 
   pool.tokenAddress = event.params.tokenAddress;
-  pool.swapFee = event.params.swapFee;
+  pool.swapFee = BigInt.fromI32(event.params.swapFee);
 
   pool.tokenTrackedAmount = event.params.tokenAmount;
   pool.tokenReserveAmount = event.params.tokenReserveAmount;
