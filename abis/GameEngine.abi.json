@@ -1849,6 +1849,25 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "stakedElementId",
+        "type": "uint256"
+      }
+    ],
+    "name": "stakedElementIdToName",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "string",
         "name": "stakedElementName",
         "type": "string"
