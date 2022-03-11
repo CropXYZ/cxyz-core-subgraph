@@ -115,214 +115,6 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "player",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "diedStakedElement",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "newStakedElement",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint16",
-        "name": "diedAmount",
-        "type": "uint16"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint24",
-        "name": "plotDeaths",
-        "type": "uint24"
-      }
-    ],
-    "name": "ClearedDiedHarvest",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "player",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "clearedStakedElement",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "newStakedElement",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint16",
-        "name": "clearedAmount",
-        "type": "uint16"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint24",
-        "name": "plotClears",
-        "type": "uint24"
-      }
-    ],
-    "name": "ClearedHarvest",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "player",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "deactivatedBoost",
-        "type": "bool"
-      }
-    ],
-    "name": "DismissedGuard",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "player",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "stakedElement",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "newStakedElement",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint16",
-        "name": "harvestableAmount",
-        "type": "uint16"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint16",
-        "name": "actuallyProducedAmount",
-        "type": "uint16"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint24",
-        "name": "plotHarvests",
-        "type": "uint24"
-      }
-    ],
-    "name": "HarvestedPlot",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
         "indexed": false,
         "internalType": "address",
         "name": "minter",
@@ -411,165 +203,6 @@
       {
         "indexed": true,
         "internalType": "address",
-        "name": "player",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "destinationPlotOnGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "destinationPlotOnGuardTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "sourcePlotId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "sourceDeactivateBoost",
-        "type": "bool"
-      }
-    ],
-    "name": "PulledAndPlacedGuard",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "player",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "deactivatedBoost",
-        "type": "bool"
-      }
-    ],
-    "name": "RecalledGuard",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "player",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "stakedElement",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint16",
-        "name": "stakedAmount",
-        "type": "uint16"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint64",
-        "name": "timeStartStaked",
-        "type": "uint64"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint64",
-        "name": "timeReadyDelta",
-        "type": "uint64"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint64",
-        "name": "timeExpiredDelta",
-        "type": "uint64"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "onGuardBoost",
-        "type": "bool"
-      }
-    ],
-    "name": "StakedCrop",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
         "name": "from",
         "type": "address"
       },
@@ -636,7 +269,44 @@
         "type": "string"
       }
     ],
-    "name": "UpdateBaseTokenURI",
+    "name": "UpdatedBaseTokenURI",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "string",
+        "name": "oldOverallDescriptionHash",
+        "type": "string"
+      },
+      {
+        "indexed": true,
+        "internalType": "string",
+        "name": "newOverallDescriptionHash",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "oldOverallDescription",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "newOverallDescription",
+        "type": "string"
+      }
+    ],
+    "name": "UpdatedOverallDescription",
     "type": "event"
   },
   {
@@ -668,6 +338,58 @@
   {
     "inputs": [],
     "name": "AS_GOLD_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_PLOT_ACTIONS_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_PLOT_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_PLOT_METADATA_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_PLOT_TYPE_ADDRESS",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -719,7 +441,33 @@
   },
   {
     "inputs": [],
+    "name": "AS_TIME_BREAKDOWN_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "AS_TREASURY_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_YIELD_TABLE_ADDRESS",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -848,199 +596,6 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionClear",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "newStakedElement",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionClearAndStake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionClearDead",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "newStakedElement",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionClearDeadAndStake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionDismissGuard",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionHarvest",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "newStakedElement",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionHarvestAndRestake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionPullAndPlaceGuard",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionRecallGuard",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "stakedElementId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionStake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "stakedElementId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "guardContractAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "guardTokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionStakeAndPutOnGuard",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "addressStore",
     "outputs": [
@@ -1142,6 +697,19 @@
         "internalType": "uint8",
         "name": "",
         "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "baseTokenURI",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -1288,30 +856,6 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "getGuardId",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "goldAddress",
     "outputs": [
@@ -1319,68 +863,6 @@
         "internalType": "address",
         "name": "",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "guardAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "guardId",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "guardPostedPlot",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -1451,49 +933,6 @@
       }
     ],
     "name": "isApprovedForAll",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "isBoosted",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "onGuardTokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "onGuardTokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "isGuardPosted",
     "outputs": [
       {
         "internalType": "bool",
@@ -1585,6 +1024,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "overallDescription",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -1644,12 +1096,172 @@
         "type": "uint256"
       }
     ],
+    "name": "plotActionTraits",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "stakedElement",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint16",
+            "name": "amountStaked",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint64",
+            "name": "timeStartStaked",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "timeReadyDelta",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "timeExpiredDelta",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint24",
+            "name": "clears",
+            "type": "uint24"
+          },
+          {
+            "internalType": "uint24",
+            "name": "deaths",
+            "type": "uint24"
+          },
+          {
+            "internalType": "uint24",
+            "name": "harvests",
+            "type": "uint24"
+          }
+        ],
+        "internalType": "struct PlotLib.ActionTraits",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
     "name": "plotHeight",
     "outputs": [
       {
         "internalType": "uint8",
         "name": "",
         "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "plotTraits",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint8",
+            "name": "season",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "dimensions",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "tileArea",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "baseStats",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint24",
+            "name": "clears",
+            "type": "uint24"
+          },
+          {
+            "internalType": "uint24",
+            "name": "deaths",
+            "type": "uint24"
+          },
+          {
+            "internalType": "uint24",
+            "name": "harvests",
+            "type": "uint24"
+          },
+          {
+            "internalType": "uint16",
+            "name": "amountStaked",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint64",
+            "name": "timeStartStaked",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "timeReadyDelta",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "timeExpiredDelta",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint256",
+            "name": "stakedElement",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "plotType",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct PlotLib.PlotTraits",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "plotType",
+    "outputs": [
+      {
+        "internalType": "contract IPlotType",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -1834,7 +1446,20 @@
         "type": "string"
       }
     ],
-    "name": "setBaseURI",
+    "name": "setBaseTokenURI",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "newOverallDescriptionText",
+        "type": "string"
+      }
+    ],
+    "name": "setOverallDescription",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -1904,6 +1529,38 @@
         "internalType": "string",
         "name": "",
         "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "tileArea",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "timeBreakdown",
+    "outputs": [
+      {
+        "internalType": "contract ITimeBreakdown",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -2270,6 +1927,19 @@
         "internalType": "uint256[]",
         "name": "",
         "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "yieldTable",
+    "outputs": [
+      {
+        "internalType": "contract IYieldTable",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",

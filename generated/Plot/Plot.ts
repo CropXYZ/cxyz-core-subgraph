@@ -1756,6 +1756,29 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  stakedElementName(plotId: BigInt): string {
+    let result = super.call(
+      "stakedElementName",
+      "stakedElementName(uint256):(string)",
+      [ethereum.Value.fromUnsignedBigInt(plotId)]
+    );
+
+    return result[0].toString();
+  }
+
+  try_stakedElementName(plotId: BigInt): ethereum.CallResult<string> {
+    let result = super.tryCall(
+      "stakedElementName",
+      "stakedElementName(uint256):(string)",
+      [ethereum.Value.fromUnsignedBigInt(plotId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
   supportsInterface(interfaceId: Bytes): boolean {
     let result = super.call(
       "supportsInterface",

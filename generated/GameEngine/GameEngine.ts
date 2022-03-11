@@ -1815,6 +1815,31 @@ export class GameEngine extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  stakedElementIdToName(stakedElementId: BigInt): string {
+    let result = super.call(
+      "stakedElementIdToName",
+      "stakedElementIdToName(uint256):(string)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+
+    return result[0].toString();
+  }
+
+  try_stakedElementIdToName(
+    stakedElementId: BigInt
+  ): ethereum.CallResult<string> {
+    let result = super.tryCall(
+      "stakedElementIdToName",
+      "stakedElementIdToName(uint256):(string)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
   stakedElementNameToId(stakedElementName: string): BigInt {
     let result = super.call(
       "stakedElementNameToId",
