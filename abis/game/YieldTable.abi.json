@@ -480,7 +480,20 @@
   },
   {
     "inputs": [],
-    "name": "AS_POOL_ADDRESS",
+    "name": "AS_POOL_CORE_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_POOL_DETAILS_ADDRESS",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -611,45 +624,6 @@
   {
     "inputs": [],
     "name": "RR_PAUSER_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RR_POOL_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RR_TEAM_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RR_TREASURY_ROLE",
     "outputs": [
       {
         "internalType": "bytes32",

@@ -96,8 +96,44 @@ dataSources:
     name: Plot
     network: {{network}}
     source:
-      address: "{{plotAddress}}"
+      address: "{{plotCoreAddress}}"
       abi: Plot
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/Plot.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+        - GameState
+        - GrowthTimeTable
+        - Plot
+      abis:
+        - name: Plot
+          file: ./abis/{{poolCoreAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: MintedPlot(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
+          handler: handleMint
+        - event: StakedCrop(indexed address,indexed uint256,indexed uint256,uint16,uint64,uint64,uint64,address,uint256,bool)
+          handler: handleStaked
+        - event: HarvestedPlot(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint16,uint24)
+          handler: handleHarvestPlot
+        - event: ClearedDiedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
+          handler: handleClearDiedHarvest
+        - event: ClearedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
+          handler: handleClearedHarvest
+  - kind: ethereum/contract
+    name: PlotActions
+    network: {{network}}
+    source:
+      address: "{{plotActionsAddress}}"
+      abi: PlotActions
       startBlock: {{startBlock}}
     mapping:
       file: ./src/Plot.mapping.ts
@@ -129,14 +165,14 @@ dataSources:
         - event: ClearedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
           handler: handleClearedHarvest
   - kind: ethereum/contract
-    name: DynamicPool
+    name: PoolCore
     network: {{network}}
     source:
       address: "{{poolAddress}}"
-      abi: DynamicPool
+      abi: PoolCore
       startBlock: {{startBlock}}
     mapping:
-      file: ./src/DynamicPool.mapping.ts
+      file: ./src/PoolCore.mapping.ts
       kind: ethereum/events
       apiVersion: {{apiVersion}}
       language: wasm/assemblyscript
@@ -146,8 +182,8 @@ dataSources:
         - TokenFlow
         - TransactionFlow
       abis:
-        - name: DynamicPool
-          file: ./abis/{{dynamicPoolAbiName}}.json
+        - name: PoolCore
+          file: ./abis/{{poolCoreAbiName}}.json
       eventHandlers:
         - event: Paused(address)
           handler: handlePause

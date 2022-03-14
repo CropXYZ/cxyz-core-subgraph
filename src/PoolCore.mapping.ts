@@ -9,7 +9,7 @@ import {
   ScaledPoolBalances,
   InitializedPool,
   SentToTreasury
-} from "../generated/DynamicPool/DynamicPool";
+} from "../generated/PoolCore/PoolCore";
 import {
   GameState,
   Pool,
@@ -18,10 +18,10 @@ import {
 } from "../generated/schema";
 
 export function handlePause(event: Paused): void {
-  let gameState = GameState.load("DynamicPool");
+  let gameState = GameState.load("PoolCore");
 
   if (gameState == null) {
-    gameState = new GameState("DynamicPool");
+    gameState = new GameState("PoolCore");
   }
   gameState.address = event.address;
   gameState.isPaused = true;
@@ -29,10 +29,10 @@ export function handlePause(event: Paused): void {
 }
 
 export function handleUnpause(event: Unpaused): void {
-  let gameState = GameState.load("DynamicPool");
+  let gameState = GameState.load("PoolCore");
 
   if (gameState == null) {
-    gameState = new GameState("DynamicPool");
+    gameState = new GameState("PoolCore");
   }
   gameState.address = event.address;
   gameState.isPaused = false;

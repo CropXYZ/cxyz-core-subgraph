@@ -324,7 +324,20 @@
   },
   {
     "inputs": [],
-    "name": "AS_POOL_ADDRESS",
+    "name": "AS_POOL_CORE_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_POOL_DETAILS_ADDRESS",
     "outputs": [
       {
         "internalType": "bytes32",

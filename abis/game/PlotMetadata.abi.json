@@ -175,7 +175,20 @@
   },
   {
     "inputs": [],
-    "name": "AS_POOL_ADDRESS",
+    "name": "AS_POOL_CORE_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_POOL_DETAILS_ADDRESS",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -318,45 +331,6 @@
   },
   {
     "inputs": [],
-    "name": "RR_POOL_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RR_TEAM_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RR_TREASURY_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "RR_UPGRADER_ROLE",
     "outputs": [
       {
@@ -429,6 +403,25 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "harvestableYield",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "addressStoreAddress_",
         "type": "address"
@@ -437,6 +430,44 @@
     "name": "initialize",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "isActive",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "isStaked",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -486,6 +517,25 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "plotTypeName",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "poolAddress",
     "outputs": [
@@ -504,6 +554,44 @@
     "outputs": [
       {
         "internalType": "contract IRoleRegistry",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "stakedElementName",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "stakedElementId",
+        "type": "uint256"
+      }
+    ],
+    "name": "stakedElementToken",
+    "outputs": [
+      {
+        "internalType": "contract IGameToken",
         "name": "",
         "type": "address"
       }
@@ -586,6 +674,49 @@
     "name": "upgradeToAndCall",
     "outputs": [],
     "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "plotTypeName_",
+        "type": "string"
+      },
+      {
+        "internalType": "uint8",
+        "name": "season_",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "width_",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "height_",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "tileArea_",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "baseGrowthSpeed_",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "baseYield_",
+        "type": "uint8"
+      }
+    ],
+    "name": "validatePlotTraits",
+    "outputs": [],
+    "stateMutability": "view",
     "type": "function"
   },
   {

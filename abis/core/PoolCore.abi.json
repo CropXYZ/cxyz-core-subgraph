@@ -10,31 +10,6 @@
       },
       {
         "indexed": true,
-        "internalType": "uint256",
-        "name": "plotTypeId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "plotType",
-        "type": "string"
-      }
-    ],
-    "name": "ActivatedPlotType",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "operator",
-        "type": "address"
-      },
-      {
-        "indexed": true,
         "internalType": "address",
         "name": "oldAddressStore",
         "type": "address"
@@ -92,6 +67,98 @@
       }
     ],
     "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "treasuryAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "SentToTreasury",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "destinationAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "goldAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "originalInputAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "goldDelta",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenDelta",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "updatedGoldBalance",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "updatedTokenBalance",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isSwapperAdding",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isInputTokenAmountGold",
+        "type": "bool"
+      }
+    ],
+    "name": "TransferredFromPool",
     "type": "event"
   },
   {
@@ -368,24 +435,111 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "plotTypeNameEntered",
-        "type": "string"
-      }
-    ],
-    "name": "activatePlotType",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "addressStore",
     "outputs": [
       {
         "internalType": "contract IAddressStore",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOfAddress",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "tokenAddressName",
+        "type": "string"
+      }
+    ],
+    "name": "balanceOfTokenNamed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isAdding",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "isTokenAmountGold",
+        "type": "bool"
+      }
+    ],
+    "name": "calculateUpdatedBalances",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "gameEngine",
+    "outputs": [
+      {
+        "internalType": "contract IGameEngine",
         "name": "",
         "type": "address"
       }
@@ -422,17 +576,17 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "plotTypeIdEntered",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
       }
     ],
-    "name": "isValidPlotTypeId",
+    "name": "kValueOfGoldAndTokenAddress",
     "outputs": [
       {
-        "internalType": "bool",
+        "internalType": "uint256",
         "name": "",
-        "type": "bool"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -442,16 +596,16 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "plotTypeNameEntered",
+        "name": "tokenAddressName",
         "type": "string"
       }
     ],
-    "name": "isValidPlotTypeName",
+    "name": "kValueOfGoldAndTokenName",
     "outputs": [
       {
-        "internalType": "bool",
+        "internalType": "uint256",
         "name": "",
-        "type": "bool"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -491,51 +645,13 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "plotTypeNameEntered",
-        "type": "string"
-      }
-    ],
-    "name": "plotTypeId",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotTypeIdEntered",
-        "type": "uint256"
-      }
-    ],
-    "name": "plotTypeName",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [],
-    "name": "plotTypeNames",
+    "name": "plotType",
     "outputs": [
       {
-        "internalType": "string[]",
+        "internalType": "contract IPlotType",
         "name": "",
-        "type": "string[]"
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -555,6 +671,98 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isAdding",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "isTokenAmountGold",
+        "type": "bool"
+      }
+    ],
+    "name": "quoteSwapValueWithTokenAddress",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "gold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "token",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct PoolLib.BalancePair",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "tokenAddressName",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isAdding",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "isTokenAmountGold",
+        "type": "bool"
+      }
+    ],
+    "name": "quoteSwapValueWithTokenName",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "gold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "token",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct PoolLib.BalancePair",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "roleRegistry",
     "outputs": [
@@ -568,13 +776,64 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "totalPlotTypes",
-    "outputs": [
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "tokenAmount",
         "type": "uint256"
+      }
+    ],
+    "name": "sendToTreasury",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "destinationAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isAdding",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "isTokenAmountGold",
+        "type": "bool"
+      }
+    ],
+    "name": "swapFromPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "timeBreakdown",
+    "outputs": [
+      {
+        "internalType": "contract ITimeBreakdown",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -669,6 +928,29 @@
   },
   {
     "inputs": [],
+    "name": "versionGameStatus",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "versionGameUtil",
     "outputs": [
       {
@@ -711,6 +993,19 @@
       }
     ],
     "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "yieldTable",
+    "outputs": [
+      {
+        "internalType": "contract IYieldTable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]

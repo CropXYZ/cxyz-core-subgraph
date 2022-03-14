@@ -359,7 +359,20 @@
   },
   {
     "inputs": [],
-    "name": "AS_POOL_ADDRESS",
+    "name": "AS_POOL_CORE_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_POOL_DETAILS_ADDRESS",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -502,45 +515,6 @@
   },
   {
     "inputs": [],
-    "name": "RR_POOL_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RR_TEAM_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "RR_TREASURY_ROLE",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "RR_UPGRADER_ROLE",
     "outputs": [
       {
@@ -550,19 +524,6 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionClear",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -589,19 +550,6 @@
         "internalType": "uint256",
         "name": "plotId",
         "type": "uint256"
-      }
-    ],
-    "name": "actionClearDead",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
       },
       {
         "internalType": "uint256",
@@ -610,19 +558,6 @@
       }
     ],
     "name": "actionClearDeadAndStake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "plotId",
-        "type": "uint256"
-      }
-    ],
-    "name": "actionHarvest",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -671,6 +606,25 @@
         "internalType": "contract IAddressStore",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "plotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "amountNeededToBeStaked",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
     "stateMutability": "view",
