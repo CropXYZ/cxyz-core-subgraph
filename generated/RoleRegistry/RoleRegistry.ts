@@ -10,16 +10,16 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class AddedResolveAddress extends ethereum.Event {
-  get params(): AddedResolveAddress__Params {
-    return new AddedResolveAddress__Params(this);
+export class AddedRegistryRole extends ethereum.Event {
+  get params(): AddedRegistryRole__Params {
+    return new AddedRegistryRole__Params(this);
   }
 }
 
-export class AddedResolveAddress__Params {
-  _event: AddedResolveAddress;
+export class AddedRegistryRole__Params {
+  _event: AddedRegistryRole;
 
-  constructor(event: AddedResolveAddress) {
+  constructor(event: AddedRegistryRole) {
     this._event = event;
   }
 
@@ -27,16 +27,12 @@ export class AddedResolveAddress__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get addressName(): string {
+  get registryRoleName(): string {
     return this._event.parameters[1].value.toString();
   }
 
-  get addressNameHash(): Bytes {
+  get registryRoleHash(): Bytes {
     return this._event.parameters[2].value.toBytes();
-  }
-
-  get resolveAddress(): Address {
-    return this._event.parameters[3].value.toAddress();
   }
 }
 
@@ -80,16 +76,16 @@ export class BeaconUpgraded__Params {
   }
 }
 
-export class DeactivatedResolveAddressName extends ethereum.Event {
-  get params(): DeactivatedResolveAddressName__Params {
-    return new DeactivatedResolveAddressName__Params(this);
+export class GrantedRegistryRole extends ethereum.Event {
+  get params(): GrantedRegistryRole__Params {
+    return new GrantedRegistryRole__Params(this);
   }
 }
 
-export class DeactivatedResolveAddressName__Params {
-  _event: DeactivatedResolveAddressName;
+export class GrantedRegistryRole__Params {
+  _event: GrantedRegistryRole;
 
-  constructor(event: DeactivatedResolveAddressName) {
+  constructor(event: GrantedRegistryRole) {
     this._event = event;
   }
 
@@ -97,16 +93,12 @@ export class DeactivatedResolveAddressName__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get addressName(): string {
-    return this._event.parameters[1].value.toString();
+  get registryRoleHash(): Bytes {
+    return this._event.parameters[1].value.toBytes();
   }
 
-  get addressNameHash(): Bytes {
-    return this._event.parameters[2].value.toBytes();
-  }
-
-  get resolveAddress(): Address {
-    return this._event.parameters[3].value.toAddress();
+  get addressToAdd(): Address {
+    return this._event.parameters[2].value.toAddress();
   }
 }
 
@@ -125,6 +117,32 @@ export class Paused__Params {
 
   get account(): Address {
     return this._event.parameters[0].value.toAddress();
+  }
+}
+
+export class RevokedRegistryRole extends ethereum.Event {
+  get params(): RevokedRegistryRole__Params {
+    return new RevokedRegistryRole__Params(this);
+  }
+}
+
+export class RevokedRegistryRole__Params {
+  _event: RevokedRegistryRole;
+
+  constructor(event: RevokedRegistryRole) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get registryRoleHash(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+
+  get addressToRevoke(): Address {
+    return this._event.parameters[2].value.toAddress();
   }
 }
 
@@ -224,40 +242,6 @@ export class Unpaused__Params {
   }
 }
 
-export class UpdatedResolveAddress extends ethereum.Event {
-  get params(): UpdatedResolveAddress__Params {
-    return new UpdatedResolveAddress__Params(this);
-  }
-}
-
-export class UpdatedResolveAddress__Params {
-  _event: UpdatedResolveAddress;
-
-  constructor(event: UpdatedResolveAddress) {
-    this._event = event;
-  }
-
-  get operator(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get addressName(): string {
-    return this._event.parameters[1].value.toString();
-  }
-
-  get addressNameHash(): Bytes {
-    return this._event.parameters[2].value.toBytes();
-  }
-
-  get oldResolveAddress(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-
-  get newResolveAddress(): Address {
-    return this._event.parameters[4].value.toAddress();
-  }
-}
-
 export class Upgraded extends ethereum.Event {
   get params(): Upgraded__Params {
     return new Upgraded__Params(this);
@@ -276,7 +260,7 @@ export class Upgraded__Params {
   }
 }
 
-export class AddressStore__versionResult {
+export class RoleRegistry__versionResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -296,7 +280,7 @@ export class AddressStore__versionResult {
   }
 }
 
-export class AddressStore__versionCoreUtilResult {
+export class RoleRegistry__versionCoreUtilResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -316,9 +300,9 @@ export class AddressStore__versionCoreUtilResult {
   }
 }
 
-export class AddressStore extends ethereum.SmartContract {
-  static bind(address: Address): AddressStore {
-    return new AddressStore("AddressStore", address);
+export class RoleRegistry extends ethereum.SmartContract {
+  static bind(address: Address): RoleRegistry {
+    return new RoleRegistry("RoleRegistry", address);
   }
 
   AS_ENGINE_ADDRESS(): Bytes {
@@ -712,85 +696,20 @@ export class AddressStore extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  getAddress(addressNameHash: Bytes): Address {
-    let result = super.call("getAddress", "getAddress(bytes32):(address)", [
-      ethereum.Value.fromFixedBytes(addressNameHash)
-    ]);
-
-    return result[0].toAddress();
-  }
-
-  try_getAddress(addressNameHash: Bytes): ethereum.CallResult<Address> {
-    let result = super.tryCall("getAddress", "getAddress(bytes32):(address)", [
-      ethereum.Value.fromFixedBytes(addressNameHash)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  getAddressName(addressNameHash: Bytes): string {
+  acceptedRegistryRoles(): Array<string> {
     let result = super.call(
-      "getAddressName",
-      "getAddressName(bytes32):(string)",
-      [ethereum.Value.fromFixedBytes(addressNameHash)]
-    );
-
-    return result[0].toString();
-  }
-
-  try_getAddressName(addressNameHash: Bytes): ethereum.CallResult<string> {
-    let result = super.tryCall(
-      "getAddressName",
-      "getAddressName(bytes32):(string)",
-      [ethereum.Value.fromFixedBytes(addressNameHash)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
-  }
-
-  getAddressNameHashes(): Array<Bytes> {
-    let result = super.call(
-      "getAddressNameHashes",
-      "getAddressNameHashes():(bytes32[])",
-      []
-    );
-
-    return result[0].toBytesArray();
-  }
-
-  try_getAddressNameHashes(): ethereum.CallResult<Array<Bytes>> {
-    let result = super.tryCall(
-      "getAddressNameHashes",
-      "getAddressNameHashes():(bytes32[])",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytesArray());
-  }
-
-  getAddressNames(): Array<string> {
-    let result = super.call(
-      "getAddressNames",
-      "getAddressNames():(string[])",
+      "acceptedRegistryRoles",
+      "acceptedRegistryRoles():(string[])",
       []
     );
 
     return result[0].toStringArray();
   }
 
-  try_getAddressNames(): ethereum.CallResult<Array<string>> {
+  try_acceptedRegistryRoles(): ethereum.CallResult<Array<string>> {
     let result = super.tryCall(
-      "getAddressNames",
-      "getAddressNames():(string[])",
+      "acceptedRegistryRoles",
+      "acceptedRegistryRoles():(string[])",
       []
     );
     if (result.reverted) {
@@ -821,6 +740,38 @@ export class AddressStore extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
+  hasRegistryRole(registryRoleHash: Bytes, account: Address): boolean {
+    let result = super.call(
+      "hasRegistryRole",
+      "hasRegistryRole(bytes32,address):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(registryRoleHash),
+        ethereum.Value.fromAddress(account)
+      ]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_hasRegistryRole(
+    registryRoleHash: Bytes,
+    account: Address
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "hasRegistryRole",
+      "hasRegistryRole(bytes32,address):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(registryRoleHash),
+        ethereum.Value.fromAddress(account)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
   hasRole(role: Bytes, account: Address): boolean {
     let result = super.call("hasRole", "hasRole(bytes32,address):(bool)", [
       ethereum.Value.fromFixedBytes(role),
@@ -842,21 +793,23 @@ export class AddressStore extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  isAddressActive(addressNameHash: Bytes): boolean {
+  isValidRegistryRole(registryRoleHash: Bytes): boolean {
     let result = super.call(
-      "isAddressActive",
-      "isAddressActive(bytes32):(bool)",
-      [ethereum.Value.fromFixedBytes(addressNameHash)]
+      "isValidRegistryRole",
+      "isValidRegistryRole(bytes32):(bool)",
+      [ethereum.Value.fromFixedBytes(registryRoleHash)]
     );
 
     return result[0].toBoolean();
   }
 
-  try_isAddressActive(addressNameHash: Bytes): ethereum.CallResult<boolean> {
+  try_isValidRegistryRole(
+    registryRoleHash: Bytes
+  ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
-      "isAddressActive",
-      "isAddressActive(bytes32):(bool)",
-      [ethereum.Value.fromFixedBytes(addressNameHash)]
+      "isValidRegistryRole",
+      "isValidRegistryRole(bytes32):(bool)",
+      [ethereum.Value.fromFixedBytes(registryRoleHash)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -865,21 +818,56 @@ export class AddressStore extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  isAddressValid(addressNameHash: Bytes): boolean {
+  onlyAccountWithRegistryRole(
+    registryRoleHash: Bytes,
+    account: Address
+  ): boolean {
     let result = super.call(
-      "isAddressValid",
-      "isAddressValid(bytes32):(bool)",
-      [ethereum.Value.fromFixedBytes(addressNameHash)]
+      "onlyAccountWithRegistryRole",
+      "onlyAccountWithRegistryRole(bytes32,address):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(registryRoleHash),
+        ethereum.Value.fromAddress(account)
+      ]
     );
 
     return result[0].toBoolean();
   }
 
-  try_isAddressValid(addressNameHash: Bytes): ethereum.CallResult<boolean> {
+  try_onlyAccountWithRegistryRole(
+    registryRoleHash: Bytes,
+    account: Address
+  ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
-      "isAddressValid",
-      "isAddressValid(bytes32):(bool)",
-      [ethereum.Value.fromFixedBytes(addressNameHash)]
+      "onlyAccountWithRegistryRole",
+      "onlyAccountWithRegistryRole(bytes32,address):(bool)",
+      [
+        ethereum.Value.fromFixedBytes(registryRoleHash),
+        ethereum.Value.fromAddress(account)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  onlyRegistryRole(registryRoleHash: Bytes): boolean {
+    let result = super.call(
+      "onlyRegistryRole",
+      "onlyRegistryRole(bytes32):(bool)",
+      [ethereum.Value.fromFixedBytes(registryRoleHash)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_onlyRegistryRole(registryRoleHash: Bytes): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "onlyRegistryRole",
+      "onlyRegistryRole(bytes32):(bool)",
+      [ethereum.Value.fromFixedBytes(registryRoleHash)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -926,21 +914,21 @@ export class AddressStore extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  version(): AddressStore__versionResult {
+  version(): RoleRegistry__versionResult {
     let result = super.call(
       "version",
       "version():(uint256,uint256,uint256)",
       []
     );
 
-    return new AddressStore__versionResult(
+    return new RoleRegistry__versionResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
     );
   }
 
-  try_version(): ethereum.CallResult<AddressStore__versionResult> {
+  try_version(): ethereum.CallResult<RoleRegistry__versionResult> {
     let result = super.tryCall(
       "version",
       "version():(uint256,uint256,uint256)",
@@ -951,7 +939,7 @@ export class AddressStore extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new AddressStore__versionResult(
+      new RoleRegistry__versionResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -959,14 +947,14 @@ export class AddressStore extends ethereum.SmartContract {
     );
   }
 
-  versionCoreUtil(): AddressStore__versionCoreUtilResult {
+  versionCoreUtil(): RoleRegistry__versionCoreUtilResult {
     let result = super.call(
       "versionCoreUtil",
       "versionCoreUtil():(uint256,uint256,uint256)",
       []
     );
 
-    return new AddressStore__versionCoreUtilResult(
+    return new RoleRegistry__versionCoreUtilResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
@@ -974,7 +962,7 @@ export class AddressStore extends ethereum.SmartContract {
   }
 
   try_versionCoreUtil(): ethereum.CallResult<
-    AddressStore__versionCoreUtilResult
+    RoleRegistry__versionCoreUtilResult
   > {
     let result = super.tryCall(
       "versionCoreUtil",
@@ -986,7 +974,7 @@ export class AddressStore extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new AddressStore__versionCoreUtilResult(
+      new RoleRegistry__versionCoreUtilResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -995,66 +983,66 @@ export class AddressStore extends ethereum.SmartContract {
   }
 }
 
-export class AddAddressCall extends ethereum.Call {
-  get inputs(): AddAddressCall__Inputs {
-    return new AddAddressCall__Inputs(this);
+export class AddRegistryRoleCall extends ethereum.Call {
+  get inputs(): AddRegistryRoleCall__Inputs {
+    return new AddRegistryRoleCall__Inputs(this);
   }
 
-  get outputs(): AddAddressCall__Outputs {
-    return new AddAddressCall__Outputs(this);
+  get outputs(): AddRegistryRoleCall__Outputs {
+    return new AddRegistryRoleCall__Outputs(this);
   }
 }
 
-export class AddAddressCall__Inputs {
-  _call: AddAddressCall;
+export class AddRegistryRoleCall__Inputs {
+  _call: AddRegistryRoleCall;
 
-  constructor(call: AddAddressCall) {
+  constructor(call: AddRegistryRoleCall) {
     this._call = call;
   }
 
-  get addressName(): string {
+  get registryRoleName(): string {
     return this._call.inputValues[0].value.toString();
   }
+}
 
-  get resolveAddress(): Address {
+export class AddRegistryRoleCall__Outputs {
+  _call: AddRegistryRoleCall;
+
+  constructor(call: AddRegistryRoleCall) {
+    this._call = call;
+  }
+}
+
+export class GrantRegistryRoleCall extends ethereum.Call {
+  get inputs(): GrantRegistryRoleCall__Inputs {
+    return new GrantRegistryRoleCall__Inputs(this);
+  }
+
+  get outputs(): GrantRegistryRoleCall__Outputs {
+    return new GrantRegistryRoleCall__Outputs(this);
+  }
+}
+
+export class GrantRegistryRoleCall__Inputs {
+  _call: GrantRegistryRoleCall;
+
+  constructor(call: GrantRegistryRoleCall) {
+    this._call = call;
+  }
+
+  get registryRoleHash(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get addressToAdd(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 }
 
-export class AddAddressCall__Outputs {
-  _call: AddAddressCall;
+export class GrantRegistryRoleCall__Outputs {
+  _call: GrantRegistryRoleCall;
 
-  constructor(call: AddAddressCall) {
-    this._call = call;
-  }
-}
-
-export class DeactivateResolverCall extends ethereum.Call {
-  get inputs(): DeactivateResolverCall__Inputs {
-    return new DeactivateResolverCall__Inputs(this);
-  }
-
-  get outputs(): DeactivateResolverCall__Outputs {
-    return new DeactivateResolverCall__Outputs(this);
-  }
-}
-
-export class DeactivateResolverCall__Inputs {
-  _call: DeactivateResolverCall;
-
-  constructor(call: DeactivateResolverCall) {
-    this._call = call;
-  }
-
-  get addressName(): string {
-    return this._call.inputValues[0].value.toString();
-  }
-}
-
-export class DeactivateResolverCall__Outputs {
-  _call: DeactivateResolverCall;
-
-  constructor(call: DeactivateResolverCall) {
+  constructor(call: GrantRegistryRoleCall) {
     this._call = call;
   }
 }
@@ -1108,6 +1096,10 @@ export class InitializeCall__Inputs {
 
   constructor(call: InitializeCall) {
     this._call = call;
+  }
+
+  get initialRoles(): Array<string> {
+    return this._call.inputValues[0].value.toStringArray();
   }
 }
 
@@ -1179,6 +1171,40 @@ export class RenounceRoleCall__Outputs {
   }
 }
 
+export class RevokeRegistryRoleCall extends ethereum.Call {
+  get inputs(): RevokeRegistryRoleCall__Inputs {
+    return new RevokeRegistryRoleCall__Inputs(this);
+  }
+
+  get outputs(): RevokeRegistryRoleCall__Outputs {
+    return new RevokeRegistryRoleCall__Outputs(this);
+  }
+}
+
+export class RevokeRegistryRoleCall__Inputs {
+  _call: RevokeRegistryRoleCall;
+
+  constructor(call: RevokeRegistryRoleCall) {
+    this._call = call;
+  }
+
+  get registryRoleHash(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get addressToRevoke(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+}
+
+export class RevokeRegistryRoleCall__Outputs {
+  _call: RevokeRegistryRoleCall;
+
+  constructor(call: RevokeRegistryRoleCall) {
+    this._call = call;
+  }
+}
+
 export class RevokeRoleCall extends ethereum.Call {
   get inputs(): RevokeRoleCall__Inputs {
     return new RevokeRoleCall__Inputs(this);
@@ -1235,40 +1261,6 @@ export class UnpauseCall__Outputs {
   _call: UnpauseCall;
 
   constructor(call: UnpauseCall) {
-    this._call = call;
-  }
-}
-
-export class UpdateAddressCall extends ethereum.Call {
-  get inputs(): UpdateAddressCall__Inputs {
-    return new UpdateAddressCall__Inputs(this);
-  }
-
-  get outputs(): UpdateAddressCall__Outputs {
-    return new UpdateAddressCall__Outputs(this);
-  }
-}
-
-export class UpdateAddressCall__Inputs {
-  _call: UpdateAddressCall;
-
-  constructor(call: UpdateAddressCall) {
-    this._call = call;
-  }
-
-  get addressName(): string {
-    return this._call.inputValues[0].value.toString();
-  }
-
-  get newResolveAddress(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-}
-
-export class UpdateAddressCall__Outputs {
-  _call: UpdateAddressCall;
-
-  constructor(call: UpdateAddressCall) {
     this._call = call;
   }
 }

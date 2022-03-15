@@ -128,182 +128,6 @@ export class BeaconUpgraded__Params {
   }
 }
 
-export class ClearedDiedHarvest extends ethereum.Event {
-  get params(): ClearedDiedHarvest__Params {
-    return new ClearedDiedHarvest__Params(this);
-  }
-}
-
-export class ClearedDiedHarvest__Params {
-  _event: ClearedDiedHarvest;
-
-  constructor(event: ClearedDiedHarvest) {
-    this._event = event;
-  }
-
-  get player(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get plotId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get diedStakedElement(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get newStakedElement(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get diedAmount(): i32 {
-    return this._event.parameters[6].value.toI32();
-  }
-
-  get plotDeaths(): i32 {
-    return this._event.parameters[7].value.toI32();
-  }
-}
-
-export class ClearedHarvest extends ethereum.Event {
-  get params(): ClearedHarvest__Params {
-    return new ClearedHarvest__Params(this);
-  }
-}
-
-export class ClearedHarvest__Params {
-  _event: ClearedHarvest;
-
-  constructor(event: ClearedHarvest) {
-    this._event = event;
-  }
-
-  get player(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get plotId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get clearedStakedElement(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get newStakedElement(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get clearedAmount(): i32 {
-    return this._event.parameters[6].value.toI32();
-  }
-
-  get plotClears(): i32 {
-    return this._event.parameters[7].value.toI32();
-  }
-}
-
-export class DismissedGuard extends ethereum.Event {
-  get params(): DismissedGuard__Params {
-    return new DismissedGuard__Params(this);
-  }
-}
-
-export class DismissedGuard__Params {
-  _event: DismissedGuard;
-
-  constructor(event: DismissedGuard) {
-    this._event = event;
-  }
-
-  get player(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get plotId(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get deactivatedBoost(): boolean {
-    return this._event.parameters[4].value.toBoolean();
-  }
-}
-
-export class HarvestedPlot extends ethereum.Event {
-  get params(): HarvestedPlot__Params {
-    return new HarvestedPlot__Params(this);
-  }
-}
-
-export class HarvestedPlot__Params {
-  _event: HarvestedPlot;
-
-  constructor(event: HarvestedPlot) {
-    this._event = event;
-  }
-
-  get player(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get plotId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get stakedElement(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get newStakedElement(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get harvestableAmount(): i32 {
-    return this._event.parameters[6].value.toI32();
-  }
-
-  get actuallyProducedAmount(): i32 {
-    return this._event.parameters[7].value.toI32();
-  }
-
-  get plotHarvests(): i32 {
-    return this._event.parameters[8].value.toI32();
-  }
-}
-
 export class MintedPlot extends ethereum.Event {
   get params(): MintedPlot__Params {
     return new MintedPlot__Params(this);
@@ -380,140 +204,6 @@ export class Paused__Params {
   }
 }
 
-export class PulledAndPlacedGuard extends ethereum.Event {
-  get params(): PulledAndPlacedGuard__Params {
-    return new PulledAndPlacedGuard__Params(this);
-  }
-}
-
-export class PulledAndPlacedGuard__Params {
-  _event: PulledAndPlacedGuard;
-
-  constructor(event: PulledAndPlacedGuard) {
-    this._event = event;
-  }
-
-  get player(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get plotId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get destinationPlotOnGuardTokenAddress(): Address {
-    return this._event.parameters[4].value.toAddress();
-  }
-
-  get destinationPlotOnGuardTokenId(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get sourcePlotId(): BigInt {
-    return this._event.parameters[6].value.toBigInt();
-  }
-
-  get sourceDeactivateBoost(): boolean {
-    return this._event.parameters[7].value.toBoolean();
-  }
-}
-
-export class RecalledGuard extends ethereum.Event {
-  get params(): RecalledGuard__Params {
-    return new RecalledGuard__Params(this);
-  }
-}
-
-export class RecalledGuard__Params {
-  _event: RecalledGuard;
-
-  constructor(event: RecalledGuard) {
-    this._event = event;
-  }
-
-  get player(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get plotId(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get deactivatedBoost(): boolean {
-    return this._event.parameters[4].value.toBoolean();
-  }
-}
-
-export class StakedCrop extends ethereum.Event {
-  get params(): StakedCrop__Params {
-    return new StakedCrop__Params(this);
-  }
-}
-
-export class StakedCrop__Params {
-  _event: StakedCrop;
-
-  constructor(event: StakedCrop) {
-    this._event = event;
-  }
-
-  get player(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get plotId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get stakedElement(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get stakedAmount(): i32 {
-    return this._event.parameters[3].value.toI32();
-  }
-
-  get timeStartStaked(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get timeReadyDelta(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get timeExpiredDelta(): BigInt {
-    return this._event.parameters[6].value.toBigInt();
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._event.parameters[7].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._event.parameters[8].value.toBigInt();
-  }
-
-  get onGuardBoost(): boolean {
-    return this._event.parameters[9].value.toBoolean();
-  }
-}
-
 export class Transfer extends ethereum.Event {
   get params(): Transfer__Params {
     return new Transfer__Params(this);
@@ -558,16 +248,16 @@ export class Unpaused__Params {
   }
 }
 
-export class UpdateBaseTokenURI extends ethereum.Event {
-  get params(): UpdateBaseTokenURI__Params {
-    return new UpdateBaseTokenURI__Params(this);
+export class UpdatedBaseTokenURI extends ethereum.Event {
+  get params(): UpdatedBaseTokenURI__Params {
+    return new UpdatedBaseTokenURI__Params(this);
   }
 }
 
-export class UpdateBaseTokenURI__Params {
-  _event: UpdateBaseTokenURI;
+export class UpdatedBaseTokenURI__Params {
+  _event: UpdatedBaseTokenURI;
 
-  constructor(event: UpdateBaseTokenURI) {
+  constructor(event: UpdatedBaseTokenURI) {
     this._event = event;
   }
 
@@ -592,6 +282,40 @@ export class UpdateBaseTokenURI__Params {
   }
 }
 
+export class UpdatedOverallDescription extends ethereum.Event {
+  get params(): UpdatedOverallDescription__Params {
+    return new UpdatedOverallDescription__Params(this);
+  }
+}
+
+export class UpdatedOverallDescription__Params {
+  _event: UpdatedOverallDescription;
+
+  constructor(event: UpdatedOverallDescription) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get oldOverallDescriptionHash(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+
+  get newOverallDescriptionHash(): Bytes {
+    return this._event.parameters[2].value.toBytes();
+  }
+
+  get oldOverallDescription(): string {
+    return this._event.parameters[3].value.toString();
+  }
+
+  get newOverallDescription(): string {
+    return this._event.parameters[4].value.toString();
+  }
+}
+
 export class Upgraded extends ethereum.Event {
   get params(): Upgraded__Params {
     return new Upgraded__Params(this);
@@ -607,6 +331,114 @@ export class Upgraded__Params {
 
   get implementation(): Address {
     return this._event.parameters[0].value.toAddress();
+  }
+}
+
+export class Plot__traitsResultValue0Struct extends ethereum.Tuple {
+  get plotType(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get staked(): Plot__traitsResultValue0StakedStruct {
+    return changetype<Plot__traitsResultValue0StakedStruct>(this[1].toTuple());
+  }
+
+  get dimensions(): Plot__traitsResultValue0DimensionsStruct {
+    return changetype<Plot__traitsResultValue0DimensionsStruct>(
+      this[2].toTuple()
+    );
+  }
+
+  get stats(): Plot__traitsResultValue0StatsStruct {
+    return changetype<Plot__traitsResultValue0StatsStruct>(this[3].toTuple());
+  }
+
+  get base(): Plot__traitsResultValue0BaseStruct {
+    return changetype<Plot__traitsResultValue0BaseStruct>(this[4].toTuple());
+  }
+}
+
+export class Plot__traitsResultValue0StakedStruct extends ethereum.Tuple {
+  get element(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get amount(): i32 {
+    return this[1].toI32();
+  }
+
+  get times(): Plot__traitsResultValue0StakedTimesStruct {
+    return changetype<Plot__traitsResultValue0StakedTimesStruct>(
+      this[2].toTuple()
+    );
+  }
+
+  get counts(): Plot__traitsResultValue0StakedCountsStruct {
+    return changetype<Plot__traitsResultValue0StakedCountsStruct>(
+      this[3].toTuple()
+    );
+  }
+}
+
+export class Plot__traitsResultValue0StakedTimesStruct extends ethereum.Tuple {
+  get start(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get readyDelta(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get expiredDelta(): BigInt {
+    return this[2].toBigInt();
+  }
+}
+
+export class Plot__traitsResultValue0StakedCountsStruct extends ethereum.Tuple {
+  get clears(): i32 {
+    return this[0].toI32();
+  }
+
+  get deaths(): i32 {
+    return this[1].toI32();
+  }
+
+  get harvests(): i32 {
+    return this[2].toI32();
+  }
+}
+
+export class Plot__traitsResultValue0DimensionsStruct extends ethereum.Tuple {
+  get tileArea(): i32 {
+    return this[0].toI32();
+  }
+
+  get width(): i32 {
+    return this[1].toI32();
+  }
+
+  get height(): i32 {
+    return this[2].toI32();
+  }
+}
+
+export class Plot__traitsResultValue0StatsStruct extends ethereum.Tuple {
+  get speed(): i32 {
+    return this[0].toI32();
+  }
+
+  get yield(): i32 {
+    return this[1].toI32();
+  }
+}
+
+export class Plot__traitsResultValue0BaseStruct extends ethereum.Tuple {
+  get season(): i32 {
+    return this[0].toI32();
+  }
+
+  get disabled(): boolean {
+    return this[1].toBoolean();
   }
 }
 
@@ -761,20 +593,135 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  AS_POOL_ADDRESS(): Bytes {
+  AS_PLOT_ACTIONS_ADDRESS(): Bytes {
     let result = super.call(
-      "AS_POOL_ADDRESS",
-      "AS_POOL_ADDRESS():(bytes32)",
+      "AS_PLOT_ACTIONS_ADDRESS",
+      "AS_PLOT_ACTIONS_ADDRESS():(bytes32)",
       []
     );
 
     return result[0].toBytes();
   }
 
-  try_AS_POOL_ADDRESS(): ethereum.CallResult<Bytes> {
+  try_AS_PLOT_ACTIONS_ADDRESS(): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
-      "AS_POOL_ADDRESS",
-      "AS_POOL_ADDRESS():(bytes32)",
+      "AS_PLOT_ACTIONS_ADDRESS",
+      "AS_PLOT_ACTIONS_ADDRESS():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_PLOT_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_PLOT_ADDRESS",
+      "AS_PLOT_ADDRESS():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_PLOT_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_PLOT_ADDRESS",
+      "AS_PLOT_ADDRESS():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_PLOT_METADATA_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_PLOT_METADATA_ADDRESS",
+      "AS_PLOT_METADATA_ADDRESS():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_PLOT_METADATA_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_PLOT_METADATA_ADDRESS",
+      "AS_PLOT_METADATA_ADDRESS():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_PLOT_TYPE_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_PLOT_TYPE_ADDRESS",
+      "AS_PLOT_TYPE_ADDRESS():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_PLOT_TYPE_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_PLOT_TYPE_ADDRESS",
+      "AS_PLOT_TYPE_ADDRESS():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_POOL_CORE_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_POOL_CORE_ADDRESS",
+      "AS_POOL_CORE_ADDRESS():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_POOL_CORE_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_POOL_CORE_ADDRESS",
+      "AS_POOL_CORE_ADDRESS():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_POOL_DETAILS_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_POOL_DETAILS_ADDRESS",
+      "AS_POOL_DETAILS_ADDRESS():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_POOL_DETAILS_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_POOL_DETAILS_ADDRESS",
+      "AS_POOL_DETAILS_ADDRESS():(bytes32)",
       []
     );
     if (result.reverted) {
@@ -830,6 +777,29 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
+  AS_TIME_BREAKDOWN_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_TIME_BREAKDOWN_ADDRESS",
+      "AS_TIME_BREAKDOWN_ADDRESS():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_TIME_BREAKDOWN_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_TIME_BREAKDOWN_ADDRESS",
+      "AS_TIME_BREAKDOWN_ADDRESS():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
   AS_TREASURY_ADDRESS(): Bytes {
     let result = super.call(
       "AS_TREASURY_ADDRESS",
@@ -844,6 +814,29 @@ export class Plot extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_TREASURY_ADDRESS",
       "AS_TREASURY_ADDRESS():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_YIELD_TABLE_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_YIELD_TABLE_ADDRESS",
+      "AS_YIELD_TABLE_ADDRESS():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_YIELD_TABLE_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_YIELD_TABLE_ADDRESS",
+      "AS_YIELD_TABLE_ADDRESS():(bytes32)",
       []
     );
     if (result.reverted) {
@@ -956,59 +949,6 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  RR_POOL_ROLE(): Bytes {
-    let result = super.call("RR_POOL_ROLE", "RR_POOL_ROLE():(bytes32)", []);
-
-    return result[0].toBytes();
-  }
-
-  try_RR_POOL_ROLE(): ethereum.CallResult<Bytes> {
-    let result = super.tryCall("RR_POOL_ROLE", "RR_POOL_ROLE():(bytes32)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  RR_TEAM_ROLE(): Bytes {
-    let result = super.call("RR_TEAM_ROLE", "RR_TEAM_ROLE():(bytes32)", []);
-
-    return result[0].toBytes();
-  }
-
-  try_RR_TEAM_ROLE(): ethereum.CallResult<Bytes> {
-    let result = super.tryCall("RR_TEAM_ROLE", "RR_TEAM_ROLE():(bytes32)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  RR_TREASURY_ROLE(): Bytes {
-    let result = super.call(
-      "RR_TREASURY_ROLE",
-      "RR_TREASURY_ROLE():(bytes32)",
-      []
-    );
-
-    return result[0].toBytes();
-  }
-
-  try_RR_TREASURY_ROLE(): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "RR_TREASURY_ROLE",
-      "RR_TREASURY_ROLE():(bytes32)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
   RR_UPGRADER_ROLE(): Bytes {
     let result = super.call(
       "RR_UPGRADER_ROLE",
@@ -1047,50 +987,6 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  amountNeededToBeStaked(plotId: BigInt): i32 {
-    let result = super.call(
-      "amountNeededToBeStaked",
-      "amountNeededToBeStaked(uint256):(uint16)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toI32();
-  }
-
-  try_amountNeededToBeStaked(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall(
-      "amountNeededToBeStaked",
-      "amountNeededToBeStaked(uint256):(uint16)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  amountStaked(plotId: BigInt): i32 {
-    let result = super.call("amountStaked", "amountStaked(uint256):(uint16)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toI32();
-  }
-
-  try_amountStaked(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall(
-      "amountStaked",
-      "amountStaked(uint256):(uint16)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
   balanceOf(owner: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
       ethereum.Value.fromAddress(owner)
@@ -1110,115 +1006,19 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  baseGrowthSpeed(plotId: BigInt): i32 {
-    let result = super.call(
-      "baseGrowthSpeed",
-      "baseGrowthSpeed(uint256):(uint8)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
+  baseTokenURI(): string {
+    let result = super.call("baseTokenURI", "baseTokenURI():(string)", []);
 
-    return result[0].toI32();
+    return result[0].toString();
   }
 
-  try_baseGrowthSpeed(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall(
-      "baseGrowthSpeed",
-      "baseGrowthSpeed(uint256):(uint8)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
+  try_baseTokenURI(): ethereum.CallResult<string> {
+    let result = super.tryCall("baseTokenURI", "baseTokenURI():(string)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  baseYield(plotId: BigInt): i32 {
-    let result = super.call("baseYield", "baseYield(uint256):(uint8)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toI32();
-  }
-
-  try_baseYield(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall("baseYield", "baseYield(uint256):(uint8)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  countOfClears(plotId: BigInt): i32 {
-    let result = super.call(
-      "countOfClears",
-      "countOfClears(uint256):(uint24)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toI32();
-  }
-
-  try_countOfClears(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall(
-      "countOfClears",
-      "countOfClears(uint256):(uint24)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  countOfDeaths(plotId: BigInt): i32 {
-    let result = super.call(
-      "countOfDeaths",
-      "countOfDeaths(uint256):(uint24)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toI32();
-  }
-
-  try_countOfDeaths(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall(
-      "countOfDeaths",
-      "countOfDeaths(uint256):(uint24)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  countOfHarvests(plotId: BigInt): i32 {
-    let result = super.call(
-      "countOfHarvests",
-      "countOfHarvests(uint256):(uint24)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toI32();
-  }
-
-  try_countOfHarvests(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall(
-      "countOfHarvests",
-      "countOfHarvests(uint256):(uint24)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
+    return ethereum.CallResult.fromValue(value[0].toString());
   }
 
   gameEngine(): Address {
@@ -1229,31 +1029,6 @@ export class Plot extends ethereum.SmartContract {
 
   try_gameEngine(): ethereum.CallResult<Address> {
     let result = super.tryCall("gameEngine", "gameEngine():(address)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  gameTokenReference(stakedElementId: BigInt): Address {
-    let result = super.call(
-      "gameTokenReference",
-      "gameTokenReference(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_gameTokenReference(
-    stakedElementId: BigInt
-  ): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "gameTokenReference",
-      "gameTokenReference(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
-    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -1282,38 +1057,6 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  getGuardId(onGuardTokenAddress: Address, onGuardTokenId: BigInt): Bytes {
-    let result = super.call(
-      "getGuardId",
-      "getGuardId(address,uint256):(bytes32)",
-      [
-        ethereum.Value.fromAddress(onGuardTokenAddress),
-        ethereum.Value.fromUnsignedBigInt(onGuardTokenId)
-      ]
-    );
-
-    return result[0].toBytes();
-  }
-
-  try_getGuardId(
-    onGuardTokenAddress: Address,
-    onGuardTokenId: BigInt
-  ): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "getGuardId",
-      "getGuardId(address,uint256):(bytes32)",
-      [
-        ethereum.Value.fromAddress(onGuardTokenAddress),
-        ethereum.Value.fromUnsignedBigInt(onGuardTokenId)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
   goldAddress(): Address {
     let result = super.call("goldAddress", "goldAddress():(address)", []);
 
@@ -1327,123 +1070,6 @@ export class Plot extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  guardAddress(plotId: BigInt): Address {
-    let result = super.call("guardAddress", "guardAddress(uint256):(address)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toAddress();
-  }
-
-  try_guardAddress(plotId: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "guardAddress",
-      "guardAddress(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  guardId(plotId: BigInt): BigInt {
-    let result = super.call("guardId", "guardId(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toBigInt();
-  }
-
-  try_guardId(plotId: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("guardId", "guardId(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  guardPostedPlot(
-    onGuardTokenAddress: Address,
-    onGuardTokenId: BigInt
-  ): BigInt {
-    let result = super.call(
-      "guardPostedPlot",
-      "guardPostedPlot(address,uint256):(uint256)",
-      [
-        ethereum.Value.fromAddress(onGuardTokenAddress),
-        ethereum.Value.fromUnsignedBigInt(onGuardTokenId)
-      ]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_guardPostedPlot(
-    onGuardTokenAddress: Address,
-    onGuardTokenId: BigInt
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "guardPostedPlot",
-      "guardPostedPlot(address,uint256):(uint256)",
-      [
-        ethereum.Value.fromAddress(onGuardTokenAddress),
-        ethereum.Value.fromUnsignedBigInt(onGuardTokenId)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  harvestableYield(plotId: BigInt): i32 {
-    let result = super.call(
-      "harvestableYield",
-      "harvestableYield(uint256):(uint16)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toI32();
-  }
-
-  try_harvestableYield(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall(
-      "harvestableYield",
-      "harvestableYield(uint256):(uint16)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  isActive(plotId: BigInt): boolean {
-    let result = super.call("isActive", "isActive(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_isActive(plotId: BigInt): ethereum.CallResult<boolean> {
-    let result = super.tryCall("isActive", "isActive(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   isApprovedForAll(owner: Address, operator: Address): boolean {
@@ -1472,76 +1098,6 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  isBoosted(plotId: BigInt): boolean {
-    let result = super.call("isBoosted", "isBoosted(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_isBoosted(plotId: BigInt): ethereum.CallResult<boolean> {
-    let result = super.tryCall("isBoosted", "isBoosted(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  isGuardPosted(onGuardTokenAddress: Address, onGuardTokenId: BigInt): boolean {
-    let result = super.call(
-      "isGuardPosted",
-      "isGuardPosted(address,uint256):(bool)",
-      [
-        ethereum.Value.fromAddress(onGuardTokenAddress),
-        ethereum.Value.fromUnsignedBigInt(onGuardTokenId)
-      ]
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_isGuardPosted(
-    onGuardTokenAddress: Address,
-    onGuardTokenId: BigInt
-  ): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "isGuardPosted",
-      "isGuardPosted(address,uint256):(bool)",
-      [
-        ethereum.Value.fromAddress(onGuardTokenAddress),
-        ethereum.Value.fromUnsignedBigInt(onGuardTokenId)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  isStaked(plotId: BigInt): boolean {
-    let result = super.call("isStaked", "isStaked(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_isStaked(plotId: BigInt): ethereum.CallResult<boolean> {
-    let result = super.tryCall("isStaked", "isStaked(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
   name(): string {
     let result = super.call("name", "name():(string)", []);
 
@@ -1550,6 +1106,29 @@ export class Plot extends ethereum.SmartContract {
 
   try_name(): ethereum.CallResult<string> {
     let result = super.tryCall("name", "name():(string)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  overallDescription(): string {
+    let result = super.call(
+      "overallDescription",
+      "overallDescription():(string)",
+      []
+    );
+
+    return result[0].toString();
+  }
+
+  try_overallDescription(): ethereum.CallResult<string> {
+    let result = super.tryCall(
+      "overallDescription",
+      "overallDescription():(string)",
+      []
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -1606,82 +1185,19 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  plotHeight(plotId: BigInt): i32 {
-    let result = super.call("plotHeight", "plotHeight(uint256):(uint8)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
+  plotType(): Address {
+    let result = super.call("plotType", "plotType():(address)", []);
 
-    return result[0].toI32();
+    return result[0].toAddress();
   }
 
-  try_plotHeight(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall("plotHeight", "plotHeight(uint256):(uint8)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
+  try_plotType(): ethereum.CallResult<Address> {
+    let result = super.tryCall("plotType", "plotType():(address)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  plotType(plotId: BigInt): BigInt {
-    let result = super.call("plotType", "plotType(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toBigInt();
-  }
-
-  try_plotType(plotId: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("plotType", "plotType(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  plotTypeName(plotId: BigInt): string {
-    let result = super.call("plotTypeName", "plotTypeName(uint256):(string)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toString();
-  }
-
-  try_plotTypeName(plotId: BigInt): ethereum.CallResult<string> {
-    let result = super.tryCall(
-      "plotTypeName",
-      "plotTypeName(uint256):(string)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
-  }
-
-  plotWidth(plotId: BigInt): i32 {
-    let result = super.call("plotWidth", "plotWidth(uint256):(uint8)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toI32();
-  }
-
-  try_plotWidth(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall("plotWidth", "plotWidth(uint256):(uint8)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   poolAddress(): Address {
@@ -1712,71 +1228,6 @@ export class Plot extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  season(plotId: BigInt): i32 {
-    let result = super.call("season", "season(uint256):(uint8)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-
-    return result[0].toI32();
-  }
-
-  try_season(plotId: BigInt): ethereum.CallResult<i32> {
-    let result = super.tryCall("season", "season(uint256):(uint8)", [
-      ethereum.Value.fromUnsignedBigInt(plotId)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  stakedElement(plotId: BigInt): BigInt {
-    let result = super.call(
-      "stakedElement",
-      "stakedElement(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_stakedElement(plotId: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "stakedElement",
-      "stakedElement(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  stakedElementName(plotId: BigInt): string {
-    let result = super.call(
-      "stakedElementName",
-      "stakedElementName(uint256):(string)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toString();
-  }
-
-  try_stakedElementName(plotId: BigInt): ethereum.CallResult<string> {
-    let result = super.tryCall(
-      "stakedElementName",
-      "stakedElementName(uint256):(string)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
   }
 
   supportsInterface(interfaceId: Bytes): boolean {
@@ -1817,73 +1268,23 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  timeExpiredDelta(plotId: BigInt): BigInt {
-    let result = super.call(
-      "timeExpiredDelta",
-      "timeExpiredDelta(uint256):(uint64)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
+  timeBreakdown(): Address {
+    let result = super.call("timeBreakdown", "timeBreakdown():(address)", []);
 
-    return result[0].toBigInt();
+    return result[0].toAddress();
   }
 
-  try_timeExpiredDelta(plotId: BigInt): ethereum.CallResult<BigInt> {
+  try_timeBreakdown(): ethereum.CallResult<Address> {
     let result = super.tryCall(
-      "timeExpiredDelta",
-      "timeExpiredDelta(uint256):(uint64)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
+      "timeBreakdown",
+      "timeBreakdown():(address)",
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  timeReadyDelta(plotId: BigInt): BigInt {
-    let result = super.call(
-      "timeReadyDelta",
-      "timeReadyDelta(uint256):(uint64)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_timeReadyDelta(plotId: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "timeReadyDelta",
-      "timeReadyDelta(uint256):(uint64)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  timeStartStaked(plotId: BigInt): BigInt {
-    let result = super.call(
-      "timeStartStaked",
-      "timeStartStaked(uint256):(uint64)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_timeStartStaked(plotId: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "timeStartStaked",
-      "timeStartStaked(uint256):(uint64)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   tokenByIndex(index: BigInt): BigInt {
@@ -1986,6 +1387,33 @@ export class Plot extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  traits(plotId: BigInt): Plot__traitsResultValue0Struct {
+    let result = super.call(
+      "traits",
+      "traits(uint256):((uint256,(uint256,uint16,(uint64,uint64,uint64),(uint24,uint24,uint24)),(uint8,uint8,uint8),(uint8,uint8),(uint8,bool)))",
+      [ethereum.Value.fromUnsignedBigInt(plotId)]
+    );
+
+    return result[0].toTuple() as Plot__traitsResultValue0Struct;
+  }
+
+  try_traits(
+    plotId: BigInt
+  ): ethereum.CallResult<Plot__traitsResultValue0Struct> {
+    let result = super.tryCall(
+      "traits",
+      "traits(uint256):((uint256,(uint256,uint16,(uint64,uint64,uint64),(uint24,uint24,uint24)),(uint8,uint8,uint8),(uint8,uint8),(uint8,bool)))",
+      [ethereum.Value.fromUnsignedBigInt(plotId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTuple() as Plot__traitsResultValue0Struct
+    );
   }
 
   treasuryAddress(): Address {
@@ -2200,6 +1628,21 @@ export class Plot extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigIntArray());
   }
+
+  yieldTable(): Address {
+    let result = super.call("yieldTable", "yieldTable():(address)", []);
+
+    return result[0].toAddress();
+  }
+
+  try_yieldTable(): ethereum.CallResult<Address> {
+    let result = super.tryCall("yieldTable", "yieldTable():(address)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
 }
 
 export class ConstructorCall extends ethereum.Call {
@@ -2224,376 +1667,6 @@ export class ConstructorCall__Outputs {
   _call: ConstructorCall;
 
   constructor(call: ConstructorCall) {
-    this._call = call;
-  }
-}
-
-export class ActionClearCall extends ethereum.Call {
-  get inputs(): ActionClearCall__Inputs {
-    return new ActionClearCall__Inputs(this);
-  }
-
-  get outputs(): ActionClearCall__Outputs {
-    return new ActionClearCall__Outputs(this);
-  }
-}
-
-export class ActionClearCall__Inputs {
-  _call: ActionClearCall;
-
-  constructor(call: ActionClearCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class ActionClearCall__Outputs {
-  _call: ActionClearCall;
-
-  constructor(call: ActionClearCall) {
-    this._call = call;
-  }
-}
-
-export class ActionClearAndStakeCall extends ethereum.Call {
-  get inputs(): ActionClearAndStakeCall__Inputs {
-    return new ActionClearAndStakeCall__Inputs(this);
-  }
-
-  get outputs(): ActionClearAndStakeCall__Outputs {
-    return new ActionClearAndStakeCall__Outputs(this);
-  }
-}
-
-export class ActionClearAndStakeCall__Inputs {
-  _call: ActionClearAndStakeCall;
-
-  constructor(call: ActionClearAndStakeCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get newStakedElement(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class ActionClearAndStakeCall__Outputs {
-  _call: ActionClearAndStakeCall;
-
-  constructor(call: ActionClearAndStakeCall) {
-    this._call = call;
-  }
-}
-
-export class ActionClearDeadCall extends ethereum.Call {
-  get inputs(): ActionClearDeadCall__Inputs {
-    return new ActionClearDeadCall__Inputs(this);
-  }
-
-  get outputs(): ActionClearDeadCall__Outputs {
-    return new ActionClearDeadCall__Outputs(this);
-  }
-}
-
-export class ActionClearDeadCall__Inputs {
-  _call: ActionClearDeadCall;
-
-  constructor(call: ActionClearDeadCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class ActionClearDeadCall__Outputs {
-  _call: ActionClearDeadCall;
-
-  constructor(call: ActionClearDeadCall) {
-    this._call = call;
-  }
-}
-
-export class ActionClearDeadAndStakeCall extends ethereum.Call {
-  get inputs(): ActionClearDeadAndStakeCall__Inputs {
-    return new ActionClearDeadAndStakeCall__Inputs(this);
-  }
-
-  get outputs(): ActionClearDeadAndStakeCall__Outputs {
-    return new ActionClearDeadAndStakeCall__Outputs(this);
-  }
-}
-
-export class ActionClearDeadAndStakeCall__Inputs {
-  _call: ActionClearDeadAndStakeCall;
-
-  constructor(call: ActionClearDeadAndStakeCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get newStakedElement(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class ActionClearDeadAndStakeCall__Outputs {
-  _call: ActionClearDeadAndStakeCall;
-
-  constructor(call: ActionClearDeadAndStakeCall) {
-    this._call = call;
-  }
-}
-
-export class ActionDismissGuardCall extends ethereum.Call {
-  get inputs(): ActionDismissGuardCall__Inputs {
-    return new ActionDismissGuardCall__Inputs(this);
-  }
-
-  get outputs(): ActionDismissGuardCall__Outputs {
-    return new ActionDismissGuardCall__Outputs(this);
-  }
-}
-
-export class ActionDismissGuardCall__Inputs {
-  _call: ActionDismissGuardCall;
-
-  constructor(call: ActionDismissGuardCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class ActionDismissGuardCall__Outputs {
-  _call: ActionDismissGuardCall;
-
-  constructor(call: ActionDismissGuardCall) {
-    this._call = call;
-  }
-}
-
-export class ActionHarvestCall extends ethereum.Call {
-  get inputs(): ActionHarvestCall__Inputs {
-    return new ActionHarvestCall__Inputs(this);
-  }
-
-  get outputs(): ActionHarvestCall__Outputs {
-    return new ActionHarvestCall__Outputs(this);
-  }
-}
-
-export class ActionHarvestCall__Inputs {
-  _call: ActionHarvestCall;
-
-  constructor(call: ActionHarvestCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class ActionHarvestCall__Outputs {
-  _call: ActionHarvestCall;
-
-  constructor(call: ActionHarvestCall) {
-    this._call = call;
-  }
-}
-
-export class ActionHarvestAndRestakeCall extends ethereum.Call {
-  get inputs(): ActionHarvestAndRestakeCall__Inputs {
-    return new ActionHarvestAndRestakeCall__Inputs(this);
-  }
-
-  get outputs(): ActionHarvestAndRestakeCall__Outputs {
-    return new ActionHarvestAndRestakeCall__Outputs(this);
-  }
-}
-
-export class ActionHarvestAndRestakeCall__Inputs {
-  _call: ActionHarvestAndRestakeCall;
-
-  constructor(call: ActionHarvestAndRestakeCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get newStakedElement(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class ActionHarvestAndRestakeCall__Outputs {
-  _call: ActionHarvestAndRestakeCall;
-
-  constructor(call: ActionHarvestAndRestakeCall) {
-    this._call = call;
-  }
-}
-
-export class ActionPullAndPlaceGuardCall extends ethereum.Call {
-  get inputs(): ActionPullAndPlaceGuardCall__Inputs {
-    return new ActionPullAndPlaceGuardCall__Inputs(this);
-  }
-
-  get outputs(): ActionPullAndPlaceGuardCall__Outputs {
-    return new ActionPullAndPlaceGuardCall__Outputs(this);
-  }
-}
-
-export class ActionPullAndPlaceGuardCall__Inputs {
-  _call: ActionPullAndPlaceGuardCall;
-
-  constructor(call: ActionPullAndPlaceGuardCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class ActionPullAndPlaceGuardCall__Outputs {
-  _call: ActionPullAndPlaceGuardCall;
-
-  constructor(call: ActionPullAndPlaceGuardCall) {
-    this._call = call;
-  }
-}
-
-export class ActionRecallGuardCall extends ethereum.Call {
-  get inputs(): ActionRecallGuardCall__Inputs {
-    return new ActionRecallGuardCall__Inputs(this);
-  }
-
-  get outputs(): ActionRecallGuardCall__Outputs {
-    return new ActionRecallGuardCall__Outputs(this);
-  }
-}
-
-export class ActionRecallGuardCall__Inputs {
-  _call: ActionRecallGuardCall;
-
-  constructor(call: ActionRecallGuardCall) {
-    this._call = call;
-  }
-
-  get onGuardTokenAddress(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get onGuardTokenId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class ActionRecallGuardCall__Outputs {
-  _call: ActionRecallGuardCall;
-
-  constructor(call: ActionRecallGuardCall) {
-    this._call = call;
-  }
-}
-
-export class ActionStakeCall extends ethereum.Call {
-  get inputs(): ActionStakeCall__Inputs {
-    return new ActionStakeCall__Inputs(this);
-  }
-
-  get outputs(): ActionStakeCall__Outputs {
-    return new ActionStakeCall__Outputs(this);
-  }
-}
-
-export class ActionStakeCall__Inputs {
-  _call: ActionStakeCall;
-
-  constructor(call: ActionStakeCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get stakedElementId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class ActionStakeCall__Outputs {
-  _call: ActionStakeCall;
-
-  constructor(call: ActionStakeCall) {
-    this._call = call;
-  }
-}
-
-export class ActionStakeAndPutOnGuardCall extends ethereum.Call {
-  get inputs(): ActionStakeAndPutOnGuardCall__Inputs {
-    return new ActionStakeAndPutOnGuardCall__Inputs(this);
-  }
-
-  get outputs(): ActionStakeAndPutOnGuardCall__Outputs {
-    return new ActionStakeAndPutOnGuardCall__Outputs(this);
-  }
-}
-
-export class ActionStakeAndPutOnGuardCall__Inputs {
-  _call: ActionStakeAndPutOnGuardCall;
-
-  constructor(call: ActionStakeAndPutOnGuardCall) {
-    this._call = call;
-  }
-
-  get plotId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get stakedElementId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get guardContractAddress(): Address {
-    return this._call.inputValues[2].value.toAddress();
-  }
-
-  get guardTokenId(): BigInt {
-    return this._call.inputValues[3].value.toBigInt();
-  }
-}
-
-export class ActionStakeAndPutOnGuardCall__Outputs {
-  _call: ActionStakeAndPutOnGuardCall;
-
-  constructor(call: ActionStakeAndPutOnGuardCall) {
     this._call = call;
   }
 }
@@ -2709,16 +1782,16 @@ export class MintSpecificCall__Inputs {
     this._call = call;
   }
 
+  get plotTypeName_(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+
   get to_(): Address {
-    return this._call.inputValues[0].value.toAddress();
+    return this._call.inputValues[1].value.toAddress();
   }
 
   get season_(): i32 {
-    return this._call.inputValues[1].value.toI32();
-  }
-
-  get plotTypeName_(): string {
-    return this._call.inputValues[2].value.toString();
+    return this._call.inputValues[2].value.toI32();
   }
 
   get width_(): i32 {
@@ -2890,20 +1963,20 @@ export class SetApprovalForAllCall__Outputs {
   }
 }
 
-export class SetBaseURICall extends ethereum.Call {
-  get inputs(): SetBaseURICall__Inputs {
-    return new SetBaseURICall__Inputs(this);
+export class SetBaseTokenURICall extends ethereum.Call {
+  get inputs(): SetBaseTokenURICall__Inputs {
+    return new SetBaseTokenURICall__Inputs(this);
   }
 
-  get outputs(): SetBaseURICall__Outputs {
-    return new SetBaseURICall__Outputs(this);
+  get outputs(): SetBaseTokenURICall__Outputs {
+    return new SetBaseTokenURICall__Outputs(this);
   }
 }
 
-export class SetBaseURICall__Inputs {
-  _call: SetBaseURICall;
+export class SetBaseTokenURICall__Inputs {
+  _call: SetBaseTokenURICall;
 
-  constructor(call: SetBaseURICall) {
+  constructor(call: SetBaseTokenURICall) {
     this._call = call;
   }
 
@@ -2912,10 +1985,40 @@ export class SetBaseURICall__Inputs {
   }
 }
 
-export class SetBaseURICall__Outputs {
-  _call: SetBaseURICall;
+export class SetBaseTokenURICall__Outputs {
+  _call: SetBaseTokenURICall;
 
-  constructor(call: SetBaseURICall) {
+  constructor(call: SetBaseTokenURICall) {
+    this._call = call;
+  }
+}
+
+export class SetOverallDescriptionCall extends ethereum.Call {
+  get inputs(): SetOverallDescriptionCall__Inputs {
+    return new SetOverallDescriptionCall__Inputs(this);
+  }
+
+  get outputs(): SetOverallDescriptionCall__Outputs {
+    return new SetOverallDescriptionCall__Outputs(this);
+  }
+}
+
+export class SetOverallDescriptionCall__Inputs {
+  _call: SetOverallDescriptionCall;
+
+  constructor(call: SetOverallDescriptionCall) {
+    this._call = call;
+  }
+
+  get newOverallDescriptionText(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+}
+
+export class SetOverallDescriptionCall__Outputs {
+  _call: SetOverallDescriptionCall;
+
+  constructor(call: SetOverallDescriptionCall) {
     this._call = call;
   }
 }
@@ -3011,6 +2114,92 @@ export class UnpauseCall__Outputs {
 
   constructor(call: UnpauseCall) {
     this._call = call;
+  }
+}
+
+export class UpdateStakedDetailsCall extends ethereum.Call {
+  get inputs(): UpdateStakedDetailsCall__Inputs {
+    return new UpdateStakedDetailsCall__Inputs(this);
+  }
+
+  get outputs(): UpdateStakedDetailsCall__Outputs {
+    return new UpdateStakedDetailsCall__Outputs(this);
+  }
+}
+
+export class UpdateStakedDetailsCall__Inputs {
+  _call: UpdateStakedDetailsCall;
+
+  constructor(call: UpdateStakedDetailsCall) {
+    this._call = call;
+  }
+
+  get plotId(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+
+  get updatedPlotStakedTraits(): UpdateStakedDetailsCallUpdatedPlotStakedTraitsStruct {
+    return changetype<UpdateStakedDetailsCallUpdatedPlotStakedTraitsStruct>(
+      this._call.inputValues[1].value.toTuple()
+    );
+  }
+}
+
+export class UpdateStakedDetailsCall__Outputs {
+  _call: UpdateStakedDetailsCall;
+
+  constructor(call: UpdateStakedDetailsCall) {
+    this._call = call;
+  }
+}
+
+export class UpdateStakedDetailsCallUpdatedPlotStakedTraitsStruct extends ethereum.Tuple {
+  get element(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get amount(): i32 {
+    return this[1].toI32();
+  }
+
+  get times(): UpdateStakedDetailsCallUpdatedPlotStakedTraitsTimesStruct {
+    return changetype<
+      UpdateStakedDetailsCallUpdatedPlotStakedTraitsTimesStruct
+    >(this[2].toTuple());
+  }
+
+  get counts(): UpdateStakedDetailsCallUpdatedPlotStakedTraitsCountsStruct {
+    return changetype<
+      UpdateStakedDetailsCallUpdatedPlotStakedTraitsCountsStruct
+    >(this[3].toTuple());
+  }
+}
+
+export class UpdateStakedDetailsCallUpdatedPlotStakedTraitsTimesStruct extends ethereum.Tuple {
+  get start(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get readyDelta(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get expiredDelta(): BigInt {
+    return this[2].toBigInt();
+  }
+}
+
+export class UpdateStakedDetailsCallUpdatedPlotStakedTraitsCountsStruct extends ethereum.Tuple {
+  get clears(): i32 {
+    return this[0].toI32();
+  }
+
+  get deaths(): i32 {
+    return this[1].toI32();
+  }
+
+  get harvests(): i32 {
+    return this[2].toI32();
   }
 }
 

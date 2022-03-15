@@ -10,6 +10,32 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
+export class ActivatedPlotType extends ethereum.Event {
+  get params(): ActivatedPlotType__Params {
+    return new ActivatedPlotType__Params(this);
+  }
+}
+
+export class ActivatedPlotType__Params {
+  _event: ActivatedPlotType;
+
+  constructor(event: ActivatedPlotType) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get plotTypeId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get plotType(): string {
+    return this._event.parameters[2].value.toString();
+  }
+}
+
 export class AddressStoreChanged extends ethereum.Event {
   get params(): AddressStoreChanged__Params {
     return new AddressStoreChanged__Params(this);
@@ -94,158 +120,6 @@ export class Paused__Params {
   }
 }
 
-export class PausedGame extends ethereum.Event {
-  get params(): PausedGame__Params {
-    return new PausedGame__Params(this);
-  }
-}
-
-export class PausedGame__Params {
-  _event: PausedGame;
-
-  constructor(event: PausedGame) {
-    this._event = event;
-  }
-
-  get pauser(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-}
-
-export class SetOfTokenOutGoldInSwapped extends ethereum.Event {
-  get params(): SetOfTokenOutGoldInSwapped__Params {
-    return new SetOfTokenOutGoldInSwapped__Params(this);
-  }
-}
-
-export class SetOfTokenOutGoldInSwapped__Params {
-  _event: SetOfTokenOutGoldInSwapped;
-
-  constructor(event: SetOfTokenOutGoldInSwapped) {
-    this._event = event;
-  }
-
-  get swapper(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get pool(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get swappingTokenAddresses(): Array<Address> {
-    return this._event.parameters[2].value.toAddressArray();
-  }
-
-  get inputtedTokenOuts(): Array<BigInt> {
-    return this._event.parameters[3].value.toBigIntArray();
-  }
-
-  get inputtedGoldMaxes(): Array<BigInt> {
-    return this._event.parameters[4].value.toBigIntArray();
-  }
-
-  get calculatedTokenOuts(): Array<BigInt> {
-    return this._event.parameters[5].value.toBigIntArray();
-  }
-
-  get calculatedGoldIns(): Array<BigInt> {
-    return this._event.parameters[6].value.toBigIntArray();
-  }
-
-  get calculatedTotalGoldIn(): BigInt {
-    return this._event.parameters[7].value.toBigInt();
-  }
-
-  get totalFeesPaid(): BigInt {
-    return this._event.parameters[8].value.toBigInt();
-  }
-}
-
-export class TokenInGoldOutSwapped extends ethereum.Event {
-  get params(): TokenInGoldOutSwapped__Params {
-    return new TokenInGoldOutSwapped__Params(this);
-  }
-}
-
-export class TokenInGoldOutSwapped__Params {
-  _event: TokenInGoldOutSwapped;
-
-  constructor(event: TokenInGoldOutSwapped) {
-    this._event = event;
-  }
-
-  get swapper(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get swappingTokenAddress(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get inputtedTokenIn(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get inputtedGoldMin(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get calculatedTokenIn(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get calculatedGoldOut(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get feeValuePaid(): i32 {
-    return this._event.parameters[6].value.toI32();
-  }
-}
-
-export class TokenOutGoldInSwapped extends ethereum.Event {
-  get params(): TokenOutGoldInSwapped__Params {
-    return new TokenOutGoldInSwapped__Params(this);
-  }
-}
-
-export class TokenOutGoldInSwapped__Params {
-  _event: TokenOutGoldInSwapped;
-
-  constructor(event: TokenOutGoldInSwapped) {
-    this._event = event;
-  }
-
-  get swapper(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get swappingTokenAddress(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get inputtedTokenOut(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get inputtedGoldMax(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get calculatedTokenOut(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get calculatedGoldIn(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get feeValuePaid(): i32 {
-    return this._event.parameters[6].value.toI32();
-  }
-}
-
 export class Unpaused extends ethereum.Event {
   get params(): Unpaused__Params {
     return new Unpaused__Params(this);
@@ -260,24 +134,6 @@ export class Unpaused__Params {
   }
 
   get account(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-}
-
-export class UnpausedGame extends ethereum.Event {
-  get params(): UnpausedGame__Params {
-    return new UnpausedGame__Params(this);
-  }
-}
-
-export class UnpausedGame__Params {
-  _event: UnpausedGame;
-
-  constructor(event: UnpausedGame) {
-    this._event = event;
-  }
-
-  get pauser(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 }
@@ -300,7 +156,7 @@ export class Upgraded__Params {
   }
 }
 
-export class GameEngine__versionResult {
+export class PlotType__versionResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -320,7 +176,7 @@ export class GameEngine__versionResult {
   }
 }
 
-export class GameEngine__versionGameUtilResult {
+export class PlotType__versionGameUtilResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -340,7 +196,7 @@ export class GameEngine__versionGameUtilResult {
   }
 }
 
-export class GameEngine__versionPoolOperationResult {
+export class PlotType__versionSystemPointersResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -360,49 +216,9 @@ export class GameEngine__versionPoolOperationResult {
   }
 }
 
-export class GameEngine__versionSystemPointersResult {
-  value0: BigInt;
-  value1: BigInt;
-  value2: BigInt;
-
-  constructor(value0: BigInt, value1: BigInt, value2: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
-    return map;
-  }
-}
-
-export class GameEngine__versionTokenOperationResult {
-  value0: BigInt;
-  value1: BigInt;
-  value2: BigInt;
-
-  constructor(value0: BigInt, value1: BigInt, value2: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
-    return map;
-  }
-}
-
-export class GameEngine extends ethereum.SmartContract {
-  static bind(address: Address): GameEngine {
-    return new GameEngine("GameEngine", address);
+export class PlotType extends ethereum.SmartContract {
+  static bind(address: Address): PlotType {
+    return new PlotType("PlotType", address);
   }
 
   AS_ENGINE_ADDRESS(): Bytes {
@@ -860,6 +676,56 @@ export class GameEngine extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  isValidPlotTypeId(plotTypeIdEntered: BigInt): boolean {
+    let result = super.call(
+      "isValidPlotTypeId",
+      "isValidPlotTypeId(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(plotTypeIdEntered)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isValidPlotTypeId(
+    plotTypeIdEntered: BigInt
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isValidPlotTypeId",
+      "isValidPlotTypeId(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(plotTypeIdEntered)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isValidPlotTypeName(plotTypeNameEntered: string): boolean {
+    let result = super.call(
+      "isValidPlotTypeName",
+      "isValidPlotTypeName(string):(bool)",
+      [ethereum.Value.fromString(plotTypeNameEntered)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isValidPlotTypeName(
+    plotTypeNameEntered: string
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isValidPlotTypeName",
+      "isValidPlotTypeName(string):(bool)",
+      [ethereum.Value.fromString(plotTypeNameEntered)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
   paused(): boolean {
     let result = super.call("paused", "paused():(bool)", []);
 
@@ -888,6 +754,65 @@ export class GameEngine extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  plotTypeId(plotTypeNameEntered: string): BigInt {
+    let result = super.call("plotTypeId", "plotTypeId(string):(uint256)", [
+      ethereum.Value.fromString(plotTypeNameEntered)
+    ]);
+
+    return result[0].toBigInt();
+  }
+
+  try_plotTypeId(plotTypeNameEntered: string): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("plotTypeId", "plotTypeId(string):(uint256)", [
+      ethereum.Value.fromString(plotTypeNameEntered)
+    ]);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  plotTypeName(plotTypeIdEntered: BigInt): string {
+    let result = super.call("plotTypeName", "plotTypeName(uint256):(string)", [
+      ethereum.Value.fromUnsignedBigInt(plotTypeIdEntered)
+    ]);
+
+    return result[0].toString();
+  }
+
+  try_plotTypeName(plotTypeIdEntered: BigInt): ethereum.CallResult<string> {
+    let result = super.tryCall(
+      "plotTypeName",
+      "plotTypeName(uint256):(string)",
+      [ethereum.Value.fromUnsignedBigInt(plotTypeIdEntered)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  plotTypeNames(): Array<string> {
+    let result = super.call("plotTypeNames", "plotTypeNames():(string[])", []);
+
+    return result[0].toStringArray();
+  }
+
+  try_plotTypeNames(): ethereum.CallResult<Array<string>> {
+    let result = super.tryCall(
+      "plotTypeNames",
+      "plotTypeNames():(string[])",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toStringArray());
   }
 
   poolAddress(): Address {
@@ -920,6 +845,25 @@ export class GameEngine extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  totalPlotTypes(): BigInt {
+    let result = super.call("totalPlotTypes", "totalPlotTypes():(uint256)", []);
+
+    return result[0].toBigInt();
+  }
+
+  try_totalPlotTypes(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "totalPlotTypes",
+      "totalPlotTypes():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   treasuryAddress(): Address {
     let result = super.call(
       "treasuryAddress",
@@ -943,21 +887,21 @@ export class GameEngine extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  version(): GameEngine__versionResult {
+  version(): PlotType__versionResult {
     let result = super.call(
       "version",
       "version():(uint256,uint256,uint256)",
       []
     );
 
-    return new GameEngine__versionResult(
+    return new PlotType__versionResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
     );
   }
 
-  try_version(): ethereum.CallResult<GameEngine__versionResult> {
+  try_version(): ethereum.CallResult<PlotType__versionResult> {
     let result = super.tryCall(
       "version",
       "version():(uint256,uint256,uint256)",
@@ -968,7 +912,7 @@ export class GameEngine extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new GameEngine__versionResult(
+      new PlotType__versionResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -976,23 +920,21 @@ export class GameEngine extends ethereum.SmartContract {
     );
   }
 
-  versionGameUtil(): GameEngine__versionGameUtilResult {
+  versionGameUtil(): PlotType__versionGameUtilResult {
     let result = super.call(
       "versionGameUtil",
       "versionGameUtil():(uint256,uint256,uint256)",
       []
     );
 
-    return new GameEngine__versionGameUtilResult(
+    return new PlotType__versionGameUtilResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
     );
   }
 
-  try_versionGameUtil(): ethereum.CallResult<
-    GameEngine__versionGameUtilResult
-  > {
+  try_versionGameUtil(): ethereum.CallResult<PlotType__versionGameUtilResult> {
     let result = super.tryCall(
       "versionGameUtil",
       "versionGameUtil():(uint256,uint256,uint256)",
@@ -1003,7 +945,7 @@ export class GameEngine extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new GameEngine__versionGameUtilResult(
+      new PlotType__versionGameUtilResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -1011,49 +953,14 @@ export class GameEngine extends ethereum.SmartContract {
     );
   }
 
-  versionPoolOperation(): GameEngine__versionPoolOperationResult {
-    let result = super.call(
-      "versionPoolOperation",
-      "versionPoolOperation():(uint256,uint256,uint256)",
-      []
-    );
-
-    return new GameEngine__versionPoolOperationResult(
-      result[0].toBigInt(),
-      result[1].toBigInt(),
-      result[2].toBigInt()
-    );
-  }
-
-  try_versionPoolOperation(): ethereum.CallResult<
-    GameEngine__versionPoolOperationResult
-  > {
-    let result = super.tryCall(
-      "versionPoolOperation",
-      "versionPoolOperation():(uint256,uint256,uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new GameEngine__versionPoolOperationResult(
-        value[0].toBigInt(),
-        value[1].toBigInt(),
-        value[2].toBigInt()
-      )
-    );
-  }
-
-  versionSystemPointers(): GameEngine__versionSystemPointersResult {
+  versionSystemPointers(): PlotType__versionSystemPointersResult {
     let result = super.call(
       "versionSystemPointers",
       "versionSystemPointers():(uint256,uint256,uint256)",
       []
     );
 
-    return new GameEngine__versionSystemPointersResult(
+    return new PlotType__versionSystemPointersResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
@@ -1061,7 +968,7 @@ export class GameEngine extends ethereum.SmartContract {
   }
 
   try_versionSystemPointers(): ethereum.CallResult<
-    GameEngine__versionSystemPointersResult
+    PlotType__versionSystemPointersResult
   > {
     let result = super.tryCall(
       "versionSystemPointers",
@@ -1073,42 +980,7 @@ export class GameEngine extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new GameEngine__versionSystemPointersResult(
-        value[0].toBigInt(),
-        value[1].toBigInt(),
-        value[2].toBigInt()
-      )
-    );
-  }
-
-  versionTokenOperation(): GameEngine__versionTokenOperationResult {
-    let result = super.call(
-      "versionTokenOperation",
-      "versionTokenOperation():(uint256,uint256,uint256)",
-      []
-    );
-
-    return new GameEngine__versionTokenOperationResult(
-      result[0].toBigInt(),
-      result[1].toBigInt(),
-      result[2].toBigInt()
-    );
-  }
-
-  try_versionTokenOperation(): ethereum.CallResult<
-    GameEngine__versionTokenOperationResult
-  > {
-    let result = super.tryCall(
-      "versionTokenOperation",
-      "versionTokenOperation():(uint256,uint256,uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new GameEngine__versionTokenOperationResult(
+      new PlotType__versionSystemPointersResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -1117,154 +989,32 @@ export class GameEngine extends ethereum.SmartContract {
   }
 }
 
-export class BuySetOfTokensCall extends ethereum.Call {
-  get inputs(): BuySetOfTokensCall__Inputs {
-    return new BuySetOfTokensCall__Inputs(this);
+export class ActivatePlotTypeCall extends ethereum.Call {
+  get inputs(): ActivatePlotTypeCall__Inputs {
+    return new ActivatePlotTypeCall__Inputs(this);
   }
 
-  get outputs(): BuySetOfTokensCall__Outputs {
-    return new BuySetOfTokensCall__Outputs(this);
+  get outputs(): ActivatePlotTypeCall__Outputs {
+    return new ActivatePlotTypeCall__Outputs(this);
   }
 }
 
-export class BuySetOfTokensCall__Inputs {
-  _call: BuySetOfTokensCall;
+export class ActivatePlotTypeCall__Inputs {
+  _call: ActivatePlotTypeCall;
 
-  constructor(call: BuySetOfTokensCall) {
+  constructor(call: ActivatePlotTypeCall) {
     this._call = call;
   }
 
-  get listOfElementIds(): Array<BigInt> {
-    return this._call.inputValues[0].value.toBigIntArray();
-  }
-
-  get listOfTokenAmounts(): Array<BigInt> {
-    return this._call.inputValues[1].value.toBigIntArray();
-  }
-
-  get listOfPriceMaxLimits(): Array<BigInt> {
-    return this._call.inputValues[2].value.toBigIntArray();
+  get plotTypeNameEntered(): string {
+    return this._call.inputValues[0].value.toString();
   }
 }
 
-export class BuySetOfTokensCall__Outputs {
-  _call: BuySetOfTokensCall;
+export class ActivatePlotTypeCall__Outputs {
+  _call: ActivatePlotTypeCall;
 
-  constructor(call: BuySetOfTokensCall) {
-    this._call = call;
-  }
-}
-
-export class BuyTokenCall extends ethereum.Call {
-  get inputs(): BuyTokenCall__Inputs {
-    return new BuyTokenCall__Inputs(this);
-  }
-
-  get outputs(): BuyTokenCall__Outputs {
-    return new BuyTokenCall__Outputs(this);
-  }
-}
-
-export class BuyTokenCall__Inputs {
-  _call: BuyTokenCall;
-
-  constructor(call: BuyTokenCall) {
-    this._call = call;
-  }
-
-  get swappingElementId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get tokenAmount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get priceMaxLimit(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class BuyTokenCall__Outputs {
-  _call: BuyTokenCall;
-
-  constructor(call: BuyTokenCall) {
-    this._call = call;
-  }
-}
-
-export class GameTokenBurnCall extends ethereum.Call {
-  get inputs(): GameTokenBurnCall__Inputs {
-    return new GameTokenBurnCall__Inputs(this);
-  }
-
-  get outputs(): GameTokenBurnCall__Outputs {
-    return new GameTokenBurnCall__Outputs(this);
-  }
-}
-
-export class GameTokenBurnCall__Inputs {
-  _call: GameTokenBurnCall;
-
-  constructor(call: GameTokenBurnCall) {
-    this._call = call;
-  }
-
-  get addressToUpdate(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get tokenElementId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get amountToBeBurned(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class GameTokenBurnCall__Outputs {
-  _call: GameTokenBurnCall;
-
-  constructor(call: GameTokenBurnCall) {
-    this._call = call;
-  }
-}
-
-export class GameTokenMintCall extends ethereum.Call {
-  get inputs(): GameTokenMintCall__Inputs {
-    return new GameTokenMintCall__Inputs(this);
-  }
-
-  get outputs(): GameTokenMintCall__Outputs {
-    return new GameTokenMintCall__Outputs(this);
-  }
-}
-
-export class GameTokenMintCall__Inputs {
-  _call: GameTokenMintCall;
-
-  constructor(call: GameTokenMintCall) {
-    this._call = call;
-  }
-
-  get addressToUpdate(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get tokenElementId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get amountToBeProduced(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class GameTokenMintCall__Outputs {
-  _call: GameTokenMintCall;
-
-  constructor(call: GameTokenMintCall) {
+  constructor(call: ActivatePlotTypeCall) {
     this._call = call;
   }
 }
@@ -1325,70 +1075,6 @@ export class PauseCall__Outputs {
   }
 }
 
-export class PauseGameCall extends ethereum.Call {
-  get inputs(): PauseGameCall__Inputs {
-    return new PauseGameCall__Inputs(this);
-  }
-
-  get outputs(): PauseGameCall__Outputs {
-    return new PauseGameCall__Outputs(this);
-  }
-}
-
-export class PauseGameCall__Inputs {
-  _call: PauseGameCall;
-
-  constructor(call: PauseGameCall) {
-    this._call = call;
-  }
-}
-
-export class PauseGameCall__Outputs {
-  _call: PauseGameCall;
-
-  constructor(call: PauseGameCall) {
-    this._call = call;
-  }
-}
-
-export class SellTokenCall extends ethereum.Call {
-  get inputs(): SellTokenCall__Inputs {
-    return new SellTokenCall__Inputs(this);
-  }
-
-  get outputs(): SellTokenCall__Outputs {
-    return new SellTokenCall__Outputs(this);
-  }
-}
-
-export class SellTokenCall__Inputs {
-  _call: SellTokenCall;
-
-  constructor(call: SellTokenCall) {
-    this._call = call;
-  }
-
-  get swappingElementId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get tokenAmount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get priceMinLimit(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class SellTokenCall__Outputs {
-  _call: SellTokenCall;
-
-  constructor(call: SellTokenCall) {
-    this._call = call;
-  }
-}
-
 export class TransferAddressStoreCall extends ethereum.Call {
   get inputs(): TransferAddressStoreCall__Inputs {
     return new TransferAddressStoreCall__Inputs(this);
@@ -1441,32 +1127,6 @@ export class UnpauseCall__Outputs {
   _call: UnpauseCall;
 
   constructor(call: UnpauseCall) {
-    this._call = call;
-  }
-}
-
-export class UnpauseGameCall extends ethereum.Call {
-  get inputs(): UnpauseGameCall__Inputs {
-    return new UnpauseGameCall__Inputs(this);
-  }
-
-  get outputs(): UnpauseGameCall__Outputs {
-    return new UnpauseGameCall__Outputs(this);
-  }
-}
-
-export class UnpauseGameCall__Inputs {
-  _call: UnpauseGameCall;
-
-  constructor(call: UnpauseGameCall) {
-    this._call = call;
-  }
-}
-
-export class UnpauseGameCall__Outputs {
-  _call: UnpauseGameCall;
-
-  constructor(call: UnpauseGameCall) {
     this._call = call;
   }
 }

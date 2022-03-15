@@ -10,6 +10,94 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
+export class ActivatedTimeBreakdown extends ethereum.Event {
+  get params(): ActivatedTimeBreakdown__Params {
+    return new ActivatedTimeBreakdown__Params(this);
+  }
+}
+
+export class ActivatedTimeBreakdown__Params {
+  _event: ActivatedTimeBreakdown;
+
+  constructor(event: ActivatedTimeBreakdown) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get timeBreakdownId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get stakedElementNameHash(): Bytes {
+    return this._event.parameters[2].value.toBytes();
+  }
+
+  get stakedElementName(): string {
+    return this._event.parameters[3].value.toString();
+  }
+}
+
+export class AddedTimeBreakdown extends ethereum.Event {
+  get params(): AddedTimeBreakdown__Params {
+    return new AddedTimeBreakdown__Params(this);
+  }
+}
+
+export class AddedTimeBreakdown__Params {
+  _event: AddedTimeBreakdown;
+
+  constructor(event: AddedTimeBreakdown) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get stakedElementNameHash(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+
+  get stakedElementName(): string {
+    return this._event.parameters[2].value.toString();
+  }
+
+  get timeBreakdownId(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get isActive(): boolean {
+    return this._event.parameters[4].value.toBoolean();
+  }
+
+  get nothingToStart(): i32 {
+    return this._event.parameters[5].value.toI32();
+  }
+
+  get startToEarly(): i32 {
+    return this._event.parameters[6].value.toI32();
+  }
+
+  get earlyToMature(): i32 {
+    return this._event.parameters[7].value.toI32();
+  }
+
+  get matureToExpire(): i32 {
+    return this._event.parameters[8].value.toI32();
+  }
+
+  get addressStoreNameHash(): Bytes {
+    return this._event.parameters[9].value.toBytes();
+  }
+
+  get tokenPlotTypeId(): BigInt {
+    return this._event.parameters[10].value.toBigInt();
+  }
+}
+
 export class AddressStoreChanged extends ethereum.Event {
   get params(): AddressStoreChanged__Params {
     return new AddressStoreChanged__Params(this);
@@ -76,6 +164,36 @@ export class BeaconUpgraded__Params {
   }
 }
 
+export class DeactivatedTimeBreakdown extends ethereum.Event {
+  get params(): DeactivatedTimeBreakdown__Params {
+    return new DeactivatedTimeBreakdown__Params(this);
+  }
+}
+
+export class DeactivatedTimeBreakdown__Params {
+  _event: DeactivatedTimeBreakdown;
+
+  constructor(event: DeactivatedTimeBreakdown) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get timeBreakdownId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get stakedElementNameHash(): Bytes {
+    return this._event.parameters[2].value.toBytes();
+  }
+
+  get stakedElementName(): string {
+    return this._event.parameters[3].value.toString();
+  }
+}
+
 export class Paused extends ethereum.Event {
   get params(): Paused__Params {
     return new Paused__Params(this);
@@ -91,158 +209,6 @@ export class Paused__Params {
 
   get account(): Address {
     return this._event.parameters[0].value.toAddress();
-  }
-}
-
-export class PausedGame extends ethereum.Event {
-  get params(): PausedGame__Params {
-    return new PausedGame__Params(this);
-  }
-}
-
-export class PausedGame__Params {
-  _event: PausedGame;
-
-  constructor(event: PausedGame) {
-    this._event = event;
-  }
-
-  get pauser(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-}
-
-export class SetOfTokenOutGoldInSwapped extends ethereum.Event {
-  get params(): SetOfTokenOutGoldInSwapped__Params {
-    return new SetOfTokenOutGoldInSwapped__Params(this);
-  }
-}
-
-export class SetOfTokenOutGoldInSwapped__Params {
-  _event: SetOfTokenOutGoldInSwapped;
-
-  constructor(event: SetOfTokenOutGoldInSwapped) {
-    this._event = event;
-  }
-
-  get swapper(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get pool(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get swappingTokenAddresses(): Array<Address> {
-    return this._event.parameters[2].value.toAddressArray();
-  }
-
-  get inputtedTokenOuts(): Array<BigInt> {
-    return this._event.parameters[3].value.toBigIntArray();
-  }
-
-  get inputtedGoldMaxes(): Array<BigInt> {
-    return this._event.parameters[4].value.toBigIntArray();
-  }
-
-  get calculatedTokenOuts(): Array<BigInt> {
-    return this._event.parameters[5].value.toBigIntArray();
-  }
-
-  get calculatedGoldIns(): Array<BigInt> {
-    return this._event.parameters[6].value.toBigIntArray();
-  }
-
-  get calculatedTotalGoldIn(): BigInt {
-    return this._event.parameters[7].value.toBigInt();
-  }
-
-  get totalFeesPaid(): BigInt {
-    return this._event.parameters[8].value.toBigInt();
-  }
-}
-
-export class TokenInGoldOutSwapped extends ethereum.Event {
-  get params(): TokenInGoldOutSwapped__Params {
-    return new TokenInGoldOutSwapped__Params(this);
-  }
-}
-
-export class TokenInGoldOutSwapped__Params {
-  _event: TokenInGoldOutSwapped;
-
-  constructor(event: TokenInGoldOutSwapped) {
-    this._event = event;
-  }
-
-  get swapper(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get swappingTokenAddress(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get inputtedTokenIn(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get inputtedGoldMin(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get calculatedTokenIn(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get calculatedGoldOut(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get feeValuePaid(): i32 {
-    return this._event.parameters[6].value.toI32();
-  }
-}
-
-export class TokenOutGoldInSwapped extends ethereum.Event {
-  get params(): TokenOutGoldInSwapped__Params {
-    return new TokenOutGoldInSwapped__Params(this);
-  }
-}
-
-export class TokenOutGoldInSwapped__Params {
-  _event: TokenOutGoldInSwapped;
-
-  constructor(event: TokenOutGoldInSwapped) {
-    this._event = event;
-  }
-
-  get swapper(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get swappingTokenAddress(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get inputtedTokenOut(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get inputtedGoldMax(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get calculatedTokenOut(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get calculatedGoldIn(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get feeValuePaid(): i32 {
-    return this._event.parameters[6].value.toI32();
   }
 }
 
@@ -264,21 +230,103 @@ export class Unpaused__Params {
   }
 }
 
-export class UnpausedGame extends ethereum.Event {
-  get params(): UnpausedGame__Params {
-    return new UnpausedGame__Params(this);
+export class UpdatedTimeBreakdown extends ethereum.Event {
+  get params(): UpdatedTimeBreakdown__Params {
+    return new UpdatedTimeBreakdown__Params(this);
   }
 }
 
-export class UnpausedGame__Params {
-  _event: UnpausedGame;
+export class UpdatedTimeBreakdown__Params {
+  _event: UpdatedTimeBreakdown;
 
-  constructor(event: UnpausedGame) {
+  constructor(event: UpdatedTimeBreakdown) {
     this._event = event;
   }
 
-  get pauser(): Address {
+  get operator(): Address {
     return this._event.parameters[0].value.toAddress();
+  }
+
+  get stakedElementNameHash(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+
+  get stakedElementName(): string {
+    return this._event.parameters[2].value.toString();
+  }
+
+  get timeBreakdownId(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get newNothingToStart(): i32 {
+    return this._event.parameters[4].value.toI32();
+  }
+
+  get newStartToEarly(): i32 {
+    return this._event.parameters[5].value.toI32();
+  }
+
+  get newEarlyToMature(): i32 {
+    return this._event.parameters[6].value.toI32();
+  }
+
+  get newMatureToExpire(): i32 {
+    return this._event.parameters[7].value.toI32();
+  }
+
+  get previousNothingToStart(): i32 {
+    return this._event.parameters[8].value.toI32();
+  }
+
+  get previousStartToEarly(): i32 {
+    return this._event.parameters[9].value.toI32();
+  }
+
+  get previousEarlyToMature(): i32 {
+    return this._event.parameters[10].value.toI32();
+  }
+
+  get previousMatureToExpire(): i32 {
+    return this._event.parameters[11].value.toI32();
+  }
+}
+
+export class UpdatedTimeBreakdownAddress extends ethereum.Event {
+  get params(): UpdatedTimeBreakdownAddress__Params {
+    return new UpdatedTimeBreakdownAddress__Params(this);
+  }
+}
+
+export class UpdatedTimeBreakdownAddress__Params {
+  _event: UpdatedTimeBreakdownAddress;
+
+  constructor(event: UpdatedTimeBreakdownAddress) {
+    this._event = event;
+  }
+
+  get operator(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get stakedElementNameHash(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+
+  get stakedElementName(): string {
+    return this._event.parameters[2].value.toString();
+  }
+
+  get timeBreakdownId(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get newAddressStoreNameHash(): Bytes {
+    return this._event.parameters[4].value.toBytes();
+  }
+
+  get previousAddressStoreNameHash(): Bytes {
+    return this._event.parameters[5].value.toBytes();
   }
 }
 
@@ -300,7 +348,42 @@ export class Upgraded__Params {
   }
 }
 
-export class GameEngine__versionResult {
+export class TimeBreakdown__stakedElementTimeBreakdownSetResult {
+  value0: i32;
+  value1: i32;
+  value2: i32;
+  value3: i32;
+
+  constructor(value0: i32, value1: i32, value2: i32, value3: i32) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+  }
+
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set(
+      "value0",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value0))
+    );
+    map.set(
+      "value1",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value1))
+    );
+    map.set(
+      "value2",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value2))
+    );
+    map.set(
+      "value3",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value3))
+    );
+    return map;
+  }
+}
+
+export class TimeBreakdown__versionResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -320,7 +403,7 @@ export class GameEngine__versionResult {
   }
 }
 
-export class GameEngine__versionGameUtilResult {
+export class TimeBreakdown__versionGameUtilResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -340,7 +423,7 @@ export class GameEngine__versionGameUtilResult {
   }
 }
 
-export class GameEngine__versionPoolOperationResult {
+export class TimeBreakdown__versionSystemPointersResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -360,49 +443,9 @@ export class GameEngine__versionPoolOperationResult {
   }
 }
 
-export class GameEngine__versionSystemPointersResult {
-  value0: BigInt;
-  value1: BigInt;
-  value2: BigInt;
-
-  constructor(value0: BigInt, value1: BigInt, value2: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
-    return map;
-  }
-}
-
-export class GameEngine__versionTokenOperationResult {
-  value0: BigInt;
-  value1: BigInt;
-  value2: BigInt;
-
-  constructor(value0: BigInt, value1: BigInt, value2: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
-    return map;
-  }
-}
-
-export class GameEngine extends ethereum.SmartContract {
-  static bind(address: Address): GameEngine {
-    return new GameEngine("GameEngine", address);
+export class TimeBreakdown extends ethereum.SmartContract {
+  static bind(address: Address): TimeBreakdown {
+    return new TimeBreakdown("TimeBreakdown", address);
   }
 
   AS_ENGINE_ADDRESS(): Bytes {
@@ -860,6 +903,81 @@ export class GameEngine extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  isActiveStakedElement(stakedElementId: BigInt): boolean {
+    let result = super.call(
+      "isActiveStakedElement",
+      "isActiveStakedElement(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isActiveStakedElement(
+    stakedElementId: BigInt
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isActiveStakedElement",
+      "isActiveStakedElement(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isValidAndActiveStakedElement(stakedElementId: BigInt): boolean {
+    let result = super.call(
+      "isValidAndActiveStakedElement",
+      "isValidAndActiveStakedElement(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isValidAndActiveStakedElement(
+    stakedElementId: BigInt
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isValidAndActiveStakedElement",
+      "isValidAndActiveStakedElement(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isValidStakedElement(stakedElementId: BigInt): boolean {
+    let result = super.call(
+      "isValidStakedElement",
+      "isValidStakedElement(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_isValidStakedElement(
+    stakedElementId: BigInt
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "isValidStakedElement",
+      "isValidStakedElement(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
   paused(): boolean {
     let result = super.call("paused", "paused():(bool)", []);
 
@@ -920,6 +1038,191 @@ export class GameEngine extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  stakedElementIdToName(stakedElementId: BigInt): string {
+    let result = super.call(
+      "stakedElementIdToName",
+      "stakedElementIdToName(uint256):(string)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+
+    return result[0].toString();
+  }
+
+  try_stakedElementIdToName(
+    stakedElementId: BigInt
+  ): ethereum.CallResult<string> {
+    let result = super.tryCall(
+      "stakedElementIdToName",
+      "stakedElementIdToName(uint256):(string)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  stakedElementNameToId(stakedElementName: string): BigInt {
+    let result = super.call(
+      "stakedElementNameToId",
+      "stakedElementNameToId(string):(uint256)",
+      [ethereum.Value.fromString(stakedElementName)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_stakedElementNameToId(
+    stakedElementName: string
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "stakedElementNameToId",
+      "stakedElementNameToId(string):(uint256)",
+      [ethereum.Value.fromString(stakedElementName)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  stakedElementTimeBreakdownExists(stakedElementName: string): boolean {
+    let result = super.call(
+      "stakedElementTimeBreakdownExists",
+      "stakedElementTimeBreakdownExists(string):(bool)",
+      [ethereum.Value.fromString(stakedElementName)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_stakedElementTimeBreakdownExists(
+    stakedElementName: string
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "stakedElementTimeBreakdownExists",
+      "stakedElementTimeBreakdownExists(string):(bool)",
+      [ethereum.Value.fromString(stakedElementName)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  stakedElementTimeBreakdownSet(
+    stakedElementId: BigInt
+  ): TimeBreakdown__stakedElementTimeBreakdownSetResult {
+    let result = super.call(
+      "stakedElementTimeBreakdownSet",
+      "stakedElementTimeBreakdownSet(uint256):(uint24,uint24,uint24,uint24)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+
+    return new TimeBreakdown__stakedElementTimeBreakdownSetResult(
+      result[0].toI32(),
+      result[1].toI32(),
+      result[2].toI32(),
+      result[3].toI32()
+    );
+  }
+
+  try_stakedElementTimeBreakdownSet(
+    stakedElementId: BigInt
+  ): ethereum.CallResult<TimeBreakdown__stakedElementTimeBreakdownSetResult> {
+    let result = super.tryCall(
+      "stakedElementTimeBreakdownSet",
+      "stakedElementTimeBreakdownSet(uint256):(uint24,uint24,uint24,uint24)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      new TimeBreakdown__stakedElementTimeBreakdownSetResult(
+        value[0].toI32(),
+        value[1].toI32(),
+        value[2].toI32(),
+        value[3].toI32()
+      )
+    );
+  }
+
+  stakedElementTokenAddress(stakedElementId: BigInt): Address {
+    let result = super.call(
+      "stakedElementTokenAddress",
+      "stakedElementTokenAddress(uint256):(address)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_stakedElementTokenAddress(
+    stakedElementId: BigInt
+  ): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "stakedElementTokenAddress",
+      "stakedElementTokenAddress(uint256):(address)",
+      [ethereum.Value.fromUnsignedBigInt(stakedElementId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  stakedElementsNames(): Array<string> {
+    let result = super.call(
+      "stakedElementsNames",
+      "stakedElementsNames():(string[])",
+      []
+    );
+
+    return result[0].toStringArray();
+  }
+
+  try_stakedElementsNames(): ethereum.CallResult<Array<string>> {
+    let result = super.tryCall(
+      "stakedElementsNames",
+      "stakedElementsNames():(string[])",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toStringArray());
+  }
+
+  totalStakedElementTimeBreakdowns(): BigInt {
+    let result = super.call(
+      "totalStakedElementTimeBreakdowns",
+      "totalStakedElementTimeBreakdowns():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_totalStakedElementTimeBreakdowns(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "totalStakedElementTimeBreakdowns",
+      "totalStakedElementTimeBreakdowns():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   treasuryAddress(): Address {
     let result = super.call(
       "treasuryAddress",
@@ -943,21 +1246,21 @@ export class GameEngine extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  version(): GameEngine__versionResult {
+  version(): TimeBreakdown__versionResult {
     let result = super.call(
       "version",
       "version():(uint256,uint256,uint256)",
       []
     );
 
-    return new GameEngine__versionResult(
+    return new TimeBreakdown__versionResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
     );
   }
 
-  try_version(): ethereum.CallResult<GameEngine__versionResult> {
+  try_version(): ethereum.CallResult<TimeBreakdown__versionResult> {
     let result = super.tryCall(
       "version",
       "version():(uint256,uint256,uint256)",
@@ -968,7 +1271,7 @@ export class GameEngine extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new GameEngine__versionResult(
+      new TimeBreakdown__versionResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -976,14 +1279,14 @@ export class GameEngine extends ethereum.SmartContract {
     );
   }
 
-  versionGameUtil(): GameEngine__versionGameUtilResult {
+  versionGameUtil(): TimeBreakdown__versionGameUtilResult {
     let result = super.call(
       "versionGameUtil",
       "versionGameUtil():(uint256,uint256,uint256)",
       []
     );
 
-    return new GameEngine__versionGameUtilResult(
+    return new TimeBreakdown__versionGameUtilResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
@@ -991,7 +1294,7 @@ export class GameEngine extends ethereum.SmartContract {
   }
 
   try_versionGameUtil(): ethereum.CallResult<
-    GameEngine__versionGameUtilResult
+    TimeBreakdown__versionGameUtilResult
   > {
     let result = super.tryCall(
       "versionGameUtil",
@@ -1003,7 +1306,7 @@ export class GameEngine extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new GameEngine__versionGameUtilResult(
+      new TimeBreakdown__versionGameUtilResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -1011,49 +1314,14 @@ export class GameEngine extends ethereum.SmartContract {
     );
   }
 
-  versionPoolOperation(): GameEngine__versionPoolOperationResult {
-    let result = super.call(
-      "versionPoolOperation",
-      "versionPoolOperation():(uint256,uint256,uint256)",
-      []
-    );
-
-    return new GameEngine__versionPoolOperationResult(
-      result[0].toBigInt(),
-      result[1].toBigInt(),
-      result[2].toBigInt()
-    );
-  }
-
-  try_versionPoolOperation(): ethereum.CallResult<
-    GameEngine__versionPoolOperationResult
-  > {
-    let result = super.tryCall(
-      "versionPoolOperation",
-      "versionPoolOperation():(uint256,uint256,uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new GameEngine__versionPoolOperationResult(
-        value[0].toBigInt(),
-        value[1].toBigInt(),
-        value[2].toBigInt()
-      )
-    );
-  }
-
-  versionSystemPointers(): GameEngine__versionSystemPointersResult {
+  versionSystemPointers(): TimeBreakdown__versionSystemPointersResult {
     let result = super.call(
       "versionSystemPointers",
       "versionSystemPointers():(uint256,uint256,uint256)",
       []
     );
 
-    return new GameEngine__versionSystemPointersResult(
+    return new TimeBreakdown__versionSystemPointersResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
@@ -1061,7 +1329,7 @@ export class GameEngine extends ethereum.SmartContract {
   }
 
   try_versionSystemPointers(): ethereum.CallResult<
-    GameEngine__versionSystemPointersResult
+    TimeBreakdown__versionSystemPointersResult
   > {
     let result = super.tryCall(
       "versionSystemPointers",
@@ -1073,42 +1341,7 @@ export class GameEngine extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new GameEngine__versionSystemPointersResult(
-        value[0].toBigInt(),
-        value[1].toBigInt(),
-        value[2].toBigInt()
-      )
-    );
-  }
-
-  versionTokenOperation(): GameEngine__versionTokenOperationResult {
-    let result = super.call(
-      "versionTokenOperation",
-      "versionTokenOperation():(uint256,uint256,uint256)",
-      []
-    );
-
-    return new GameEngine__versionTokenOperationResult(
-      result[0].toBigInt(),
-      result[1].toBigInt(),
-      result[2].toBigInt()
-    );
-  }
-
-  try_versionTokenOperation(): ethereum.CallResult<
-    GameEngine__versionTokenOperationResult
-  > {
-    let result = super.tryCall(
-      "versionTokenOperation",
-      "versionTokenOperation():(uint256,uint256,uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new GameEngine__versionTokenOperationResult(
+      new TimeBreakdown__versionSystemPointersResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -1117,154 +1350,116 @@ export class GameEngine extends ethereum.SmartContract {
   }
 }
 
-export class BuySetOfTokensCall extends ethereum.Call {
-  get inputs(): BuySetOfTokensCall__Inputs {
-    return new BuySetOfTokensCall__Inputs(this);
+export class ActivateTimeBreakdownCall extends ethereum.Call {
+  get inputs(): ActivateTimeBreakdownCall__Inputs {
+    return new ActivateTimeBreakdownCall__Inputs(this);
   }
 
-  get outputs(): BuySetOfTokensCall__Outputs {
-    return new BuySetOfTokensCall__Outputs(this);
+  get outputs(): ActivateTimeBreakdownCall__Outputs {
+    return new ActivateTimeBreakdownCall__Outputs(this);
   }
 }
 
-export class BuySetOfTokensCall__Inputs {
-  _call: BuySetOfTokensCall;
+export class ActivateTimeBreakdownCall__Inputs {
+  _call: ActivateTimeBreakdownCall;
 
-  constructor(call: BuySetOfTokensCall) {
+  constructor(call: ActivateTimeBreakdownCall) {
     this._call = call;
   }
 
-  get listOfElementIds(): Array<BigInt> {
-    return this._call.inputValues[0].value.toBigIntArray();
-  }
-
-  get listOfTokenAmounts(): Array<BigInt> {
-    return this._call.inputValues[1].value.toBigIntArray();
-  }
-
-  get listOfPriceMaxLimits(): Array<BigInt> {
-    return this._call.inputValues[2].value.toBigIntArray();
+  get stakedElementName(): string {
+    return this._call.inputValues[0].value.toString();
   }
 }
 
-export class BuySetOfTokensCall__Outputs {
-  _call: BuySetOfTokensCall;
+export class ActivateTimeBreakdownCall__Outputs {
+  _call: ActivateTimeBreakdownCall;
 
-  constructor(call: BuySetOfTokensCall) {
+  constructor(call: ActivateTimeBreakdownCall) {
     this._call = call;
   }
 }
 
-export class BuyTokenCall extends ethereum.Call {
-  get inputs(): BuyTokenCall__Inputs {
-    return new BuyTokenCall__Inputs(this);
+export class AddTimeBreakdownCall extends ethereum.Call {
+  get inputs(): AddTimeBreakdownCall__Inputs {
+    return new AddTimeBreakdownCall__Inputs(this);
   }
 
-  get outputs(): BuyTokenCall__Outputs {
-    return new BuyTokenCall__Outputs(this);
+  get outputs(): AddTimeBreakdownCall__Outputs {
+    return new AddTimeBreakdownCall__Outputs(this);
   }
 }
 
-export class BuyTokenCall__Inputs {
-  _call: BuyTokenCall;
+export class AddTimeBreakdownCall__Inputs {
+  _call: AddTimeBreakdownCall;
 
-  constructor(call: BuyTokenCall) {
+  constructor(call: AddTimeBreakdownCall) {
     this._call = call;
   }
 
-  get swappingElementId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
+  get stakedElementName(): string {
+    return this._call.inputValues[0].value.toString();
   }
 
-  get tokenAmount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
+  get addressStoreName(): string {
+    return this._call.inputValues[1].value.toString();
   }
 
-  get priceMaxLimit(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class BuyTokenCall__Outputs {
-  _call: BuyTokenCall;
-
-  constructor(call: BuyTokenCall) {
-    this._call = call;
-  }
-}
-
-export class GameTokenBurnCall extends ethereum.Call {
-  get inputs(): GameTokenBurnCall__Inputs {
-    return new GameTokenBurnCall__Inputs(this);
+  get nothingToStart(): i32 {
+    return this._call.inputValues[2].value.toI32();
   }
 
-  get outputs(): GameTokenBurnCall__Outputs {
-    return new GameTokenBurnCall__Outputs(this);
+  get startToEarly(): i32 {
+    return this._call.inputValues[3].value.toI32();
+  }
+
+  get earlyToMature(): i32 {
+    return this._call.inputValues[4].value.toI32();
+  }
+
+  get matureToExpire(): i32 {
+    return this._call.inputValues[5].value.toI32();
+  }
+
+  get isActive(): boolean {
+    return this._call.inputValues[6].value.toBoolean();
   }
 }
 
-export class GameTokenBurnCall__Inputs {
-  _call: GameTokenBurnCall;
+export class AddTimeBreakdownCall__Outputs {
+  _call: AddTimeBreakdownCall;
 
-  constructor(call: GameTokenBurnCall) {
-    this._call = call;
-  }
-
-  get addressToUpdate(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get tokenElementId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get amountToBeBurned(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class GameTokenBurnCall__Outputs {
-  _call: GameTokenBurnCall;
-
-  constructor(call: GameTokenBurnCall) {
+  constructor(call: AddTimeBreakdownCall) {
     this._call = call;
   }
 }
 
-export class GameTokenMintCall extends ethereum.Call {
-  get inputs(): GameTokenMintCall__Inputs {
-    return new GameTokenMintCall__Inputs(this);
+export class DeactivateTimeBreakdownCall extends ethereum.Call {
+  get inputs(): DeactivateTimeBreakdownCall__Inputs {
+    return new DeactivateTimeBreakdownCall__Inputs(this);
   }
 
-  get outputs(): GameTokenMintCall__Outputs {
-    return new GameTokenMintCall__Outputs(this);
+  get outputs(): DeactivateTimeBreakdownCall__Outputs {
+    return new DeactivateTimeBreakdownCall__Outputs(this);
   }
 }
 
-export class GameTokenMintCall__Inputs {
-  _call: GameTokenMintCall;
+export class DeactivateTimeBreakdownCall__Inputs {
+  _call: DeactivateTimeBreakdownCall;
 
-  constructor(call: GameTokenMintCall) {
+  constructor(call: DeactivateTimeBreakdownCall) {
     this._call = call;
   }
 
-  get addressToUpdate(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get tokenElementId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get amountToBeProduced(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
+  get stakedElementName(): string {
+    return this._call.inputValues[0].value.toString();
   }
 }
 
-export class GameTokenMintCall__Outputs {
-  _call: GameTokenMintCall;
+export class DeactivateTimeBreakdownCall__Outputs {
+  _call: DeactivateTimeBreakdownCall;
 
-  constructor(call: GameTokenMintCall) {
+  constructor(call: DeactivateTimeBreakdownCall) {
     this._call = call;
   }
 }
@@ -1325,70 +1520,6 @@ export class PauseCall__Outputs {
   }
 }
 
-export class PauseGameCall extends ethereum.Call {
-  get inputs(): PauseGameCall__Inputs {
-    return new PauseGameCall__Inputs(this);
-  }
-
-  get outputs(): PauseGameCall__Outputs {
-    return new PauseGameCall__Outputs(this);
-  }
-}
-
-export class PauseGameCall__Inputs {
-  _call: PauseGameCall;
-
-  constructor(call: PauseGameCall) {
-    this._call = call;
-  }
-}
-
-export class PauseGameCall__Outputs {
-  _call: PauseGameCall;
-
-  constructor(call: PauseGameCall) {
-    this._call = call;
-  }
-}
-
-export class SellTokenCall extends ethereum.Call {
-  get inputs(): SellTokenCall__Inputs {
-    return new SellTokenCall__Inputs(this);
-  }
-
-  get outputs(): SellTokenCall__Outputs {
-    return new SellTokenCall__Outputs(this);
-  }
-}
-
-export class SellTokenCall__Inputs {
-  _call: SellTokenCall;
-
-  constructor(call: SellTokenCall) {
-    this._call = call;
-  }
-
-  get swappingElementId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get tokenAmount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get priceMinLimit(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class SellTokenCall__Outputs {
-  _call: SellTokenCall;
-
-  constructor(call: SellTokenCall) {
-    this._call = call;
-  }
-}
-
 export class TransferAddressStoreCall extends ethereum.Call {
   get inputs(): TransferAddressStoreCall__Inputs {
     return new TransferAddressStoreCall__Inputs(this);
@@ -1445,28 +1576,82 @@ export class UnpauseCall__Outputs {
   }
 }
 
-export class UnpauseGameCall extends ethereum.Call {
-  get inputs(): UnpauseGameCall__Inputs {
-    return new UnpauseGameCall__Inputs(this);
+export class UpdateTimeBreakdownCall extends ethereum.Call {
+  get inputs(): UpdateTimeBreakdownCall__Inputs {
+    return new UpdateTimeBreakdownCall__Inputs(this);
   }
 
-  get outputs(): UnpauseGameCall__Outputs {
-    return new UnpauseGameCall__Outputs(this);
+  get outputs(): UpdateTimeBreakdownCall__Outputs {
+    return new UpdateTimeBreakdownCall__Outputs(this);
   }
 }
 
-export class UnpauseGameCall__Inputs {
-  _call: UnpauseGameCall;
+export class UpdateTimeBreakdownCall__Inputs {
+  _call: UpdateTimeBreakdownCall;
 
-  constructor(call: UnpauseGameCall) {
+  constructor(call: UpdateTimeBreakdownCall) {
+    this._call = call;
+  }
+
+  get stakedElementName(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+
+  get nothingToStart(): i32 {
+    return this._call.inputValues[1].value.toI32();
+  }
+
+  get startToEarly(): i32 {
+    return this._call.inputValues[2].value.toI32();
+  }
+
+  get earlyToMature(): i32 {
+    return this._call.inputValues[3].value.toI32();
+  }
+
+  get matureToExpire(): i32 {
+    return this._call.inputValues[4].value.toI32();
+  }
+}
+
+export class UpdateTimeBreakdownCall__Outputs {
+  _call: UpdateTimeBreakdownCall;
+
+  constructor(call: UpdateTimeBreakdownCall) {
     this._call = call;
   }
 }
 
-export class UnpauseGameCall__Outputs {
-  _call: UnpauseGameCall;
+export class UpdateTimeBreakdownAddressCall extends ethereum.Call {
+  get inputs(): UpdateTimeBreakdownAddressCall__Inputs {
+    return new UpdateTimeBreakdownAddressCall__Inputs(this);
+  }
 
-  constructor(call: UnpauseGameCall) {
+  get outputs(): UpdateTimeBreakdownAddressCall__Outputs {
+    return new UpdateTimeBreakdownAddressCall__Outputs(this);
+  }
+}
+
+export class UpdateTimeBreakdownAddressCall__Inputs {
+  _call: UpdateTimeBreakdownAddressCall;
+
+  constructor(call: UpdateTimeBreakdownAddressCall) {
+    this._call = call;
+  }
+
+  get stakedElementName(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+
+  get addressStoreName(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+}
+
+export class UpdateTimeBreakdownAddressCall__Outputs {
+  _call: UpdateTimeBreakdownAddressCall;
+
+  constructor(call: UpdateTimeBreakdownAddressCall) {
     this._call = call;
   }
 }
