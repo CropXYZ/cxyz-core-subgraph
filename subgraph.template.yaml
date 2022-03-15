@@ -68,22 +68,21 @@ dataSources:
           handler: handleUnpauseGame
 
   - kind: ethereum/contract
-    name: Plot
+    name: PlotCore
     network: {{network}}
     source:
       address: "{{plotAddress}}"
-      abi: Plot
+      abi: PlotCore
       startBlock: {{startBlock}}
     mapping:
-      file: ./src/Plot.mapping.ts
+      file: ./src/PlotCore.mapping.ts
       kind: ethereum/events
       apiVersion: {{apiVersion}}
       language: wasm/assemblyscript
       entities:
         - GameState
-        - Plot
       abis:
-        - name: Plot
+        - name: PlotCore
           file: ./abis/game/{{plotAbiName}}.json
       eventHandlers:
         - event: Paused(address)

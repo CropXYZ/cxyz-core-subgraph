@@ -1038,7 +1038,9 @@ export class PoolCore extends ethereum.SmartContract {
       ]
     );
 
-    return result[0].toTuple() as PoolCore__quoteSwapValueWithTokenAddressResultValue0Struct;
+    return changetype<
+      PoolCore__quoteSwapValueWithTokenAddressResultValue0Struct
+    >(result[0].toTuple());
   }
 
   try_quoteSwapValueWithTokenAddress(
@@ -1064,7 +1066,9 @@ export class PoolCore extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTuple() as PoolCore__quoteSwapValueWithTokenAddressResultValue0Struct
+      changetype<PoolCore__quoteSwapValueWithTokenAddressResultValue0Struct>(
+        value[0].toTuple()
+      )
     );
   }
 
@@ -1085,7 +1089,9 @@ export class PoolCore extends ethereum.SmartContract {
       ]
     );
 
-    return result[0].toTuple() as PoolCore__quoteSwapValueWithTokenNameResultValue0Struct;
+    return changetype<PoolCore__quoteSwapValueWithTokenNameResultValue0Struct>(
+      result[0].toTuple()
+    );
   }
 
   try_quoteSwapValueWithTokenName(
@@ -1111,7 +1117,9 @@ export class PoolCore extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTuple() as PoolCore__quoteSwapValueWithTokenNameResultValue0Struct
+      changetype<PoolCore__quoteSwapValueWithTokenNameResultValue0Struct>(
+        value[0].toTuple()
+      )
     );
   }
 

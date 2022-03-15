@@ -1000,7 +1000,9 @@ export class PoolDetails extends ethereum.SmartContract {
       [ethereum.Value.fromAddress(tokenAddress)]
     );
 
-    return result[0].toTuple() as PoolDetails__reserveAmountResultValue0Struct;
+    return changetype<PoolDetails__reserveAmountResultValue0Struct>(
+      result[0].toTuple()
+    );
   }
 
   try_reserveAmount(
@@ -1016,7 +1018,9 @@ export class PoolDetails extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTuple() as PoolDetails__reserveAmountResultValue0Struct
+      changetype<PoolDetails__reserveAmountResultValue0Struct>(
+        value[0].toTuple()
+      )
     );
   }
 
@@ -1082,7 +1086,9 @@ export class PoolDetails extends ethereum.SmartContract {
       [ethereum.Value.fromAddress(tokenAddress)]
     );
 
-    return result[0].toTuple() as PoolDetails__trackedBalanceResultValue0Struct;
+    return changetype<PoolDetails__trackedBalanceResultValue0Struct>(
+      result[0].toTuple()
+    );
   }
 
   try_trackedBalance(
@@ -1098,7 +1104,9 @@ export class PoolDetails extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTuple() as PoolDetails__trackedBalanceResultValue0Struct
+      changetype<PoolDetails__trackedBalanceResultValue0Struct>(
+        value[0].toTuple()
+      )
     );
   }
 

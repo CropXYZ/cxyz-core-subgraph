@@ -334,115 +334,7 @@ export class Upgraded__Params {
   }
 }
 
-export class Plot__traitsResultValue0Struct extends ethereum.Tuple {
-  get plotType(): BigInt {
-    return this[0].toBigInt();
-  }
-
-  get staked(): Plot__traitsResultValue0StakedStruct {
-    return changetype<Plot__traitsResultValue0StakedStruct>(this[1].toTuple());
-  }
-
-  get dimensions(): Plot__traitsResultValue0DimensionsStruct {
-    return changetype<Plot__traitsResultValue0DimensionsStruct>(
-      this[2].toTuple()
-    );
-  }
-
-  get stats(): Plot__traitsResultValue0StatsStruct {
-    return changetype<Plot__traitsResultValue0StatsStruct>(this[3].toTuple());
-  }
-
-  get base(): Plot__traitsResultValue0BaseStruct {
-    return changetype<Plot__traitsResultValue0BaseStruct>(this[4].toTuple());
-  }
-}
-
-export class Plot__traitsResultValue0StakedStruct extends ethereum.Tuple {
-  get element(): BigInt {
-    return this[0].toBigInt();
-  }
-
-  get amount(): i32 {
-    return this[1].toI32();
-  }
-
-  get times(): Plot__traitsResultValue0StakedTimesStruct {
-    return changetype<Plot__traitsResultValue0StakedTimesStruct>(
-      this[2].toTuple()
-    );
-  }
-
-  get counts(): Plot__traitsResultValue0StakedCountsStruct {
-    return changetype<Plot__traitsResultValue0StakedCountsStruct>(
-      this[3].toTuple()
-    );
-  }
-}
-
-export class Plot__traitsResultValue0StakedTimesStruct extends ethereum.Tuple {
-  get start(): BigInt {
-    return this[0].toBigInt();
-  }
-
-  get readyDelta(): BigInt {
-    return this[1].toBigInt();
-  }
-
-  get expiredDelta(): BigInt {
-    return this[2].toBigInt();
-  }
-}
-
-export class Plot__traitsResultValue0StakedCountsStruct extends ethereum.Tuple {
-  get clears(): i32 {
-    return this[0].toI32();
-  }
-
-  get deaths(): i32 {
-    return this[1].toI32();
-  }
-
-  get harvests(): i32 {
-    return this[2].toI32();
-  }
-}
-
-export class Plot__traitsResultValue0DimensionsStruct extends ethereum.Tuple {
-  get tileArea(): i32 {
-    return this[0].toI32();
-  }
-
-  get width(): i32 {
-    return this[1].toI32();
-  }
-
-  get height(): i32 {
-    return this[2].toI32();
-  }
-}
-
-export class Plot__traitsResultValue0StatsStruct extends ethereum.Tuple {
-  get speed(): i32 {
-    return this[0].toI32();
-  }
-
-  get yield(): i32 {
-    return this[1].toI32();
-  }
-}
-
-export class Plot__traitsResultValue0BaseStruct extends ethereum.Tuple {
-  get season(): i32 {
-    return this[0].toI32();
-  }
-
-  get disabled(): boolean {
-    return this[1].toBoolean();
-  }
-}
-
-export class Plot__versionResult {
+export class PlotCore__versionResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -462,7 +354,7 @@ export class Plot__versionResult {
   }
 }
 
-export class Plot__versionGameAssetResult {
+export class PlotCore__versionGameAssetResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -482,7 +374,7 @@ export class Plot__versionGameAssetResult {
   }
 }
 
-export class Plot__versionGameStatusResult {
+export class PlotCore__versionGameStatusResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -502,7 +394,7 @@ export class Plot__versionGameStatusResult {
   }
 }
 
-export class Plot__versionGameUtilResult {
+export class PlotCore__versionGameUtilResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -522,7 +414,7 @@ export class Plot__versionGameUtilResult {
   }
 }
 
-export class Plot__versionSystemPointersResult {
+export class PlotCore__versionSystemPointersResult {
   value0: BigInt;
   value1: BigInt;
   value2: BigInt;
@@ -542,9 +434,9 @@ export class Plot__versionSystemPointersResult {
   }
 }
 
-export class Plot extends ethereum.SmartContract {
-  static bind(address: Address): Plot {
-    return new Plot("Plot", address);
+export class PlotCore extends ethereum.SmartContract {
+  static bind(address: Address): PlotCore {
+    return new PlotCore("PlotCore", address);
   }
 
   AS_ENGINE_ADDRESS(): Bytes {
@@ -1389,33 +1281,6 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  traits(plotId: BigInt): Plot__traitsResultValue0Struct {
-    let result = super.call(
-      "traits",
-      "traits(uint256):((uint256,(uint256,uint16,(uint64,uint64,uint64),(uint24,uint24,uint24)),(uint8,uint8,uint8),(uint8,uint8),(uint8,bool)))",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-
-    return result[0].toTuple() as Plot__traitsResultValue0Struct;
-  }
-
-  try_traits(
-    plotId: BigInt
-  ): ethereum.CallResult<Plot__traitsResultValue0Struct> {
-    let result = super.tryCall(
-      "traits",
-      "traits(uint256):((uint256,(uint256,uint16,(uint64,uint64,uint64),(uint24,uint24,uint24)),(uint8,uint8,uint8),(uint8,uint8),(uint8,bool)))",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      value[0].toTuple() as Plot__traitsResultValue0Struct
-    );
-  }
-
   treasuryAddress(): Address {
     let result = super.call(
       "treasuryAddress",
@@ -1439,21 +1304,21 @@ export class Plot extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  version(): Plot__versionResult {
+  version(): PlotCore__versionResult {
     let result = super.call(
       "version",
       "version():(uint256,uint256,uint256)",
       []
     );
 
-    return new Plot__versionResult(
+    return new PlotCore__versionResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
     );
   }
 
-  try_version(): ethereum.CallResult<Plot__versionResult> {
+  try_version(): ethereum.CallResult<PlotCore__versionResult> {
     let result = super.tryCall(
       "version",
       "version():(uint256,uint256,uint256)",
@@ -1464,7 +1329,7 @@ export class Plot extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Plot__versionResult(
+      new PlotCore__versionResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -1472,21 +1337,23 @@ export class Plot extends ethereum.SmartContract {
     );
   }
 
-  versionGameAsset(): Plot__versionGameAssetResult {
+  versionGameAsset(): PlotCore__versionGameAssetResult {
     let result = super.call(
       "versionGameAsset",
       "versionGameAsset():(uint256,uint256,uint256)",
       []
     );
 
-    return new Plot__versionGameAssetResult(
+    return new PlotCore__versionGameAssetResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
     );
   }
 
-  try_versionGameAsset(): ethereum.CallResult<Plot__versionGameAssetResult> {
+  try_versionGameAsset(): ethereum.CallResult<
+    PlotCore__versionGameAssetResult
+  > {
     let result = super.tryCall(
       "versionGameAsset",
       "versionGameAsset():(uint256,uint256,uint256)",
@@ -1497,7 +1364,7 @@ export class Plot extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Plot__versionGameAssetResult(
+      new PlotCore__versionGameAssetResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -1505,21 +1372,23 @@ export class Plot extends ethereum.SmartContract {
     );
   }
 
-  versionGameStatus(): Plot__versionGameStatusResult {
+  versionGameStatus(): PlotCore__versionGameStatusResult {
     let result = super.call(
       "versionGameStatus",
       "versionGameStatus():(uint256,uint256,uint256)",
       []
     );
 
-    return new Plot__versionGameStatusResult(
+    return new PlotCore__versionGameStatusResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
     );
   }
 
-  try_versionGameStatus(): ethereum.CallResult<Plot__versionGameStatusResult> {
+  try_versionGameStatus(): ethereum.CallResult<
+    PlotCore__versionGameStatusResult
+  > {
     let result = super.tryCall(
       "versionGameStatus",
       "versionGameStatus():(uint256,uint256,uint256)",
@@ -1530,7 +1399,7 @@ export class Plot extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Plot__versionGameStatusResult(
+      new PlotCore__versionGameStatusResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -1538,21 +1407,21 @@ export class Plot extends ethereum.SmartContract {
     );
   }
 
-  versionGameUtil(): Plot__versionGameUtilResult {
+  versionGameUtil(): PlotCore__versionGameUtilResult {
     let result = super.call(
       "versionGameUtil",
       "versionGameUtil():(uint256,uint256,uint256)",
       []
     );
 
-    return new Plot__versionGameUtilResult(
+    return new PlotCore__versionGameUtilResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
     );
   }
 
-  try_versionGameUtil(): ethereum.CallResult<Plot__versionGameUtilResult> {
+  try_versionGameUtil(): ethereum.CallResult<PlotCore__versionGameUtilResult> {
     let result = super.tryCall(
       "versionGameUtil",
       "versionGameUtil():(uint256,uint256,uint256)",
@@ -1563,7 +1432,7 @@ export class Plot extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Plot__versionGameUtilResult(
+      new PlotCore__versionGameUtilResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()
@@ -1571,14 +1440,14 @@ export class Plot extends ethereum.SmartContract {
     );
   }
 
-  versionSystemPointers(): Plot__versionSystemPointersResult {
+  versionSystemPointers(): PlotCore__versionSystemPointersResult {
     let result = super.call(
       "versionSystemPointers",
       "versionSystemPointers():(uint256,uint256,uint256)",
       []
     );
 
-    return new Plot__versionSystemPointersResult(
+    return new PlotCore__versionSystemPointersResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt()
@@ -1586,7 +1455,7 @@ export class Plot extends ethereum.SmartContract {
   }
 
   try_versionSystemPointers(): ethereum.CallResult<
-    Plot__versionSystemPointersResult
+    PlotCore__versionSystemPointersResult
   > {
     let result = super.tryCall(
       "versionSystemPointers",
@@ -1598,7 +1467,7 @@ export class Plot extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Plot__versionSystemPointersResult(
+      new PlotCore__versionSystemPointersResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt()

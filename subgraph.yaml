@@ -68,23 +68,22 @@ dataSources:
           handler: handleUnpauseGame
 
   - kind: ethereum/contract
-    name: Plot
+    name: PlotCore
     network: mainnet
     source:
-      address: "0x998abeb3E57409262aE5b751f60747921B33613E"
-      abi: Plot
+      address: "0xc351628EB244ec633d5f21fBD6621e1a683B1181"
+      abi: PlotCore
       startBlock: 0
     mapping:
-      file: ./src/Plot.mapping.ts
+      file: ./src/PlotCore.mapping.ts
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - GameState
-        - Plot
       abis:
-        - name: Plot
-          file: ./abis/game/Plot.abi.json
+        - name: PlotCore
+          file: ./abis/game/PlotCore.abi.json
       eventHandlers:
         - event: Paused(address)
           handler: handlePause
@@ -98,7 +97,7 @@ dataSources:
     name: PlotActions
     network: mainnet
     source:
-      address: "0x998abeb3E57409262aE5b751f60747921B33613E"
+      address: "0x1429859428C0aBc9C2C47C8Ee9FBaf82cFA0F20f"
       abi: PlotActions
       startBlock: 0
     mapping:
@@ -133,7 +132,7 @@ dataSources:
     name: PlotMetadata
     network: mainnet
     source:
-      address: "0x998abeb3E57409262aE5b751f60747921B33613E"
+      address: "0x922D6956C99E12DFeB3224DEA977D0939758A1Fe"
       abi: PlotMetadata
       startBlock: 0
     mapping:
@@ -157,7 +156,7 @@ dataSources:
     name: PlotType
     network: mainnet
     source:
-      address: "0x998abeb3E57409262aE5b751f60747921B33613E"
+      address: "0x09635F643e140090A9A8Dcd712eD6285858ceBef"
       abi: PlotType
       startBlock: 0
     mapping:
@@ -184,7 +183,7 @@ dataSources:
     name: PoolCore
     network: mainnet
     source:
-      address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1"
+      address: "0x9A676e781A523b5d0C0e43731313A708CB607508"
       abi: PoolCore
       startBlock: 0
     mapping:
@@ -215,7 +214,7 @@ dataSources:
     name: PoolDetails
     network: mainnet
     source:
-      address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1"
+      address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE"
       abi: PoolDetails
       startBlock: 0
     mapping:
@@ -271,7 +270,7 @@ dataSources:
     name: TimeBreakdown
     network: mainnet
     source:
-      address: "0x998abeb3E57409262aE5b751f60747921B33613E"
+      address: "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E"
       abi: TimeBreakdown
       startBlock: 0
     mapping:
@@ -307,7 +306,7 @@ dataSources:
     name: YieldTable
     network: mainnet
     source:
-      address: "0x998abeb3E57409262aE5b751f60747921B33613E"
+      address: "0x9E545E3C0baAB3E08CdfD552C960A1050f373042"
       abi: YieldTable
       startBlock: 0
     mapping:

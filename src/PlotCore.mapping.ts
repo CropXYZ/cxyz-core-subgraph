@@ -1,5 +1,5 @@
 import { BigInt } from "@graphprotocol/graph-ts";
-import { MintedPlot, Paused, Unpaused } from "../generated/Plot/Plot";
+import { MintedPlot, Paused, Unpaused } from "../generated/PlotCore/PlotCore";
 
 import { GameState, Plot } from "../generated/schema";
 
