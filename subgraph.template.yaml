@@ -19,7 +19,7 @@ dataSources:
         - GameState
       abis:
         - name: AddressStore
-          file: ./abis/{{addrStrAbiName}}.json
+          file: ./abis/core/{{addrStrAbiName}}.json
       eventHandlers:
         - event: Paused(address)
           handler: handlePause
@@ -32,6 +32,7 @@ dataSources:
           handler: handleUpdateAddress
         - event: DeactivatedResolveAddressName(indexed address,string,indexed bytes32,indexed address)
           handler: handleDeactivateAddress
+
   - kind: ethereum/contract
     name: GameEngine
     network: {{network}}
@@ -45,14 +46,10 @@ dataSources:
       apiVersion: {{apiVersion}}
       language: wasm/assemblyscript
       entities:
-        - Crop
         - GameState
-        - GrowthTimeTable
-        - PlotType
-        - YieldConfig
       abis:
         - name: GameEngine
-          file: ./abis/{{engineAbiName}}.json
+          file: ./abis/core/{{engineAbiName}}.json
       eventHandlers:
         - event: Paused(address)
           handler: handlePause
@@ -70,33 +67,11 @@ dataSources:
         - event: UnpausedGame(indexed address)
           handler: handleUnpauseGame
 
-        - event: ActivatedPlotType(indexed address,indexed uint256,string)
-          handler: handleActivatePlotType
-
-        - event: AddedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,bool,uint24,uint24,uint24,uint24,bytes32,uint256)
-          handler: handleAddTimeBreakdown
-        - event: UpdatedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,uint24,uint24,uint24,uint24)
-          handler: handleUpdateTimeBreakdown
-        - event: UpdatedTimeBreakdownAddress(indexed address,indexed bytes32,string,indexed uint256,bytes32,bytes32)
-          handler: handleUpdateTimeBreakdownAddress
-        - event: ActivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
-          handler: handleActivateTimeBreakdown
-        - event: DeactivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
-          handler: handleDeactivateTimeBreakdown
-
-        - event: AddedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256,uint16,uint16,bool)
-          handler: handleAddYieldConfig
-        - event: UpdatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256,uint16,uint16)
-          handler: handleUpdateYieldConfig
-        - event: ActivatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256)
-          handler: handleActivateYieldConfig
-        - event: DeactivatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256)
-          handler: handleDeactivateYieldConfig
   - kind: ethereum/contract
     name: Plot
     network: {{network}}
     source:
-      address: "{{plotCoreAddress}}"
+      address: "{{plotAddress}}"
       abi: Plot
       startBlock: {{startBlock}}
     mapping:
@@ -105,13 +80,11 @@ dataSources:
       apiVersion: {{apiVersion}}
       language: wasm/assemblyscript
       entities:
-        - Crop
         - GameState
-        - GrowthTimeTable
         - Plot
       abis:
         - name: Plot
-          file: ./abis/{{poolCoreAbiName}}.json
+          file: ./abis/game/{{plotAbiName}}.json
       eventHandlers:
         - event: Paused(address)
           handler: handlePause
@@ -120,14 +93,7 @@ dataSources:
 
         - event: MintedPlot(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
           handler: handleMint
-        - event: StakedCrop(indexed address,indexed uint256,indexed uint256,uint16,uint64,uint64,uint64,address,uint256,bool)
-          handler: handleStaked
-        - event: HarvestedPlot(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint16,uint24)
-          handler: handleHarvestPlot
-        - event: ClearedDiedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
-          handler: handleClearDiedHarvest
-        - event: ClearedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
-          handler: handleClearedHarvest
+
   - kind: ethereum/contract
     name: PlotActions
     network: {{network}}
@@ -136,7 +102,7 @@ dataSources:
       abi: PlotActions
       startBlock: {{startBlock}}
     mapping:
-      file: ./src/Plot.mapping.ts
+      file: ./src/PlotActions.mapping.ts
       kind: ethereum/events
       apiVersion: {{apiVersion}}
       language: wasm/assemblyscript
@@ -146,8 +112,8 @@ dataSources:
         - GrowthTimeTable
         - Plot
       abis:
-        - name: Plot
-          file: ./abis/{{plotAbiName}}.json
+        - name: PlotActions
+          file: ./abis/game/{{plotActionsAbiName}}.json
       eventHandlers:
         - event: Paused(address)
           handler: handlePause
@@ -164,11 +130,63 @@ dataSources:
           handler: handleClearDiedHarvest
         - event: ClearedHarvest(indexed address,indexed uint256,indexed uint256,address,uint256,uint256,uint16,uint24)
           handler: handleClearedHarvest
+
+  - kind: ethereum/contract
+    name: PlotMetadata
+    network: {{network}}
+    source:
+      address: "{{plotMetadataAddress}}"
+      abi: PlotMetadata
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/PlotMetadata.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - GameState
+        - Plot
+      abis:
+        - name: PlotMetadata
+          file: ./abis/game/{{plotMetadataAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+  - kind: ethereum/contract
+    name: PlotType
+    network: {{network}}
+    source:
+      address: "{{plotTypeAddress}}"
+      abi: PlotType
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/PlotType.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - GameState
+        - PlotType
+      abis:
+        - name: PlotType
+          file: ./abis/game/{{plotTypeAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: ActivatedPlotType(indexed address,indexed uint256,string)
+          handler: handleActivatePlotType
+
   - kind: ethereum/contract
     name: PoolCore
     network: {{network}}
     source:
-      address: "{{poolAddress}}"
+      address: "{{poolCoreAddress}}"
       abi: PoolCore
       startBlock: {{startBlock}}
     mapping:
@@ -183,7 +201,36 @@ dataSources:
         - TransactionFlow
       abis:
         - name: PoolCore
-          file: ./abis/{{poolCoreAbiName}}.json
+          file: ./abis/core/{{poolCoreAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: SentToTreasury(address,address,uint256)
+          handler: handleSendToTreasury
+        - event: TransferredFromPool(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,bool,bool)
+          handler: handleTransferFromPool
+
+  - kind: ethereum/contract
+    name: PoolDetails
+    network: {{network}}
+    source:
+      address: "{{poolDetailsAddress}}"
+      abi: PoolDetails
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/PoolDetails.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - GameState
+        - Pool
+      abis:
+        - name: PoolDetails
+          file: ./abis/core/{{poolDetailsAbiName}}.json
       eventHandlers:
         - event: Paused(address)
           handler: handlePause
@@ -194,11 +241,100 @@ dataSources:
           handler: handleUpdateGoldReserve
         - event: UpdatedTokenReserveAmount(address,indexed address,indexed uint256,indexed uint256)
           handler: handleUpdateTokenReserve
-        - event: TransferredFromPool(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,bool,bool)
-          handler: handleTransferFromPool
         - event: ScaledPoolBalances(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint8)
           handler: handleScalePoolBalances
         - event: InitializedPool(indexed address,indexed address,uint256,uint256,uint256,uint256,uint8)
           handler: handleInitializePool
-        - event: SentToTreasury(address,address,uint256)
-          handler: handleSendToTreasury
+
+  - kind: ethereum/contract
+    name: RoleRegistry
+    network: {{network}}
+    source:
+      address: "{{engineAddress}}"
+      abi: RoleRegistry
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/RoleRegistry.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - GameState
+      abis:
+        - name: RoleRegistry
+          file: ./abis/core/{{roleRegistryAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+  - kind: ethereum/contract
+    name: TimeBreakdown
+    network: {{network}}
+    source:
+      address: "{{timeBreakdownAddress}}"
+      abi: TimeBreakdown
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/TimeBreakdown.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+        - GameState
+        - GrowthTimeTable
+      abis:
+        - name: TimeBreakdown
+          file: ./abis/game/{{timeBreakdownAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: AddedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,bool,uint24,uint24,uint24,uint24,bytes32,uint256)
+          handler: handleAddTimeBreakdown
+        - event: UpdatedTimeBreakdown(indexed address,indexed bytes32,string,indexed uint256,uint24,uint24,uint24,uint24,uint24,uint24,uint24,uint24)
+          handler: handleUpdateTimeBreakdown
+        - event: UpdatedTimeBreakdownAddress(indexed address,indexed bytes32,string,indexed uint256,bytes32,bytes32)
+          handler: handleUpdateTimeBreakdownAddress
+        - event: ActivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
+          handler: handleActivateTimeBreakdown
+        - event: DeactivatedTimeBreakdown(indexed address,indexed uint256,indexed bytes32,string)
+          handler: handleDeactivateTimeBreakdown
+
+  - kind: ethereum/contract
+    name: YieldTable
+    network: {{network}}
+    source:
+      address: "{{yieldTableAddress}}"
+      abi: YieldTable
+      startBlock: {{startBlock}}
+    mapping:
+      file: ./src/YieldTable.mapping.ts
+      kind: ethereum/events
+      apiVersion: {{apiVersion}}
+      language: wasm/assemblyscript
+      entities:
+        - GameState
+        - PlotType
+        - YieldConfig
+      abis:
+        - name: YieldTable
+          file: ./abis/game/{{yieldTableAbiName}}.json
+      eventHandlers:
+        - event: Paused(address)
+          handler: handlePause
+        - event: Unpaused(address)
+          handler: handleUnpause
+
+        - event: AddedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256,uint16,uint16,bool)
+          handler: handleAddYieldConfig
+        - event: UpdatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256,uint16,uint16)
+          handler: handleUpdateYieldConfig
+        - event: ActivatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256)
+          handler: handleActivateYieldConfig
+        - event: DeactivatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256)
+          handler: handleDeactivateYieldConfig

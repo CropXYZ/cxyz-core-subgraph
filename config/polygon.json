@@ -2,12 +2,31 @@
   "network": "matic",
   "apiVersion": "0.0.6",
   "startBlock": "0",
-  "addrStrAbiName": "AddressStore.abi",
+
+  "addrStrAbiName": "core/AddressStore.abi",
   "addrStrAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
-  "engineAbiName": "GameEngine.abi",
+
+  "engineAbiName": "core/GameEngine.abi",
   "engineAddress": "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d",
-  "plotAbiName": "Plot.abi",
+
+  "poolCoreAbiName": "core/PoolCore.abi",
+  "poolCoreAddress": "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
+
+  "poolDetailsAbiName": "core/PoolDetails.abi",
+  "poolDetailsAddress": "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
+
+  "plotAbiName": "game/Plot.abi",
   "plotAddress": "0x998abeb3E57409262aE5b751f60747921B33613E",
-  "dynamicPoolAbiName": "DynamicPool.abi",
-  "poolAddress": "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1"
+
+  "plotActionsAbiName": "game/PlotActions.abi",
+  "plotActionsAddress": "0x998abeb3E57409262aE5b751f60747921B33613E",
+
+  "plotTypeAbiName": "game/PlotType.abi",
+  "plotTypeAddress": "0x998abeb3E57409262aE5b751f60747921B33613E",
+
+  "timeBreakdownAbiName": "game/TimeBreakdown.abi",
+  "timeBreakdownAddress": "0x998abeb3E57409262aE5b751f60747921B33613E",
+
+  "yieldTableAbiName": "game/YieldTable.abi",
+  "yieldTableAddress": "0x998abeb3E57409262aE5b751f60747921B33613E"
 }

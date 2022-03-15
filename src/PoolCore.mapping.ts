@@ -1,13 +1,7 @@
-import { BigInt } from "@graphprotocol/graph-ts";
-
 import {
   Paused,
   Unpaused,
-  UpdatedGoldReserveAmount,
-  UpdatedTokenReserveAmount,
   TransferredFromPool,
-  ScaledPoolBalances,
-  InitializedPool,
   SentToTreasury
 } from "../generated/PoolCore/PoolCore";
 import {
@@ -39,31 +33,7 @@ export function handleUnpause(event: Unpaused): void {
   gameState.save();
 }
 
-export function handleUpdateGoldReserve(event: UpdatedGoldReserveAmount): void {
-  let pool = Pool.load(event.params.tokenAddress.toHexString());
-
-  if (pool == null) {
-    pool = new Pool(event.params.tokenAddress.toHexString());
-  }
-
-  pool.goldReserveAmount = event.params.newGoldReserveAmount;
-
-  pool.save();
-}
-
-export function handleUpdateTokenReserve(
-  event: UpdatedTokenReserveAmount
-): void {
-  let pool = Pool.load(event.params.tokenAddress.toHexString());
-
-  if (pool == null) {
-    pool = new Pool(event.params.tokenAddress.toHexString());
-  }
-
-  pool.tokenReserveAmount = event.params.newTokenReserveAmount;
-
-  pool.save();
-}
+export function handleSendToTreasury(event: SentToTreasury): void {}
 
 export function handleTransferFromPool(event: TransferredFromPool): void {
   // Update the overall pool details
@@ -130,34 +100,3 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
 
   transactionFlow.save();
 }
-
-export function handleScalePoolBalances(event: ScaledPoolBalances): void {
-  let pool = Pool.load(event.params.tokenAddress.toHexString());
-
-  if (pool == null) {
-    pool = new Pool(event.params.tokenAddress.toHexString());
-  }
-
-  pool.swapFee = BigInt.fromI32(event.params.newSwapFee);
-  pool.tokenTrackedAmount = event.params.newTrackedTokenBalance;
-  pool.goldTrackedAmount = event.params.newTrackedGoldBalance;
-
-  pool.save();
-}
-
-export function handleInitializePool(event: InitializedPool): void {
-  const pool = new Pool(event.params.tokenAddress.toHexString());
-
-  pool.tokenAddress = event.params.tokenAddress;
-  pool.swapFee = BigInt.fromI32(event.params.swapFee);
-
-  pool.tokenTrackedAmount = event.params.tokenAmount;
-  pool.tokenReserveAmount = event.params.tokenReserveAmount;
-
-  pool.goldTrackedAmount = event.params.goldAmount;
-  pool.goldReserveAmount = event.params.goldReserveAmount;
-
-  pool.save();
-}
-
-export function handleSendToTreasury(event: SentToTreasury): void {}
