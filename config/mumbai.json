@@ -1,32 +1,32 @@
 {
   "network": "mumbai",
   "apiVersion": "0.0.6",
-  "startBlock": "0",
+  "startBlock": "25539284",
 
-  "addrStrAbiName": "core/AddressStore.abi",
-  "addrStrAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+  "addrStrAbiName": "AddressStore.abi",
+  "addrStrAddress": "0x1A97a588c7408aB6DeD94d8BFB99DA87Dfe574fe",
+  "roleRegistryAbiName": "RoleRegistry.abi",
+  "roleRegistryAddress": "0x6F0b122C69bc0fa2226A051Be9525924852dcCF7",
 
-  "engineAbiName": "core/GameEngine.abi",
-  "engineAddress": "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d",
+  "poolCoreAbiName": "PoolCore.abi",
+  "poolCoreAddress": "0x54A6547ead7e4bb7633517bD00598498Fdcd29d9",
+  "poolDetailsAbiName": "PoolDetails.abi",
+  "poolDetailsAddress": "0x23765913F5c417255AaA69013F66A201Be77e696",
 
-  "poolCoreAbiName": "core/PoolCore.abi",
-  "poolCoreAddress": "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
+  "engineAbiName": "GameEngine.abi",
+  "engineAddress": "0x160F01C4F85df5aa0e4E5d9413E4994f5930527c",
 
-  "poolDetailsAbiName": "core/PoolDetails.abi",
-  "poolDetailsAddress": "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
+  "plotTypeAbiName": "PlotType.abi",
+  "plotTypeAddress": "0xF14D58607cdab14cf8eee1a48526f3420E1459b7",
+  "timeBreakdownAbiName": "TimeBreakdown.abi",
+  "timeBreakdownAddress": "0x80aF1790DeE9bB4436F93a4e2dE905387EbE85fa",
+  "yieldTableAbiName": "YieldTable.abi",
+  "yieldTableAddress": "0xae030589cF1FcD1E1731271D047fD2d96053E35F",
 
-  "plotAbiName": "game/Plot.abi",
-  "plotAddress": "0x998abeb3E57409262aE5b751f60747921B33613E",
-
-  "plotActionsAbiName": "game/PlotActions.abi",
-  "plotActionsAddress": "0x998abeb3E57409262aE5b751f60747921B33613E",
-
-  "plotTypeAbiName": "game/PlotType.abi",
-  "plotTypeAddress": "0x998abeb3E57409262aE5b751f60747921B33613E",
-
-  "timeBreakdownAbiName": "game/TimeBreakdown.abi",
-  "timeBreakdownAddress": "0x998abeb3E57409262aE5b751f60747921B33613E",
-
-  "yieldTableAbiName": "game/YieldTable.abi",
-  "yieldTableAddress": "0x998abeb3E57409262aE5b751f60747921B33613E"
+  "plotAbiName": "PlotCore.abi",
+  "plotAddress": "0xAf667F03f3bca69b3E42656E5c2DFc92C19F1B60",
+  "plotActionsAbiName": "PlotActions.abi",
+  "plotActionsAddress": "0x32246f80985354871638bf2a8083453Aa943ba9e",
+  "plotMetadataAbiName": "PlotMetadata.abi",
+  "plotMetadataAddress": "0x1F504B2Ec6706F95Cb352eDA69773654C1b55B31"
 }
