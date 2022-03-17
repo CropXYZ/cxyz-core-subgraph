@@ -1,32 +1,32 @@
 {
   "network": "matic",
   "apiVersion": "0.0.6",
-  "startBlock": "0",
+  "startBlock": "26020340",
 
-  "addrStrAbiName": "core/AddressStore.abi",
-  "addrStrAddress": "0xqwerty",
+  "addrStrAbiName": "AddressStore.abi",
+  "addrStrAddress": "0x12f885808F616B8056A37Be00fDd029e1C59ab08",
+  "roleRegistryAbiName": "RoleRegistry.abi",
+  "roleRegistryAddress": "0x22df7c0df774c04C70d3d27b1000BcF877aFfF12",
 
-  "engineAbiName": "core/GameEngine.abi",
-  "engineAddress": "0xqwerty",
+  "poolCoreAbiName": "PoolCore.abi",
+  "poolCoreAddress": "0xB36233e579D397bb3fC51a808f72d9Ff2F187AF7",
+  "poolDetailsAbiName": "PoolDetails.abi",
+  "poolDetailsAddress": "0x255d795A815B7d61C427093c840F60C7DEfe9ac9",
 
-  "poolCoreAbiName": "core/PoolCore.abi",
-  "poolCoreAddress": "0xqwerty",
+  "engineAbiName": "GameEngine.abi",
+  "engineAddress": "0xaA8F7ADa9E9cDcdbCC7E816047915C9Ee8462D57",
 
-  "poolDetailsAbiName": "core/PoolDetails.abi",
-  "poolDetailsAddress": "0xqwerty",
+  "plotTypeAbiName": "PlotType.abi",
+  "plotTypeAddress": "0x42d2DA3003e246047D4a60f1B2b25DE4EE9eC70c",
+  "timeBreakdownAbiName": "TimeBreakdown.abi",
+  "timeBreakdownAddress": "0x9611B4Cc16bb884f483AD4a66B23eA2a1Df18fF1",
+  "yieldTableAbiName": "YieldTable.abi",
+  "yieldTableAddress": "0xaB5050298710D0Fba1A555d5509291a94eae5e73",
 
-  "plotAbiName": "game/Plot.abi",
-  "plotAddress": "0xqwerty",
-
-  "plotActionsAbiName": "game/PlotActions.abi",
-  "plotActionsAddress": "0xqwerty",
-
-  "plotTypeAbiName": "game/PlotType.abi",
-  "plotTypeAddress": "0xqwerty",
-
-  "timeBreakdownAbiName": "game/TimeBreakdown.abi",
-  "timeBreakdownAddress": "0xqwerty",
-
-  "yieldTableAbiName": "game/YieldTable.abi",
-  "yieldTableAddress": "0xqwerty"
+  "plotAbiName": "PlotCore.abi",
+  "plotAddress": "0x389e11255a78DB6C8edDf8B5e112470F026d19e2",
+  "plotActionsAbiName": "PlotActions.abi",
+  "plotActionsAddress": "0xC9B265c10840A24230cf103818baeABaF31518AB",
+  "plotMetadataAbiName": "PlotMetadata.abi",
+  "plotMetadataAddress": "0x90bCfcBf0352E76D60601698a96B4c15e5671815"
 }
