@@ -47,6 +47,21 @@ type Plot @entity {
   timeExpiredDelta: BigInt!
 }
 
+type PlotAction @entity {
+  id: ID! # plotId
+  # Time stamp
+  timestamp: BigInt!
+  # The index that the transaction is within the block
+  blockIndex: BigInt!
+
+  playerAddress: Bytes! # address
+  amount: BigInt!
+  actionType: String!
+
+  currentCrop: Crop # stakedElement
+  newCrop: Crop # stakedElement
+}
+
 # ----- ----- ----- ----- -----
 # ----- ----- ----- ----- -----
 # ----- ----- ----- ----- -----

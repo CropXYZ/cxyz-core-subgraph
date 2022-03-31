@@ -254,6 +254,123 @@ export class Plot extends Entity {
   }
 }
 
+export class PlotAction extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("timestamp", Value.fromBigInt(BigInt.zero()));
+    this.set("blockIndex", Value.fromBigInt(BigInt.zero()));
+    this.set("playerAddress", Value.fromBytes(Bytes.empty()));
+    this.set("amount", Value.fromBigInt(BigInt.zero()));
+    this.set("actionType", Value.fromString(""));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save PlotAction entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type PlotAction must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("PlotAction", id.toString(), this);
+    }
+  }
+
+  static load(id: string): PlotAction | null {
+    return changetype<PlotAction | null>(store.get("PlotAction", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
+    return value!.toBigInt();
+  }
+
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
+  }
+
+  get blockIndex(): BigInt {
+    let value = this.get("blockIndex");
+    return value!.toBigInt();
+  }
+
+  set blockIndex(value: BigInt) {
+    this.set("blockIndex", Value.fromBigInt(value));
+  }
+
+  get playerAddress(): Bytes {
+    let value = this.get("playerAddress");
+    return value!.toBytes();
+  }
+
+  set playerAddress(value: Bytes) {
+    this.set("playerAddress", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value!.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get actionType(): string {
+    let value = this.get("actionType");
+    return value!.toString();
+  }
+
+  set actionType(value: string) {
+    this.set("actionType", Value.fromString(value));
+  }
+
+  get currentCrop(): string | null {
+    let value = this.get("currentCrop");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set currentCrop(value: string | null) {
+    if (!value) {
+      this.unset("currentCrop");
+    } else {
+      this.set("currentCrop", Value.fromString(<string>value));
+    }
+  }
+
+  get newCrop(): string | null {
+    let value = this.get("newCrop");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set newCrop(value: string | null) {
+    if (!value) {
+      this.unset("newCrop");
+    } else {
+      this.set("newCrop", Value.fromString(<string>value));
+    }
+  }
+}
+
 export class Crop extends Entity {
   constructor(id: string) {
     super();

@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: AddressStore
-    network: matic
+    network: mainnet
     source:
-      address: "0x12f885808F616B8056A37Be00fDd029e1C59ab08"
+      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
       abi: AddressStore
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/AddressStore.mapping.ts
       kind: ethereum/events
@@ -35,11 +35,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: GameEngine
-    network: matic
+    network: mainnet
     source:
-      address: "0xaA8F7ADa9E9cDcdbCC7E816047915C9Ee8462D57"
+      address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d"
       abi: GameEngine
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/GameEngine.mapping.ts
       kind: ethereum/events
@@ -69,11 +69,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PlotCore
-    network: matic
+    network: mainnet
     source:
-      address: "0x389e11255a78DB6C8edDf8B5e112470F026d19e2"
+      address: "0xc351628EB244ec633d5f21fBD6621e1a683B1181"
       abi: PlotCore
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/PlotCore.mapping.ts
       kind: ethereum/events
@@ -95,11 +95,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PlotActions
-    network: matic
+    network: mainnet
     source:
-      address: "0xC9B265c10840A24230cf103818baeABaF31518AB"
+      address: "0x1429859428C0aBc9C2C47C8Ee9FBaf82cFA0F20f"
       abi: PlotActions
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/PlotActions.mapping.ts
       kind: ethereum/events
@@ -110,6 +110,7 @@ dataSources:
         - GameState
         - GrowthTimeTable
         - Plot
+        - PlotAction
       abis:
         - name: PlotActions
           file: ./abis/game/PlotActions.abi.json
@@ -130,11 +131,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PlotMetadata
-    network: matic
+    network: mainnet
     source:
-      address: "0x90bCfcBf0352E76D60601698a96B4c15e5671815"
+      address: "0x922D6956C99E12DFeB3224DEA977D0939758A1Fe"
       abi: PlotMetadata
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/PlotMetadata.mapping.ts
       kind: ethereum/events
@@ -154,11 +155,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PlotType
-    network: matic
+    network: mainnet
     source:
-      address: "0x42d2DA3003e246047D4a60f1B2b25DE4EE9eC70c"
+      address: "0x09635F643e140090A9A8Dcd712eD6285858ceBef"
       abi: PlotType
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/PlotType.mapping.ts
       kind: ethereum/events
@@ -181,11 +182,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PoolCore
-    network: matic
+    network: mainnet
     source:
-      address: "0xB36233e579D397bb3fC51a808f72d9Ff2F187AF7"
+      address: "0x9A676e781A523b5d0C0e43731313A708CB607508"
       abi: PoolCore
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/PoolCore.mapping.ts
       kind: ethereum/events
@@ -212,11 +213,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PoolDetails
-    network: matic
+    network: mainnet
     source:
-      address: "0x255d795A815B7d61C427093c840F60C7DEfe9ac9"
+      address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE"
       abi: PoolDetails
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/PoolDetails.mapping.ts
       kind: ethereum/events
@@ -245,11 +246,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: RoleRegistry
-    network: matic
+    network: mainnet
     source:
-      address: "0xaA8F7ADa9E9cDcdbCC7E816047915C9Ee8462D57"
+      address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d"
       abi: RoleRegistry
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/RoleRegistry.mapping.ts
       kind: ethereum/events
@@ -268,11 +269,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: TimeBreakdown
-    network: matic
+    network: mainnet
     source:
-      address: "0x9611B4Cc16bb884f483AD4a66B23eA2a1Df18fF1"
+      address: "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E"
       abi: TimeBreakdown
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/TimeBreakdown.mapping.ts
       kind: ethereum/events
@@ -304,11 +305,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: YieldTable
-    network: matic
+    network: mainnet
     source:
-      address: "0xaB5050298710D0Fba1A555d5509291a94eae5e73"
+      address: "0x9E545E3C0baAB3E08CdfD552C960A1050f373042"
       abi: YieldTable
-      startBlock: 26020340
+      startBlock: 0
     mapping:
       file: ./src/YieldTable.mapping.ts
       kind: ethereum/events

@@ -110,6 +110,7 @@ dataSources:
         - GameState
         - GrowthTimeTable
         - Plot
+        - PlotAction
       abis:
         - name: PlotActions
           file: ./abis/game/{{plotActionsAbiName}}.json

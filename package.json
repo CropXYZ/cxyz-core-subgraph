@@ -6,8 +6,8 @@
     "prepare:local": "mustache config/local.json subgraph.template.yaml > subgraph.yaml",
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy-polygon ": "npm prepare:polygon && graph deploy --product hosted-service cropxyz/cropxyz-metaverse",
-    "deploy-test ": "npm prepare:test && graph deploy --product hosted-service king-draco/cropxyz-mumbai",
+    "deploy-polygon": "npm run prepare:polygon && graph deploy --product hosted-service cropxyz/cropxyz-metaverse",
+    "deploy-test": "npm run prepare:test && graph deploy --product hosted-service king-draco/cropxyz-mumbai",
     "create-local": "graph create --node http://0.0.0.0:8020/ cxyz-core-subgraph",
     "remove-local": "graph remove --node http://0.0.0.0:8020/ cxyz-core-subgraph",
     "deploy-local": "graph deploy --node http://0.0.0.0:8020/ --ipfs http://0.0.0.0:5001 cxyz-core-subgraph"
