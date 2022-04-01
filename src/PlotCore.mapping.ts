@@ -3,6 +3,8 @@ import { MintedPlot, Paused, Unpaused } from "../generated/PlotCore/PlotCore";
 
 import { GameState, Plot } from "../generated/schema";
 
+import { constructYieldSubgraphId } from "./YieldTable.mapping";
+
 export function handlePause(event: Paused): void {
   let gameState = GameState.load("Plot");
 
@@ -37,6 +39,15 @@ export function handleMint(event: MintedPlot): void {
   plot.height = BigInt.fromI32(event.params.height);
   // Amount that needs to be staked in each tile
   plot.tileArea = BigInt.fromI32(event.params.tileArea);
+
+  // ----- ----- ----- ----- -----
+  // Yield config
+  plot.yieldConfig = constructYieldSubgraphId(
+    event.params.season.toString(),
+    event.params.width.toString(),
+    event.params.height.toString(),
+    event.params.tileArea.toString()
+  );
 
   // ----- ----- ----- ----- -----
   // Base speed

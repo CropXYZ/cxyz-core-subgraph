@@ -18,6 +18,10 @@ type Plot @entity {
   tileArea: BigInt!
 
   # ----- ----- ----- ----- -----
+  # Yield config
+  yieldConfig: YieldConfig!
+
+  # ----- ----- ----- ----- -----
   # Base speed
   baseSpeed: BigInt!
   # Base yield
@@ -79,6 +83,7 @@ type Crop @entity {
 
 type YieldConfig @entity {
   id: ID!
+  yieldTableId: BigInt!
   isActive: Boolean!
   baseYield: BigInt!
   plotType: PlotType!

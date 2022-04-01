@@ -10,6 +10,16 @@ import {
 } from "../generated/YieldTable/YieldTable";
 import { GameState, PlotType, YieldConfig } from "../generated/schema";
 
+export const constructYieldSubgraphId = (
+  season: string,
+  plotWidth: string,
+  plotHeight: string,
+  tileArea: string
+): string => `${season}-
+${plotWidth}-
+${plotHeight}-
+${tileArea}`;
+
 export function handlePause(event: Paused): void {
   let gameState = GameState.load("YieldTable");
 
@@ -33,7 +43,14 @@ export function handleUnpause(event: Unpaused): void {
 }
 
 export function handleAddYieldConfig(event: AddedYieldConfig): void {
-  const yieldConfig = new YieldConfig(event.params.yieldTableId.toString());
+  const yieldSubgraphId = constructYieldSubgraphId(
+    event.params.season.toString(),
+    event.params.plotWidth.toString(),
+    event.params.plotHeight.toString(),
+    event.params.tileArea.toString()
+  );
+
+  const yieldConfig = new YieldConfig(yieldSubgraphId);
 
   let plotType = PlotType.load(event.params.plotTypeId.toString());
 
@@ -41,6 +58,7 @@ export function handleAddYieldConfig(event: AddedYieldConfig): void {
     plotType = new PlotType(event.params.plotTypeId.toString());
   }
 
+  yieldConfig.yieldTableId = event.params.yieldTableId;
   yieldConfig.isActive = event.params.isActive;
   yieldConfig.baseYield = BigInt.fromI32(event.params.baseYield);
   yieldConfig.plotType = plotType.id;
@@ -61,10 +79,16 @@ export function handleAddYieldConfig(event: AddedYieldConfig): void {
 }
 
 export function handleUpdateYieldConfig(event: UpdatedYieldConfig): void {
-  let yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+  const yieldSubgraphId = constructYieldSubgraphId(
+    event.params.season.toString(),
+    event.params.plotWidth.toString(),
+    event.params.plotHeight.toString(),
+    event.params.tileArea.toString()
+  );
+  let yieldConfig = YieldConfig.load(yieldSubgraphId);
 
   if (yieldConfig == null) {
-    yieldConfig = new YieldConfig(event.params.yieldTableId.toString());
+    yieldConfig = new YieldConfig(yieldSubgraphId);
   }
 
   // Yield Details
@@ -75,10 +99,16 @@ export function handleUpdateYieldConfig(event: UpdatedYieldConfig): void {
 }
 
 export function handleActivateYieldConfig(event: ActivatedYieldConfig): void {
-  let yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+  const yieldSubgraphId = constructYieldSubgraphId(
+    event.params.season.toString(),
+    event.params.plotWidth.toString(),
+    event.params.plotHeight.toString(),
+    event.params.tileArea.toString()
+  );
+  let yieldConfig = YieldConfig.load(yieldSubgraphId);
 
   if (yieldConfig == null) {
-    yieldConfig = new YieldConfig(event.params.yieldTableId.toString());
+    yieldConfig = new YieldConfig(yieldSubgraphId);
   }
 
   yieldConfig.isActive = true;
@@ -88,10 +118,16 @@ export function handleActivateYieldConfig(event: ActivatedYieldConfig): void {
 export function handleDeactivateYieldConfig(
   event: DeactivatedYieldConfig
 ): void {
-  let yieldConfig = YieldConfig.load(event.params.yieldTableId.toString());
+  const yieldSubgraphId = constructYieldSubgraphId(
+    event.params.season.toString(),
+    event.params.plotWidth.toString(),
+    event.params.plotHeight.toString(),
+    event.params.tileArea.toString()
+  );
+  let yieldConfig = YieldConfig.load(yieldSubgraphId);
 
   if (yieldConfig == null) {
-    yieldConfig = new YieldConfig(event.params.yieldTableId.toString());
+    yieldConfig = new YieldConfig(yieldSubgraphId);
   }
 
   yieldConfig.isActive = false;

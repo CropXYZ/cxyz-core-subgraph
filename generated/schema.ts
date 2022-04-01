@@ -73,6 +73,7 @@ export class Plot extends Entity {
     this.set("width", Value.fromBigInt(BigInt.zero()));
     this.set("height", Value.fromBigInt(BigInt.zero()));
     this.set("tileArea", Value.fromBigInt(BigInt.zero()));
+    this.set("yieldConfig", Value.fromString(""));
     this.set("baseSpeed", Value.fromBigInt(BigInt.zero()));
     this.set("baseYield", Value.fromBigInt(BigInt.zero()));
     this.set("plotType", Value.fromString(""));
@@ -144,6 +145,15 @@ export class Plot extends Entity {
 
   set tileArea(value: BigInt) {
     this.set("tileArea", Value.fromBigInt(value));
+  }
+
+  get yieldConfig(): string {
+    let value = this.get("yieldConfig");
+    return value!.toString();
+  }
+
+  set yieldConfig(value: string) {
+    this.set("yieldConfig", Value.fromString(value));
   }
 
   get baseSpeed(): BigInt {
@@ -459,6 +469,7 @@ export class YieldConfig extends Entity {
     super();
     this.set("id", Value.fromString(id));
 
+    this.set("yieldTableId", Value.fromBigInt(BigInt.zero()));
     this.set("isActive", Value.fromBoolean(false));
     this.set("baseYield", Value.fromBigInt(BigInt.zero()));
     this.set("plotType", Value.fromString(""));
@@ -492,6 +503,15 @@ export class YieldConfig extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
+  }
+
+  get yieldTableId(): BigInt {
+    let value = this.get("yieldTableId");
+    return value!.toBigInt();
+  }
+
+  set yieldTableId(value: BigInt) {
+    this.set("yieldTableId", Value.fromBigInt(value));
   }
 
   get isActive(): boolean {
