@@ -55,7 +55,7 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   goldFlow.timestamp = event.block.timestamp;
   goldFlow.blockIndex = event.transaction.index;
   goldFlow.pool = pool.id;
-  goldFlow.counterParty = event.params.destinationAddress;
+  goldFlow.playerAddress = event.params.destinationAddress;
   goldFlow.tokenAddress = event.params.goldAddress;
   goldFlow.tokenAmount = event.params.goldDelta;
   goldFlow.isGold = true;
@@ -71,7 +71,7 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   tokenFlow.timestamp = event.block.timestamp;
   tokenFlow.blockIndex = event.transaction.index;
   tokenFlow.pool = pool.id;
-  tokenFlow.counterParty = event.params.destinationAddress;
+  tokenFlow.playerAddress = event.params.destinationAddress;
   tokenFlow.tokenAddress = event.params.tokenAddress;
   tokenFlow.tokenAmount = event.params.tokenDelta;
   tokenFlow.isGold = false;
@@ -87,7 +87,7 @@ export function handleTransferFromPool(event: TransferredFromPool): void {
   transactionFlow.timestamp = event.block.timestamp;
   transactionFlow.blockIndex = event.transaction.index;
   transactionFlow.pool = pool.id;
-  transactionFlow.counterParty = event.params.destinationAddress;
+  transactionFlow.playerAddress = event.params.destinationAddress;
   transactionFlow.isGoldInbound = goldFlow.isDirectionIntoPool;
 
   transactionFlow.flowIn = tokenFlow.isDirectionIntoPool

@@ -44,6 +44,7 @@ const createPlotAction = (
   plotAction.timestamp = transactionTimestamp;
   plotAction.blockIndex = transactionIndex;
 
+  plotAction.plot = plotId;
   plotAction.playerAddress = playerAddress;
   plotAction.amount = cropAmount;
   plotAction.actionType = actionType;

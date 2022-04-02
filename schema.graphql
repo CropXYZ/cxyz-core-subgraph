@@ -52,7 +52,9 @@ type Plot @entity {
 }
 
 type PlotAction @entity {
-  id: ID! # plotId
+  id: ID! # plotAction Id
+  plot: Plot!
+
   # Time stamp
   timestamp: BigInt!
   # The index that the transaction is within the block
@@ -159,7 +161,7 @@ type TransactionFlow @entity {
   # The pool of the pool being operated on
   pool: Pool!
   # The user that is initiating the transaction
-  counterParty: Bytes! # address
+  playerAddress: Bytes! # address
   # True if the token is gold beign added
   isGoldInbound: Boolean!
   # The token that is being moved into the system
@@ -177,7 +179,7 @@ type TokenFlow @entity {
   # The address of the pool that is being moved into or out of
   pool: Pool!
   # The user that is initiating the transaction
-  counterParty: Bytes! # address
+  playerAddress: Bytes! # address
   # The token being moved
   tokenAddress: Bytes! # address
   # True if the token is being moved into the pool

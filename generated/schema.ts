@@ -269,6 +269,7 @@ export class PlotAction extends Entity {
     super();
     this.set("id", Value.fromString(id));
 
+    this.set("plot", Value.fromString(""));
     this.set("timestamp", Value.fromBigInt(BigInt.zero()));
     this.set("blockIndex", Value.fromBigInt(BigInt.zero()));
     this.set("playerAddress", Value.fromBytes(Bytes.empty()));
@@ -299,6 +300,15 @@ export class PlotAction extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
+  }
+
+  get plot(): string {
+    let value = this.get("plot");
+    return value!.toString();
+  }
+
+  set plot(value: string) {
+    this.set("plot", Value.fromString(value));
   }
 
   get timestamp(): BigInt {
@@ -897,7 +907,7 @@ export class TransactionFlow extends Entity {
     this.set("timestamp", Value.fromBigInt(BigInt.zero()));
     this.set("blockIndex", Value.fromBigInt(BigInt.zero()));
     this.set("pool", Value.fromString(""));
-    this.set("counterParty", Value.fromBytes(Bytes.empty()));
+    this.set("playerAddress", Value.fromBytes(Bytes.empty()));
     this.set("isGoldInbound", Value.fromBoolean(false));
     this.set("flowIn", Value.fromString(""));
     this.set("flowOut", Value.fromString(""));
@@ -955,13 +965,13 @@ export class TransactionFlow extends Entity {
     this.set("pool", Value.fromString(value));
   }
 
-  get counterParty(): Bytes {
-    let value = this.get("counterParty");
+  get playerAddress(): Bytes {
+    let value = this.get("playerAddress");
     return value!.toBytes();
   }
 
-  set counterParty(value: Bytes) {
-    this.set("counterParty", Value.fromBytes(value));
+  set playerAddress(value: Bytes) {
+    this.set("playerAddress", Value.fromBytes(value));
   }
 
   get isGoldInbound(): boolean {
@@ -1000,7 +1010,7 @@ export class TokenFlow extends Entity {
     this.set("timestamp", Value.fromBigInt(BigInt.zero()));
     this.set("blockIndex", Value.fromBigInt(BigInt.zero()));
     this.set("pool", Value.fromString(""));
-    this.set("counterParty", Value.fromBytes(Bytes.empty()));
+    this.set("playerAddress", Value.fromBytes(Bytes.empty()));
     this.set("tokenAddress", Value.fromBytes(Bytes.empty()));
     this.set("isDirectionIntoPool", Value.fromBoolean(false));
     this.set("isGold", Value.fromBoolean(false));
@@ -1059,13 +1069,13 @@ export class TokenFlow extends Entity {
     this.set("pool", Value.fromString(value));
   }
 
-  get counterParty(): Bytes {
-    let value = this.get("counterParty");
+  get playerAddress(): Bytes {
+    let value = this.get("playerAddress");
     return value!.toBytes();
   }
 
-  set counterParty(value: Bytes) {
-    this.set("counterParty", Value.fromBytes(value));
+  set playerAddress(value: Bytes) {
+    this.set("playerAddress", Value.fromBytes(value));
   }
 
   get tokenAddress(): Bytes {
