@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class AddressStoreChanged extends ethereum.Event {
@@ -33,46 +33,6 @@ export class AddressStoreChanged__Params {
 
   get newAddressStore(): Address {
     return this._event.parameters[2].value.toAddress();
-  }
-}
-
-export class AdminChanged extends ethereum.Event {
-  get params(): AdminChanged__Params {
-    return new AdminChanged__Params(this);
-  }
-}
-
-export class AdminChanged__Params {
-  _event: AdminChanged;
-
-  constructor(event: AdminChanged) {
-    this._event = event;
-  }
-
-  get previousAdmin(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get newAdmin(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-}
-
-export class BeaconUpgraded extends ethereum.Event {
-  get params(): BeaconUpgraded__Params {
-    return new BeaconUpgraded__Params(this);
-  }
-}
-
-export class BeaconUpgraded__Params {
-  _event: BeaconUpgraded;
-
-  constructor(event: BeaconUpgraded) {
-    this._event = event;
-  }
-
-  get beacon(): Address {
-    return this._event.parameters[0].value.toAddress();
   }
 }
 
@@ -194,6 +154,24 @@ export class HarvestedPlot__Params {
   }
 }
 
+export class Initialized extends ethereum.Event {
+  get params(): Initialized__Params {
+    return new Initialized__Params(this);
+  }
+}
+
+export class Initialized__Params {
+  _event: Initialized;
+
+  constructor(event: Initialized) {
+    this._event = event;
+  }
+
+  get version(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+}
+
 export class Paused extends ethereum.Event {
   get params(): Paused__Params {
     return new Paused__Params(this);
@@ -308,6 +286,18 @@ export class PlotActions__versionResult {
     map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
     return map;
   }
+
+  getValue0(): BigInt {
+    return this.value0;
+  }
+
+  getValue1(): BigInt {
+    return this.value1;
+  }
+
+  getValue2(): BigInt {
+    return this.value2;
+  }
 }
 
 export class PlotActions__versionGameStatusResult {
@@ -327,6 +317,18 @@ export class PlotActions__versionGameStatusResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
     return map;
+  }
+
+  getValue0(): BigInt {
+    return this.value0;
+  }
+
+  getValue1(): BigInt {
+    return this.value1;
+  }
+
+  getValue2(): BigInt {
+    return this.value2;
   }
 }
 
@@ -348,6 +350,18 @@ export class PlotActions__versionGameUtilResult {
     map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
     return map;
   }
+
+  getValue0(): BigInt {
+    return this.value0;
+  }
+
+  getValue1(): BigInt {
+    return this.value1;
+  }
+
+  getValue2(): BigInt {
+    return this.value2;
+  }
 }
 
 export class PlotActions__versionSystemPointersResult {
@@ -368,6 +382,18 @@ export class PlotActions__versionSystemPointersResult {
     map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
     return map;
   }
+
+  getValue0(): BigInt {
+    return this.value0;
+  }
+
+  getValue1(): BigInt {
+    return this.value1;
+  }
+
+  getValue2(): BigInt {
+    return this.value2;
+  }
 }
 
 export class PlotActions extends ethereum.SmartContract {
@@ -375,11 +401,53 @@ export class PlotActions extends ethereum.SmartContract {
     return new PlotActions("PlotActions", address);
   }
 
+  APP_KEY_SKYONEER(): Bytes {
+    let result = super.call(
+      "APP_KEY_SKYONEER",
+      "APP_KEY_SKYONEER():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_APP_KEY_SKYONEER(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "APP_KEY_SKYONEER",
+      "APP_KEY_SKYONEER():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  APP_KEY_SYSTEM(): Bytes {
+    let result = super.call("APP_KEY_SYSTEM", "APP_KEY_SYSTEM():(bytes32)", []);
+
+    return result[0].toBytes();
+  }
+
+  try_APP_KEY_SYSTEM(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "APP_KEY_SYSTEM",
+      "APP_KEY_SYSTEM():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
   AS_ENGINE_ADDRESS(): Bytes {
     let result = super.call(
       "AS_ENGINE_ADDRESS",
       "AS_ENGINE_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -389,7 +457,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_ENGINE_ADDRESS",
       "AS_ENGINE_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -402,7 +470,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_GOLD_ADDRESS",
       "AS_GOLD_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -412,7 +480,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_GOLD_ADDRESS",
       "AS_GOLD_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -425,7 +493,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_PLOT_ACTIONS_ADDRESS",
       "AS_PLOT_ACTIONS_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -435,7 +503,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_PLOT_ACTIONS_ADDRESS",
       "AS_PLOT_ACTIONS_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -448,7 +516,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_PLOT_ADDRESS",
       "AS_PLOT_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -458,7 +526,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_PLOT_ADDRESS",
       "AS_PLOT_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -471,7 +539,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_PLOT_METADATA_ADDRESS",
       "AS_PLOT_METADATA_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -481,7 +549,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_PLOT_METADATA_ADDRESS",
       "AS_PLOT_METADATA_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -494,7 +562,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_PLOT_TYPE_ADDRESS",
       "AS_PLOT_TYPE_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -504,7 +572,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_PLOT_TYPE_ADDRESS",
       "AS_PLOT_TYPE_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -517,7 +585,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_POOL_CORE_ADDRESS",
       "AS_POOL_CORE_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -527,7 +595,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_POOL_CORE_ADDRESS",
       "AS_POOL_CORE_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -540,7 +608,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_POOL_DETAILS_ADDRESS",
       "AS_POOL_DETAILS_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -550,7 +618,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_POOL_DETAILS_ADDRESS",
       "AS_POOL_DETAILS_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -563,7 +631,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_ROLE_REGISTRY_ADDRESS",
       "AS_ROLE_REGISTRY_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -573,7 +641,99 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_ROLE_REGISTRY_ADDRESS",
       "AS_ROLE_REGISTRY_ADDRESS():(bytes32)",
-      []
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_STARTER_PACK_ACTIVATION_DEST_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_STARTER_PACK_ACTIVATION_DEST_ADDRESS",
+      "AS_STARTER_PACK_ACTIVATION_DEST_ADDRESS():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_STARTER_PACK_ACTIVATION_DEST_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_STARTER_PACK_ACTIVATION_DEST_ADDRESS",
+      "AS_STARTER_PACK_ACTIVATION_DEST_ADDRESS():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_STARTER_PACK_ACTIVATION_SRC_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_STARTER_PACK_ACTIVATION_SRC_ADDRESS",
+      "AS_STARTER_PACK_ACTIVATION_SRC_ADDRESS():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_STARTER_PACK_ACTIVATION_SRC_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_STARTER_PACK_ACTIVATION_SRC_ADDRESS",
+      "AS_STARTER_PACK_ACTIVATION_SRC_ADDRESS():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_STARTER_PACK_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_STARTER_PACK_ADDRESS",
+      "AS_STARTER_PACK_ADDRESS():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_STARTER_PACK_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_STARTER_PACK_ADDRESS",
+      "AS_STARTER_PACK_ADDRESS():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_SYSTEM_STATUS_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_SYSTEM_STATUS_ADDRESS",
+      "AS_SYSTEM_STATUS_ADDRESS():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_SYSTEM_STATUS_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_SYSTEM_STATUS_ADDRESS",
+      "AS_SYSTEM_STATUS_ADDRESS():(bytes32)",
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -586,7 +746,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_TEAM_ADDRESS",
       "AS_TEAM_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -596,7 +756,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_TEAM_ADDRESS",
       "AS_TEAM_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -609,7 +769,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_TIME_BREAKDOWN_ADDRESS",
       "AS_TIME_BREAKDOWN_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -619,7 +779,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_TIME_BREAKDOWN_ADDRESS",
       "AS_TIME_BREAKDOWN_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -632,7 +792,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_TREASURY_ADDRESS",
       "AS_TREASURY_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -642,7 +802,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_TREASURY_ADDRESS",
       "AS_TREASURY_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -655,7 +815,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "AS_YIELD_TABLE_ADDRESS",
       "AS_YIELD_TABLE_ADDRESS():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -665,7 +825,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_YIELD_TABLE_ADDRESS",
       "AS_YIELD_TABLE_ADDRESS():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -674,21 +834,21 @@ export class PlotActions extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  RR_ADDRESS_CONTROLLER_ROLE(): Bytes {
+  RR_DAPP_ADMIN_ROLE(): Bytes {
     let result = super.call(
-      "RR_ADDRESS_CONTROLLER_ROLE",
-      "RR_ADDRESS_CONTROLLER_ROLE():(bytes32)",
-      []
+      "RR_DAPP_ADMIN_ROLE",
+      "RR_DAPP_ADMIN_ROLE():(bytes32)",
+      [],
     );
 
     return result[0].toBytes();
   }
 
-  try_RR_ADDRESS_CONTROLLER_ROLE(): ethereum.CallResult<Bytes> {
+  try_RR_DAPP_ADMIN_ROLE(): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
-      "RR_ADDRESS_CONTROLLER_ROLE",
-      "RR_ADDRESS_CONTROLLER_ROLE():(bytes32)",
-      []
+      "RR_DAPP_ADMIN_ROLE",
+      "RR_DAPP_ADMIN_ROLE():(bytes32)",
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -697,21 +857,67 @@ export class PlotActions extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  RR_GAME_ADMIN_ROLE(): Bytes {
+  RR_DAPP_PAUSER_ROLE(): Bytes {
     let result = super.call(
-      "RR_GAME_ADMIN_ROLE",
-      "RR_GAME_ADMIN_ROLE():(bytes32)",
-      []
+      "RR_DAPP_PAUSER_ROLE",
+      "RR_DAPP_PAUSER_ROLE():(bytes32)",
+      [],
     );
 
     return result[0].toBytes();
   }
 
-  try_RR_GAME_ADMIN_ROLE(): ethereum.CallResult<Bytes> {
+  try_RR_DAPP_PAUSER_ROLE(): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
-      "RR_GAME_ADMIN_ROLE",
-      "RR_GAME_ADMIN_ROLE():(bytes32)",
-      []
+      "RR_DAPP_PAUSER_ROLE",
+      "RR_DAPP_PAUSER_ROLE():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  RR_DAPP_UPGRADER_ROLE(): Bytes {
+    let result = super.call(
+      "RR_DAPP_UPGRADER_ROLE",
+      "RR_DAPP_UPGRADER_ROLE():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_RR_DAPP_UPGRADER_ROLE(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "RR_DAPP_UPGRADER_ROLE",
+      "RR_DAPP_UPGRADER_ROLE():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  RR_GAME_MINTER_ROLE(): Bytes {
+    let result = super.call(
+      "RR_GAME_MINTER_ROLE",
+      "RR_GAME_MINTER_ROLE():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_RR_GAME_MINTER_ROLE(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "RR_GAME_MINTER_ROLE",
+      "RR_GAME_MINTER_ROLE():(bytes32)",
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -735,69 +941,27 @@ export class PlotActions extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  RR_OPERATOR_ROLE(): Bytes {
+  UPGRADE_INTERFACE_VERSION(): string {
     let result = super.call(
-      "RR_OPERATOR_ROLE",
-      "RR_OPERATOR_ROLE():(bytes32)",
-      []
+      "UPGRADE_INTERFACE_VERSION",
+      "UPGRADE_INTERFACE_VERSION():(string)",
+      [],
     );
 
-    return result[0].toBytes();
+    return result[0].toString();
   }
 
-  try_RR_OPERATOR_ROLE(): ethereum.CallResult<Bytes> {
+  try_UPGRADE_INTERFACE_VERSION(): ethereum.CallResult<string> {
     let result = super.tryCall(
-      "RR_OPERATOR_ROLE",
-      "RR_OPERATOR_ROLE():(bytes32)",
-      []
+      "UPGRADE_INTERFACE_VERSION",
+      "UPGRADE_INTERFACE_VERSION():(string)",
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  RR_PAUSER_ROLE(): Bytes {
-    let result = super.call("RR_PAUSER_ROLE", "RR_PAUSER_ROLE():(bytes32)", []);
-
-    return result[0].toBytes();
-  }
-
-  try_RR_PAUSER_ROLE(): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "RR_PAUSER_ROLE",
-      "RR_PAUSER_ROLE():(bytes32)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  RR_UPGRADER_ROLE(): Bytes {
-    let result = super.call(
-      "RR_UPGRADER_ROLE",
-      "RR_UPGRADER_ROLE():(bytes32)",
-      []
-    );
-
-    return result[0].toBytes();
-  }
-
-  try_RR_UPGRADER_ROLE(): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "RR_UPGRADER_ROLE",
-      "RR_UPGRADER_ROLE():(bytes32)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
+    return ethereum.CallResult.fromValue(value[0].toString());
   }
 
   addressStore(): Address {
@@ -819,7 +983,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "amountNeededToBeStaked",
       "amountNeededToBeStaked(uint256):(uint16)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
+      [ethereum.Value.fromUnsignedBigInt(plotId)],
     );
 
     return result[0].toI32();
@@ -829,7 +993,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "amountNeededToBeStaked",
       "amountNeededToBeStaked(uint256):(uint16)",
-      [ethereum.Value.fromUnsignedBigInt(plotId)]
+      [ethereum.Value.fromUnsignedBigInt(plotId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -928,6 +1092,25 @@ export class PlotActions extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  proxiableUUID(): Bytes {
+    let result = super.call("proxiableUUID", "proxiableUUID():(bytes32)", []);
+
+    return result[0].toBytes();
+  }
+
+  try_proxiableUUID(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "proxiableUUID",
+      "proxiableUUID():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
   roleRegistry(): Address {
     let result = super.call("roleRegistry", "roleRegistry():(address)", []);
 
@@ -936,6 +1119,21 @@ export class PlotActions extends ethereum.SmartContract {
 
   try_roleRegistry(): ethereum.CallResult<Address> {
     let result = super.tryCall("roleRegistry", "roleRegistry():(address)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  systemStatus(): Address {
+    let result = super.call("systemStatus", "systemStatus():(address)", []);
+
+    return result[0].toAddress();
+  }
+
+  try_systemStatus(): ethereum.CallResult<Address> {
+    let result = super.tryCall("systemStatus", "systemStatus():(address)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -953,7 +1151,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "timeBreakdown",
       "timeBreakdown():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -966,7 +1164,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "treasuryAddress",
       "treasuryAddress():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -976,7 +1174,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "treasuryAddress",
       "treasuryAddress():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -989,13 +1187,13 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "version",
       "version():(uint256,uint256,uint256)",
-      []
+      [],
     );
 
     return new PlotActions__versionResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
-      result[2].toBigInt()
+      result[2].toBigInt(),
     );
   }
 
@@ -1003,7 +1201,7 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.tryCall(
       "version",
       "version():(uint256,uint256,uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1013,8 +1211,8 @@ export class PlotActions extends ethereum.SmartContract {
       new PlotActions__versionResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
-        value[2].toBigInt()
-      )
+        value[2].toBigInt(),
+      ),
     );
   }
 
@@ -1022,23 +1220,21 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "versionGameStatus",
       "versionGameStatus():(uint256,uint256,uint256)",
-      []
+      [],
     );
 
     return new PlotActions__versionGameStatusResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
-      result[2].toBigInt()
+      result[2].toBigInt(),
     );
   }
 
-  try_versionGameStatus(): ethereum.CallResult<
-    PlotActions__versionGameStatusResult
-  > {
+  try_versionGameStatus(): ethereum.CallResult<PlotActions__versionGameStatusResult> {
     let result = super.tryCall(
       "versionGameStatus",
       "versionGameStatus():(uint256,uint256,uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1048,8 +1244,8 @@ export class PlotActions extends ethereum.SmartContract {
       new PlotActions__versionGameStatusResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
-        value[2].toBigInt()
-      )
+        value[2].toBigInt(),
+      ),
     );
   }
 
@@ -1057,23 +1253,21 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "versionGameUtil",
       "versionGameUtil():(uint256,uint256,uint256)",
-      []
+      [],
     );
 
     return new PlotActions__versionGameUtilResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
-      result[2].toBigInt()
+      result[2].toBigInt(),
     );
   }
 
-  try_versionGameUtil(): ethereum.CallResult<
-    PlotActions__versionGameUtilResult
-  > {
+  try_versionGameUtil(): ethereum.CallResult<PlotActions__versionGameUtilResult> {
     let result = super.tryCall(
       "versionGameUtil",
       "versionGameUtil():(uint256,uint256,uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1083,8 +1277,8 @@ export class PlotActions extends ethereum.SmartContract {
       new PlotActions__versionGameUtilResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
-        value[2].toBigInt()
-      )
+        value[2].toBigInt(),
+      ),
     );
   }
 
@@ -1092,23 +1286,21 @@ export class PlotActions extends ethereum.SmartContract {
     let result = super.call(
       "versionSystemPointers",
       "versionSystemPointers():(uint256,uint256,uint256)",
-      []
+      [],
     );
 
     return new PlotActions__versionSystemPointersResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
-      result[2].toBigInt()
+      result[2].toBigInt(),
     );
   }
 
-  try_versionSystemPointers(): ethereum.CallResult<
-    PlotActions__versionSystemPointersResult
-  > {
+  try_versionSystemPointers(): ethereum.CallResult<PlotActions__versionSystemPointersResult> {
     let result = super.tryCall(
       "versionSystemPointers",
       "versionSystemPointers():(uint256,uint256,uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1118,8 +1310,8 @@ export class PlotActions extends ethereum.SmartContract {
       new PlotActions__versionSystemPointersResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
-        value[2].toBigInt()
-      )
+        value[2].toBigInt(),
+      ),
     );
   }
 
@@ -1383,36 +1575,6 @@ export class UnpauseCall__Outputs {
   _call: UnpauseCall;
 
   constructor(call: UnpauseCall) {
-    this._call = call;
-  }
-}
-
-export class UpgradeToCall extends ethereum.Call {
-  get inputs(): UpgradeToCall__Inputs {
-    return new UpgradeToCall__Inputs(this);
-  }
-
-  get outputs(): UpgradeToCall__Outputs {
-    return new UpgradeToCall__Outputs(this);
-  }
-}
-
-export class UpgradeToCall__Inputs {
-  _call: UpgradeToCall;
-
-  constructor(call: UpgradeToCall) {
-    this._call = call;
-  }
-
-  get newImplementation(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class UpgradeToCall__Outputs {
-  _call: UpgradeToCall;
-
-  constructor(call: UpgradeToCall) {
     this._call = call;
   }
 }
