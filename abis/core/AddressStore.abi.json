@@ -1,9 +1,78 @@
 [
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      }
+    ],
+    "name": "AddressEmptyCode",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "ERC1967InvalidImplementation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ERC1967NonPayable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FailedInnerCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInitialization",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotInitializing",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "UUPSUnauthorizedCallContext",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "slot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UUPSUnsupportedProxiableUUID",
+    "type": "error"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
         "indexed": true,
+        "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
         "internalType": "address",
         "name": "operator",
         "type": "address"
@@ -34,39 +103,13 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "internalType": "address",
-        "name": "previousAdmin",
-        "type": "address"
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
       },
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "newAdmin",
-        "type": "address"
-      }
-    ],
-    "name": "AdminChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "beacon",
-        "type": "address"
-      }
-    ],
-    "name": "BeaconUpgraded",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
         "internalType": "address",
         "name": "operator",
         "type": "address"
@@ -98,12 +141,12 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
+        "internalType": "uint64",
+        "name": "version",
+        "type": "uint64"
       }
     ],
-    "name": "Paused",
+    "name": "Initialized",
     "type": "event"
   },
   {
@@ -112,91 +155,9 @@
       {
         "indexed": true,
         "internalType": "bytes32",
-        "name": "role",
+        "name": "appKey",
         "type": "bytes32"
       },
-      {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "previousAdminRole",
-        "type": "bytes32"
-      },
-      {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "newAdminRole",
-        "type": "bytes32"
-      }
-    ],
-    "name": "RoleAdminChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "role",
-        "type": "bytes32"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "sender",
-        "type": "address"
-      }
-    ],
-    "name": "RoleGranted",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "role",
-        "type": "bytes32"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "sender",
-        "type": "address"
-      }
-    ],
-    "name": "RoleRevoked",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "Unpaused",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
       {
         "indexed": false,
         "internalType": "address",
@@ -216,7 +177,7 @@
         "type": "bytes32"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "address",
         "name": "oldResolveAddress",
         "type": "address"
@@ -246,98 +207,7 @@
   },
   {
     "inputs": [],
-    "name": "AS_ENGINE_ADDRESS",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "AS_GOLD_ADDRESS",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "AS_PLOT_ACTIONS_ADDRESS",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "AS_PLOT_ADDRESS",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "AS_PLOT_METADATA_ADDRESS",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "AS_PLOT_TYPE_ADDRESS",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "AS_POOL_CORE_ADDRESS",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "AS_POOL_DETAILS_ADDRESS",
+    "name": "APP_KEY_SYSTEM",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -363,7 +233,20 @@
   },
   {
     "inputs": [],
-    "name": "AS_TEAM_ADDRESS",
+    "name": "AS_ROLE_REGISTRY_ADDRESS_STRING",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_SYSTEM_STATUS_ADDRESS",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -376,7 +259,7 @@
   },
   {
     "inputs": [],
-    "name": "AS_TIME_BREAKDOWN_ADDRESS",
+    "name": "RR_DAPP_ADMIN_ROLE",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -389,7 +272,20 @@
   },
   {
     "inputs": [],
-    "name": "AS_TREASURY_ADDRESS",
+    "name": "RR_DAPP_ADMIN_ROLE_STRING",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_DAPP_CONNECTED_ROLE",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -402,7 +298,20 @@
   },
   {
     "inputs": [],
-    "name": "AS_YIELD_TABLE_ADDRESS",
+    "name": "RR_DAPP_CONNECTED_ROLE_STRING",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_DAPP_PAUSER_ROLE",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -415,7 +324,20 @@
   },
   {
     "inputs": [],
-    "name": "CORE_OPERATOR_ROLE",
+    "name": "RR_DAPP_PAUSER_ROLE_STRING",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_DAPP_UPGRADER_ROLE",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -428,7 +350,20 @@
   },
   {
     "inputs": [],
-    "name": "CORE_PAUSER_ROLE",
+    "name": "RR_DAPP_UPGRADER_ROLE_STRING",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_SYSTEM_ADMIN_ROLE",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -441,7 +376,20 @@
   },
   {
     "inputs": [],
-    "name": "CORE_UPGRADER_ROLE",
+    "name": "RR_SYSTEM_ADMIN_ROLE_STRING",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_SYSTEM_PAUSER_ROLE",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -454,12 +402,51 @@
   },
   {
     "inputs": [],
-    "name": "DEFAULT_ADMIN_ROLE",
+    "name": "RR_SYSTEM_PAUSER_ROLE_STRING",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_SYSTEM_UPGRADER_ROLE",
     "outputs": [
       {
         "internalType": "bytes32",
         "name": "",
         "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_SYSTEM_UPGRADER_ROLE_STRING",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADE_INTERFACE_VERSION",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -467,6 +454,11 @@
   },
   {
     "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      },
       {
         "internalType": "string",
         "name": "addressName",
@@ -486,6 +478,11 @@
   {
     "inputs": [
       {
+        "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      },
+      {
         "internalType": "string",
         "name": "addressName",
         "type": "string"
@@ -500,11 +497,53 @@
     "inputs": [
       {
         "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
         "name": "addressNameHash",
         "type": "bytes32"
       }
     ],
-    "name": "getAddress",
+    "name": "getAppAddressHash",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAppKeys",
+    "outputs": [
+      {
+        "internalType": "bytes32[]",
+        "name": "",
+        "type": "bytes32[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "addressNameHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getResolvedAddress",
     "outputs": [
       {
         "internalType": "address payable",
@@ -519,11 +558,16 @@
     "inputs": [
       {
         "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
         "name": "addressNameHash",
         "type": "bytes32"
       }
     ],
-    "name": "getAddressName",
+    "name": "getResolvedAddressName",
     "outputs": [
       {
         "internalType": "string",
@@ -535,8 +579,14 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getAddressNameHashes",
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getResolvedAddressNameHashes",
     "outputs": [
       {
         "internalType": "bytes32[]",
@@ -548,8 +598,14 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getAddressNames",
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getResolvedAddressNames",
     "outputs": [
       {
         "internalType": "string[]",
@@ -563,66 +619,11 @@
   {
     "inputs": [
       {
-        "internalType": "bytes32",
-        "name": "role",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getRoleAdmin",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "role",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "account",
+        "internalType": "address payable",
+        "name": "roleRegistryAddress",
         "type": "address"
       }
     ],
-    "name": "grantRole",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "role",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "hasRole",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "initialize",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -630,6 +631,11 @@
   },
   {
     "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      },
       {
         "internalType": "bytes32",
         "name": "addressNameHash",
@@ -651,6 +657,11 @@
     "inputs": [
       {
         "internalType": "bytes32",
+        "name": "appKey",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
         "name": "addressNameHash",
         "type": "bytes32"
       }
@@ -668,19 +679,38 @@
   },
   {
     "inputs": [],
-    "name": "pause",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "name": "proxiableUUID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "paused",
+    "name": "roleRegistry",
     "outputs": [
       {
-        "internalType": "bool",
+        "internalType": "address",
         "name": "",
-        "type": "bool"
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "systemStatus",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -690,66 +720,9 @@
     "inputs": [
       {
         "internalType": "bytes32",
-        "name": "role",
+        "name": "appKey",
         "type": "bytes32"
       },
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "renounceRole",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "role",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "revokeRole",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes4",
-        "name": "interfaceId",
-        "type": "bytes4"
-      }
-    ],
-    "name": "supportsInterface",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "unpause",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
       {
         "internalType": "string",
         "name": "addressName",
@@ -762,19 +735,6 @@
       }
     ],
     "name": "updateAddress",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "newImplementation",
-        "type": "address"
-      }
-    ],
-    "name": "upgradeTo",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -822,7 +782,7 @@
   },
   {
     "inputs": [],
-    "name": "versionCoreUtil",
+    "name": "versionSystemUtil",
     "outputs": [
       {
         "internalType": "uint256",

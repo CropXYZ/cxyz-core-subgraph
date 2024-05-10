@@ -1,23 +1,243 @@
 [
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      }
+    ],
+    "name": "AddressEmptyCode",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "ERC1967InvalidImplementation",
+    "type": "error"
+  },
+  {
     "inputs": [],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
+    "name": "ERC1967NonPayable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ERC721EnumerableForbiddenBatchMint",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721IncorrectOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ERC721InsufficientApproval",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "approver",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidApprover",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidOperator",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidReceiver",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidSender",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ERC721NonexistentToken",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "ERC721OutOfBoundsIndex",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "EnforcedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ExpectedPause",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FailedInnerCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInitialization",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotInitializing",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "UUPSUnauthorizedCallContext",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "slot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UUPSUnsupportedProxiableUUID",
+    "type": "error"
   },
   {
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
         "indexed": true,
         "internalType": "uint256",
-        "name": "date",
+        "name": "width",
         "type": "uint256"
       },
       {
         "indexed": true,
-        "internalType": "string",
-        "name": "plotSize",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "height",
+        "type": "uint256"
       },
       {
         "indexed": true,
@@ -28,11 +248,48 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "preallocationCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "mintedBeforeCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "maxElements",
         "type": "uint256"
       }
     ],
-    "name": "AddStarterPackSize",
+    "name": "AddedStarterPackSize",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "oldAddressStore",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newAddressStore",
+        "type": "address"
+      }
+    ],
+    "name": "AddressStoreChanged",
     "type": "event"
   },
   {
@@ -89,25 +346,199 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
-        "name": "date",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "sizeSpecificTokenId",
         "type": "uint256"
       },
       {
         "indexed": true,
         "internalType": "uint256",
-        "name": "id",
+        "name": "fid",
         "type": "uint256"
       },
       {
         "indexed": true,
-        "internalType": "string",
-        "name": "plotSize",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "width",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "height",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "minter",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
       }
     ],
-    "name": "GenerateFarmerStarterPack",
+    "name": "ClaimedFarmerStarterPack",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "version",
+        "type": "uint64"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "oldMaxAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "newMaxAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "MaxMintChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      }
+    ],
+    "name": "MintPaused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      }
+    ],
+    "name": "MintUnpaused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "sizeSpecificTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "width",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "height",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "minter",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      }
+    ],
+    "name": "MintedBridgedFarmerStarterPack",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "sizeSpecificTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "width",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "height",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "minter",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      }
+    ],
+    "name": "MintedFarmerStarterPack",
     "type": "event"
   },
   {
@@ -146,22 +577,21 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
-        "name": "account",
+        "name": "admin",
         "type": "address"
-      }
-    ],
-    "name": "PausedMint",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
+      },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
-        "name": "teamAddress",
+        "name": "oldTeamAddress",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newTeamAddress",
         "type": "address"
       }
     ],
@@ -210,97 +640,267 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
-        "name": "account",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "width",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "height",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "oldPackBaseUri",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "newPackBaseUri",
+        "type": "string"
+      }
+    ],
+    "name": "UpdatedPackBaseUri",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "width",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "height",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldPackMaxElements",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newPackMaxElements",
+        "type": "uint256"
+      }
+    ],
+    "name": "UpdatedPackMaxElements",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "width",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "height",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldPackPrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newPackPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "UpdatedPackPrice",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "implementation",
         "type": "address"
       }
     ],
-    "name": "UnpausedMint",
+    "name": "Upgraded",
     "type": "event"
   },
   {
-    "anonymous": false,
+    "inputs": [],
+    "name": "APP_KEY_SKYONEER",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_ROLE_REGISTRY_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_STARTER_PACK_ACTIVATION_SRC_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_DAPP_ADMIN_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "RR_GAME_MINTER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADE_INTERFACE_VERSION",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "activateAll",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
-        "indexed": true,
         "internalType": "uint256",
-        "name": "date",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "string",
-        "name": "plotSize",
-        "type": "string"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "newMaxElements",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "oldMaxElements",
+        "name": "tokenId",
         "type": "uint256"
       }
     ],
-    "name": "UpdateStarterPackMaxElements",
-    "type": "event"
+    "name": "activateOne",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "anonymous": false,
-    "inputs": [
+    "inputs": [],
+    "name": "activationAddress",
+    "outputs": [
       {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "date",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "string",
-        "name": "plotSize",
-        "type": "string"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "newPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "oldPrice",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
-    "name": "UpdateStarterPackPrice",
-    "type": "event"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_width",
+        "name": "width_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_height",
+        "name": "height_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_price",
+        "name": "price_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_maxElements",
+        "name": "preallocationCount_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "mintedBeforeCount_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maxElements_",
         "type": "uint256"
       },
       {
@@ -318,6 +918,19 @@
       }
     ],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "addressStore",
+    "outputs": [
+      {
+        "internalType": "contract IAddressStore",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -358,19 +971,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "baseTokenURI",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -381,6 +981,60 @@
     "name": "burn",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "fid_",
+        "type": "uint256"
+      }
+    ],
+    "name": "claimDetails",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "fid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "claimCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isValue",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct StarterPackLib.FarmerStarterPackClaim",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -403,79 +1057,10 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_width",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_height",
-        "type": "uint256"
-      }
-    ],
-    "name": "getPlotSizeDetails",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_width",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_height",
-        "type": "uint256"
-      }
-    ],
-    "name": "getPlotSizeString",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "pure",
-    "type": "function"
-  },
-  {
     "inputs": [],
-    "name": "getPlotSizes",
-    "outputs": [
-      {
-        "internalType": "string[]",
-        "name": "",
-        "type": "string[]"
-      }
-    ],
-    "stateMutability": "view",
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -531,24 +1116,24 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "width_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "height_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "count_",
+        "type": "uint256"
+      },
+      {
         "internalType": "address",
-        "name": "_to",
+        "name": "to_",
         "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_width",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_height",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_count",
-        "type": "uint256"
       }
     ],
     "name": "mint",
@@ -560,26 +1145,109 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "width_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "height_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "sizeSpecificTokenId_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "to_",
+        "type": "address"
+      }
+    ],
+    "name": "mintBridged",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "width_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "height_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fid_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "to_",
+        "type": "address"
+      }
+    ],
+    "name": "mintClaim",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
         "type": "uint256"
       }
     ],
-    "name": "mintedStarterPacks",
+    "name": "mintedStarterPack",
     "outputs": [
       {
-        "internalType": "string",
-        "name": "sizeSpecificTokenId",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "plotSizeId",
-        "type": "string"
-      },
-      {
-        "internalType": "bool",
-        "name": "isValue",
-        "type": "bool"
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sizeSpecificTokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "width",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "height",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isActivated",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isValue",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct StarterPackLib.SpecificFarmerStarterPack",
+        "name": "",
+        "type": "tuple"
       }
     ],
     "stateMutability": "view",
@@ -631,14 +1299,8 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "bool",
-        "name": "val",
-        "type": "bool"
-      }
-    ],
-    "name": "pause",
+    "inputs": [],
+    "name": "pauseMint",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -672,73 +1334,78 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "width_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "height_",
+        "type": "uint256"
       }
     ],
-    "name": "plotSizeDetails",
+    "name": "plotSizeId",
     "outputs": [
       {
-        "internalType": "uint256",
-        "name": "width",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "height",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "maxElements",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "price",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "baseURI",
-        "type": "string"
-      },
-      {
-        "internalType": "bool",
-        "name": "isValue",
-        "type": "bool"
-      },
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "_value",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct Counters.Counter",
-        "name": "tokenIdTracker",
-        "type": "tuple"
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
       }
     ],
-    "stateMutability": "view",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "width_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "height_",
         "type": "uint256"
       }
     ],
+    "name": "plotSizeString",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "plotSizeString_",
+        "type": "string"
+      }
+    ],
+    "name": "plotSizeStringToId",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "plotSizes",
     "outputs": [
       {
-        "internalType": "string",
+        "internalType": "string[]",
         "name": "",
-        "type": "string"
+        "type": "string[]"
       }
     ],
     "stateMutability": "view",
@@ -748,17 +1415,17 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_width",
+        "name": "width_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_height",
+        "name": "height_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_count",
+        "name": "count_",
         "type": "uint256"
       }
     ],
@@ -775,9 +1442,35 @@
   },
   {
     "inputs": [],
+    "name": "proxiableUUID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "roleRegistry",
+    "outputs": [
+      {
+        "internalType": "contract IRoleRegistry",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -822,7 +1515,7 @@
       },
       {
         "internalType": "bytes",
-        "name": "_data",
+        "name": "data",
         "type": "bytes"
       }
     ],
@@ -853,7 +1546,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_maxMintPerTransaction",
+        "name": "maxMintPerTransaction_",
         "type": "uint256"
       }
     ],
@@ -866,13 +1559,160 @@
     "inputs": [
       {
         "internalType": "address payable",
-        "name": "_teamAddress",
+        "name": "teamAddress_",
         "type": "address"
       }
     ],
     "name": "setTeamAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "width_",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "height_",
+        "type": "uint256"
+      }
+    ],
+    "name": "starterPackDetails",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "width",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "height",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxElements",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mintedCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mintedBeforeCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "preallocationCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "baseURI",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "plotSizeString",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isValue",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct StarterPackLib.FarmerStarterPackTracker",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "starterPackDetailsGivenTokenId",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "width",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "height",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxElements",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mintedCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mintedBeforeCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "preallocationCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "baseURI",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "plotSizeString",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isValue",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct StarterPackLib.FarmerStarterPackTracker",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -912,7 +1752,7 @@
     "name": "teamAddress",
     "outputs": [
       {
-        "internalType": "address payable",
+        "internalType": "address",
         "name": "",
         "type": "address"
       }
@@ -984,7 +1824,7 @@
   },
   {
     "inputs": [],
-    "name": "totalMint",
+    "name": "totalMinted",
     "outputs": [
       {
         "internalType": "uint256",
@@ -996,19 +1836,8 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_width",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_height",
-        "type": "uint256"
-      }
-    ],
-    "name": "totalMintGivenSize",
+    "inputs": [],
+    "name": "totalMintedReserved",
     "outputs": [
       {
         "internalType": "uint256",
@@ -1030,6 +1859,32 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalUnclaimed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newAddressStore",
+        "type": "address"
+      }
+    ],
+    "name": "transferAddressStore",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -1069,14 +1924,8 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "bool",
-        "name": "val",
-        "type": "bool"
-      }
-    ],
-    "name": "unlockMint",
+    "inputs": [],
+    "name": "unpauseMint",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -1085,17 +1934,17 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_width",
+        "name": "width_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_height",
+        "name": "height_",
         "type": "uint256"
       },
       {
         "internalType": "string",
-        "name": "_plotSpecificURI",
+        "name": "plotSpecificURI_",
         "type": "string"
       }
     ],
@@ -1114,17 +1963,17 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_width",
+        "name": "width_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_height",
+        "name": "height_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_newMaxElements",
+        "name": "newMaxElements_",
         "type": "uint256"
       }
     ],
@@ -1143,17 +1992,17 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_width",
+        "name": "width_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_height",
+        "name": "height_",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_newPrice",
+        "name": "newPrice_",
         "type": "uint256"
       }
     ],
@@ -1172,7 +2021,48 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_owner",
+        "name": "newImplementation",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "upgradeToAndCall",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "version",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner_",
         "type": "address"
       }
     ],
