@@ -1,14 +1,14 @@
-specVersion: 0.0.2
+specVersion: 0.0.4
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: AddressStore
-    network: mumbai
+    network: gold
     source:
-      address: "0x1A97a588c7408aB6DeD94d8BFB99DA87Dfe574fe"
+      address: "0x75944A4b121E2C0E919ca1DFabC2f4eda9cFaC68"
       abi: AddressStore
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/AddressStore.mapping.ts
       kind: ethereum/events
@@ -21,25 +21,20 @@ dataSources:
         - name: AddressStore
           file: ./abis/core/AddressStore.abi.json
       eventHandlers:
-        - event: Paused(address)
-          handler: handlePause
-        - event: Unpaused(address)
-          handler: handleUnpause
-
-        - event: AddedResolveAddress(indexed address,string,indexed bytes32,indexed address)
+        - event: AddedResolveAddress(indexed bytes32,address,string,indexed bytes32,indexed address)
           handler: handleAddAddress
-        - event: UpdatedResolveAddress(address,string,indexed bytes32,indexed address,indexed address)
+        - event: UpdatedResolveAddress(indexed bytes32,address,string,indexed bytes32,address,indexed address)
           handler: handleUpdateAddress
-        - event: DeactivatedResolveAddressName(indexed address,string,indexed bytes32,indexed address)
+        - event: DeactivatedResolveAddressName(indexed bytes32,address,string,indexed bytes32,indexed address)
           handler: handleDeactivateAddress
 
   - kind: ethereum/contract
     name: GameEngine
-    network: mumbai
+    network: gold
     source:
-      address: "0x160F01C4F85df5aa0e4E5d9413E4994f5930527c"
+      address: "0xc1E5e0dc7E94F9167CCF983bA26F7C21c83e0a33"
       abi: GameEngine
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/GameEngine.mapping.ts
       kind: ethereum/events
@@ -62,18 +57,14 @@ dataSources:
           handler: handleSimplePurchase
         - event: TokenInGoldOutSwapped(indexed address,indexed address,uint256,uint256,uint256,uint256,uint8)
           handler: handleSimpleSell
-        - event: PausedGame(indexed address)
-          handler: handlePauseGame
-        - event: UnpausedGame(indexed address)
-          handler: handleUnpauseGame
 
   - kind: ethereum/contract
     name: PlotCore
-    network: mumbai
+    network: gold
     source:
-      address: "0xAf667F03f3bca69b3E42656E5c2DFc92C19F1B60"
+      address: "0xe2f275b2a5C376fD10006B67A9bE0CC3bd5488E8"
       abi: PlotCore
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/PlotCore.mapping.ts
       kind: ethereum/events
@@ -90,16 +81,19 @@ dataSources:
         - event: Unpaused(address)
           handler: handleUnpause
 
-        - event: MintedPlot(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
-          handler: handleMint
+        - event: MintedPlotPackActivate(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
+          handler: handleMintActivate
+
+        - event: MintedPlotAdmin(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
+          handler: handleMintAdmin
 
   - kind: ethereum/contract
     name: PlotActions
-    network: mumbai
+    network: gold
     source:
-      address: "0x32246f80985354871638bf2a8083453Aa943ba9e"
+      address: "0xB45805566A842efB6329c11e092158f3E0eDdaa2"
       abi: PlotActions
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/PlotActions.mapping.ts
       kind: ethereum/events
@@ -131,11 +125,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PlotMetadata
-    network: mumbai
+    network: gold
     source:
-      address: "0x1F504B2Ec6706F95Cb352eDA69773654C1b55B31"
+      address: "0xEe1f3a233E2197463598F6f5D332a6447AaFF4b8"
       abi: PlotMetadata
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/PlotMetadata.mapping.ts
       kind: ethereum/events
@@ -155,11 +149,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PlotType
-    network: mumbai
+    network: gold
     source:
-      address: "0xF14D58607cdab14cf8eee1a48526f3420E1459b7"
+      address: "0x7858176524906A49be14f50f6c6150b45F0224aB"
       abi: PlotType
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/PlotType.mapping.ts
       kind: ethereum/events
@@ -182,11 +176,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PoolCore
-    network: mumbai
+    network: gold
     source:
-      address: "0x54A6547ead7e4bb7633517bD00598498Fdcd29d9"
+      address: "0xecc5478344F5D1fD3D4ea8e20897E3dAd0B199D2"
       abi: PoolCore
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/PoolCore.mapping.ts
       kind: ethereum/events
@@ -213,11 +207,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: PoolDetails
-    network: mumbai
+    network: gold
     source:
-      address: "0x23765913F5c417255AaA69013F66A201Be77e696"
+      address: "0x06409D31a9de464F63A5Ea4D417c698aE6050d67"
       abi: PoolDetails
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/PoolDetails.mapping.ts
       kind: ethereum/events
@@ -245,35 +239,12 @@ dataSources:
           handler: handleInitializePool
 
   - kind: ethereum/contract
-    name: RoleRegistry
-    network: mumbai
-    source:
-      address: "0x160F01C4F85df5aa0e4E5d9413E4994f5930527c"
-      abi: RoleRegistry
-      startBlock: 25539284
-    mapping:
-      file: ./src/RoleRegistry.mapping.ts
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - GameState
-      abis:
-        - name: RoleRegistry
-          file: ./abis/core/RoleRegistry.abi.json
-      eventHandlers:
-        - event: Paused(address)
-          handler: handlePause
-        - event: Unpaused(address)
-          handler: handleUnpause
-
-  - kind: ethereum/contract
     name: TimeBreakdown
-    network: mumbai
+    network: gold
     source:
-      address: "0x80aF1790DeE9bB4436F93a4e2dE905387EbE85fa"
+      address: "0x1310D5A06b1caAea25af09197288F7c2D2C40EeD"
       abi: TimeBreakdown
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/TimeBreakdown.mapping.ts
       kind: ethereum/events
@@ -305,11 +276,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: YieldTable
-    network: mumbai
+    network: gold
     source:
-      address: "0xae030589cF1FcD1E1731271D047fD2d96053E35F"
+      address: "0x84BCB8F621f6385dCdeCdA2ad6519016d59e0855"
       abi: YieldTable
-      startBlock: 25539284
+      startBlock: 5400000
     mapping:
       file: ./src/YieldTable.mapping.ts
       kind: ethereum/events

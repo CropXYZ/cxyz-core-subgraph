@@ -1,4 +1,4 @@
-specVersion: 0.0.2
+specVersion: 0.0.3
 schema:
   file: ./schema.graphql
 dataSources:
@@ -21,16 +21,11 @@ dataSources:
         - name: AddressStore
           file: ./abis/core/{{addrStrAbiName}}.json
       eventHandlers:
-        - event: Paused(address)
-          handler: handlePause
-        - event: Unpaused(address)
-          handler: handleUnpause
-
-        - event: AddedResolveAddress(indexed address,string,indexed bytes32,indexed address)
+        - event: AddedResolveAddress(indexed bytes32,address,string,indexed bytes32,indexed address)
           handler: handleAddAddress
-        - event: UpdatedResolveAddress(address,string,indexed bytes32,indexed address,indexed address)
+        - event: UpdatedResolveAddress(indexed bytes32,address,string,indexed bytes32,address,indexed address)
           handler: handleUpdateAddress
-        - event: DeactivatedResolveAddressName(indexed address,string,indexed bytes32,indexed address)
+        - event: DeactivatedResolveAddressName(indexed bytes32,address,string,indexed bytes32,indexed address)
           handler: handleDeactivateAddress
 
   - kind: ethereum/contract
@@ -62,10 +57,6 @@ dataSources:
           handler: handleSimplePurchase
         - event: TokenInGoldOutSwapped(indexed address,indexed address,uint256,uint256,uint256,uint256,uint8)
           handler: handleSimpleSell
-        - event: PausedGame(indexed address)
-          handler: handlePauseGame
-        - event: UnpausedGame(indexed address)
-          handler: handleUnpauseGame
 
   - kind: ethereum/contract
     name: PlotCore
@@ -90,8 +81,11 @@ dataSources:
         - event: Unpaused(address)
           handler: handleUnpause
 
-        - event: MintedPlot(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
-          handler: handleMint
+        - event: MintedPlotPackActivate(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
+          handler: handleMintActivate
+
+        - event: MintedPlotAdmin(address,indexed uint256,indexed address,uint8,string,indexed uint256,uint8,uint8,uint8,uint8,uint8)
+          handler: handleMintAdmin
 
   - kind: ethereum/contract
     name: PlotActions
@@ -243,29 +237,6 @@ dataSources:
           handler: handleScalePoolBalances
         - event: InitializedPool(indexed address,indexed address,uint256,uint256,uint256,uint256,uint8)
           handler: handleInitializePool
-
-  - kind: ethereum/contract
-    name: RoleRegistry
-    network: {{network}}
-    source:
-      address: "{{engineAddress}}"
-      abi: RoleRegistry
-      startBlock: {{startBlock}}
-    mapping:
-      file: ./src/RoleRegistry.mapping.ts
-      kind: ethereum/events
-      apiVersion: {{apiVersion}}
-      language: wasm/assemblyscript
-      entities:
-        - GameState
-      abis:
-        - name: RoleRegistry
-          file: ./abis/core/{{roleRegistryAbiName}}.json
-      eventHandlers:
-        - event: Paused(address)
-          handler: handlePause
-        - event: Unpaused(address)
-          handler: handleUnpause
 
   - kind: ethereum/contract
     name: TimeBreakdown
