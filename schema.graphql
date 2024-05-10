@@ -126,6 +126,7 @@ type PlotType @entity {
 
 type AddressMapping @entity {
   id: ID!
+  appKey: Bytes!
   tokenAddress: Bytes! # address
   addressNameHash: Bytes!
   addressName: String!

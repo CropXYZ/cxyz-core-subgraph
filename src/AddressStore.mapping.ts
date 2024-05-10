@@ -1,12 +1,13 @@
 import {
-  Paused,
-  Unpaused,
+  // Paused,
+  // Unpaused,
   AddedResolveAddress,
   UpdatedResolveAddress,
   DeactivatedResolveAddressName
 } from "../generated/AddressStore/AddressStore";
 import { AddressMapping, GameState } from "../generated/schema";
 
+/*
 export function handlePause(event: Paused): void {
   let gameState = GameState.load("AddressStore");
 
@@ -28,12 +29,14 @@ export function handleUnpause(event: Unpaused): void {
   gameState.isPaused = false;
   gameState.save();
 }
+*/
 
 export function handleAddAddress(event: AddedResolveAddress): void {
   const addressMapping = new AddressMapping(
     event.params.addressNameHash.toHexString()
   );
 
+  addressMapping.appKey = event.params.appKey;
   addressMapping.tokenAddress = event.params.resolveAddress;
   addressMapping.addressNameHash = event.params.addressNameHash;
   addressMapping.addressName = event.params.addressName;
@@ -53,6 +56,7 @@ export function handleUpdateAddress(event: UpdatedResolveAddress): void {
     );
   }
 
+  addressMapping.appKey = event.params.appKey;
   addressMapping.tokenAddress = event.params.newResolveAddress;
   addressMapping.save();
 }

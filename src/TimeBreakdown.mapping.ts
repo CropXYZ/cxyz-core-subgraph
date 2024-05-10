@@ -38,6 +38,7 @@ export function handleAddTimeBreakdown(event: AddedTimeBreakdown): void {
   const timeTable = new GrowthTimeTable(
     event.params.timeBreakdownId.toString()
   );
+  timeTable.isActive = event.params.isActive;
 
   timeTable.crop = event.params.stakedElementNameHash.toHexString();
   timeTable.deltaNothingToStart = BigInt.fromI32(event.params.nothingToStart);

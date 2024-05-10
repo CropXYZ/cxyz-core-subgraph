@@ -3,9 +3,9 @@ import {
   Unpaused,
   SetOfTokenOutGoldInSwapped,
   TokenOutGoldInSwapped,
-  TokenInGoldOutSwapped,
-  PausedGame,
-  UnpausedGame
+  TokenInGoldOutSwapped
+  // PausedGame,
+  // UnpausedGame
 } from "../generated/GameEngine/GameEngine";
 import { GameState } from "../generated/schema";
 
@@ -31,6 +31,7 @@ export function handleUnpause(event: Unpaused): void {
   gameState.save();
 }
 
+/*
 export function handlePauseGame(event: PausedGame): void {
   let gameState = GameState.load("OverallGameState");
 
@@ -52,6 +53,7 @@ export function handleUnpauseGame(event: UnpausedGame): void {
   gameState.isPaused = false;
   gameState.save();
 }
+*/
 
 export function handleComplexPurchase(
   event: SetOfTokenOutGoldInSwapped
