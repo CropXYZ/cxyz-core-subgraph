@@ -1,0 +1,32 @@
+{
+  "network": "gold",
+  "apiVersion": "0.0.6",
+  "startBlock": "5400000",
+
+  "addrStrAbiName": "AddressStore.abi",
+  "addrStrAddress": "0x75944A4b121E2C0E919ca1DFabC2f4eda9cFaC68",
+  "roleRegistryAbiName": "RoleRegistry.abi",
+  "roleRegistryAddress": "0x8BD0Ef35C4D77E96CBef757Bcd9D297EADd10079",
+
+  "poolCoreAbiName": "PoolCore.abi",
+  "poolCoreAddress": "0xecc5478344F5D1fD3D4ea8e20897E3dAd0B199D2",
+  "poolDetailsAbiName": "PoolDetails.abi",
+  "poolDetailsAddress": "0x06409D31a9de464F63A5Ea4D417c698aE6050d67",
+
+  "engineAbiName": "GameEngine.abi",
+  "engineAddress": "0xc1E5e0dc7E94F9167CCF983bA26F7C21c83e0a33",
+
+  "plotTypeAbiName": "PlotType.abi",
+  "plotTypeAddress": "0x7858176524906A49be14f50f6c6150b45F0224aB",
+  "timeBreakdownAbiName": "TimeBreakdown.abi",
+  "timeBreakdownAddress": "0x1310D5A06b1caAea25af09197288F7c2D2C40EeD",
+  "yieldTableAbiName": "YieldTable.abi",
+  "yieldTableAddress": "0x84BCB8F621f6385dCdeCdA2ad6519016d59e0855",
+
+  "plotAbiName": "PlotCore.abi",
+  "plotAddress": "0xe2f275b2a5C376fD10006B67A9bE0CC3bd5488E8",
+  "plotActionsAbiName": "PlotActions.abi",
+  "plotActionsAddress": "0xB45805566A842efB6329c11e092158f3E0eDdaa2",
+  "plotMetadataAbiName": "PlotMetadata.abi",
+  "plotMetadataAddress": "0xEe1f3a233E2197463598F6f5D332a6447AaFF4b8"
+}
