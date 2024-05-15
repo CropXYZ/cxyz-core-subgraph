@@ -546,17 +546,21 @@ export class Crop extends Entity {
     this.set("growthTimeTable", Value.fromString(value));
   }
 
-  get plotType(): string {
+  get plotType(): string | null {
     let value = this.get("plotType");
     if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
+      return null;
     } else {
       return value.toString();
     }
   }
 
-  set plotType(value: string) {
-    this.set("plotType", Value.fromString(value));
+  set plotType(value: string | null) {
+    if (!value) {
+      this.unset("plotType");
+    } else {
+      this.set("plotType", Value.fromString(<string>value));
+    }
   }
 
   get elementName(): string {
@@ -583,6 +587,19 @@ export class Crop extends Entity {
 
   set elementNameHash(value: Bytes) {
     this.set("elementNameHash", Value.fromBytes(value));
+  }
+
+  get maxSupply(): BigInt {
+    let value = this.get("maxSupply");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set maxSupply(value: BigInt) {
+    this.set("maxSupply", Value.fromBigInt(value));
   }
 }
 
