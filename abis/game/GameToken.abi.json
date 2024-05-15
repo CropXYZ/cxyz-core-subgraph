@@ -213,6 +213,43 @@
     "inputs": [
       {
         "indexed": true,
+        "internalType": "bytes32",
+        "name": "tokenNameHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "gameAdmin",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "oldPlotType",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "newPlotType",
+        "type": "uint256"
+      }
+    ],
+    "name": "ChangedPlotType",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "tokenNameHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
         "internalType": "address",
         "name": "gameAddress",
         "type": "address"
@@ -238,6 +275,12 @@
     "inputs": [
       {
         "indexed": true,
+        "internalType": "bytes32",
+        "name": "tokenNameHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
         "internalType": "address",
         "name": "gameAddress",
         "type": "address"
@@ -767,6 +810,19 @@
       }
     ],
     "name": "burn",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "plotTypeAffinity_",
+        "type": "string"
+      }
+    ],
+    "name": "changePlotType",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

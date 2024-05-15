@@ -1,6 +1,6 @@
 {
   "network": "gold",
-  "apiVersion": "0.0.6",
+  "apiVersion": "0.0.8",
   "startBlock": "5400000",
 
   "addrStrAbiName": "AddressStore.abi",
@@ -28,5 +28,38 @@
   "plotActionsAbiName": "PlotActions.abi",
   "plotActionsAddress": "0xB45805566A842efB6329c11e092158f3E0eDdaa2",
   "plotMetadataAbiName": "PlotMetadata.abi",
-  "plotMetadataAddress": "0xEe1f3a233E2197463598F6f5D332a6447AaFF4b8"
+  "plotMetadataAddress": "0xEe1f3a233E2197463598F6f5D332a6447AaFF4b8",
+
+  "gameTokenAbiName": "GameToken.abi",
+
+  "cropAddress_SkyGold": "0x387d73bd8682dceb3327b940213d5de50ee2bba2",
+
+  "cropAddress_Capricorn": "0xb083e82938d796247aD5f561eA9F7df4c6a5F8CF",
+  "cropAddress_Cosmoat": "0x0A31Dae1260a304b915Df169435DC0989318eCA3",
+  "cropAddress_Sungrass": "0x700435CEC9789011b1b8898a9Eaa65222C3094Cf",
+  "cropAddress_Moongrass": "0x12647CEEC053D386A7343b7739A1E1FDdadeF796",
+
+  "cropAddress_Voidpop": "0xf4A785A80d91CADc149f778Ee17D35cD008203F7",
+  "cropAddress_Pasteroid": "0x08fe9fC5dbDF7e1e2E18A6Ce1424DF3211F2532B",
+  "cropAddress_Planetoid": "0x8D9E0945017316104B7757CaF6e561155649de9d",
+  "cropAddress_Marspop": "0xCb2D616c214B390B2BeAB7DCBf31fCf0c2Ed6292",
+  "cropAddress_Craterpop": "0x5194Ef3f413485c722500243a9F94f0A66c2a0d6",
+
+  "cropAddress_Moonfruit": "0x13F349927a2AcB6319f62796B3BD4E469A3C3D9c",
+  "cropAddress_Clusterberry": "0xA3BE8151bA8B2BC1b41D5ECBeAfA17bc786A5d46",
+  "cropAddress_Marsquash": "0xBA668AcCBb210F1906417C591a103D9Ec54B057e",
+  "cropAddress_Sunburst": "0x6E65ba4eD2f6d20EfBBd48182E0bB3944Bf482C8",
+  "cropAddress_Earthmelon": "0x56D66D7637f5b6235Ad212043D35cc5e035dAC68",
+
+  "cropAddress_Voidberry": "0x5f2BA0617f9211E7a4d353C33FA9de04c3684554",
+  "cropAddress_Skyberry": "0xf259c01B34D715Ef7406C4a615C4bF5e03657aB6",
+  "cropAddress_Dwarfberry": "0x35bF9E216911355A46f0CE5b5aA0239CfbD9AfbD",
+  "cropAddress_Glowberry": "0xB4961bE9792DAbdAE991E2c8Daa30797eBf22E30",
+  "cropAddress_Starberry": "0xedf6519922a9ed9b6e2b1432bF3cA1b9F0966514",
+
+  "cropAddress_Cloudbloom": "0xA8fF5Bc8DB35121CDF96da983bd032Fcf157f6De",
+  "cropAddress_Vinebloom": "0x38E476F067c1d303447b4b288e13247E12080a00",
+  "cropAddress_Novabloom": "0xD11eC3649734DB4f6fFF9Aeae326C3522F8f20B8",
+  "cropAddress_Galaxybloom": "0x9c82ca3332898bea9C9FA5f9642Ba4a4628E1321",
+  "cropAddress_Solarbloom": "0xcB58CfCb1dc3AbC1132459389DB4e20C2abDb9f2"
 }
