@@ -58,6 +58,8 @@ export function handleAddTimeBreakdown(event: AddedTimeBreakdown): void {
 
     crop.elementName = event.params.stakedElementName;
     crop.elementNameHash = event.params.stakedElementNameHash;
+    
+    crop.maxSupply = BigInt.fromI32(0);
   }
   crop.growthTimeTable = timeTable.id;
 

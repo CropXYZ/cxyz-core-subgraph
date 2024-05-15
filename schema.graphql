@@ -77,10 +77,12 @@ type Crop @entity {
 
   addressMapping: AddressMapping!
   growthTimeTable: GrowthTimeTable!
-  plotType: PlotType!
+  plotType: PlotType
 
   elementName: String!
   elementNameHash: Bytes!
+
+  maxSupply: BigInt!
 }
 
 type YieldConfig @entity {

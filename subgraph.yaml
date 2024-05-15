@@ -12,7 +12,7 @@ dataSources:
     mapping:
       file: ./src/AddressStore.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - AddressMapping
@@ -38,7 +38,7 @@ dataSources:
     mapping:
       file: ./src/GameEngine.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - GameState
@@ -68,7 +68,7 @@ dataSources:
     mapping:
       file: ./src/PlotCore.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - GameState
@@ -97,7 +97,7 @@ dataSources:
     mapping:
       file: ./src/PlotActions.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - Crop
@@ -133,7 +133,7 @@ dataSources:
     mapping:
       file: ./src/PlotMetadata.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - GameState
@@ -157,7 +157,7 @@ dataSources:
     mapping:
       file: ./src/PlotType.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - GameState
@@ -184,7 +184,7 @@ dataSources:
     mapping:
       file: ./src/PoolCore.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - GameState
@@ -215,7 +215,7 @@ dataSources:
     mapping:
       file: ./src/PoolDetails.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - GameState
@@ -248,7 +248,7 @@ dataSources:
     mapping:
       file: ./src/TimeBreakdown.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - Crop
@@ -284,7 +284,7 @@ dataSources:
     mapping:
       file: ./src/YieldTable.mapping.ts
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.8
       language: wasm/assemblyscript
       entities:
         - GameState
@@ -307,3 +307,628 @@ dataSources:
           handler: handleActivateYieldConfig
         - event: DeactivatedYieldConfig(indexed address,indexed uint48,indexed uint8,uint8,uint8,uint8,uint8,string,uint256)
           handler: handleDeactivateYieldConfig
+
+  - kind: ethereum/contract
+    name: SkyGold
+    network: gold
+    source:
+      address: "0x387d73bd8682dceb3327b940213d5de50ee2bba2"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Capricorn
+    network: gold
+    source:
+      address: "0xb083e82938d796247aD5f561eA9F7df4c6a5F8CF"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Cosmoat
+    network: gold
+    source:
+      address: "0x0A31Dae1260a304b915Df169435DC0989318eCA3"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Sungrass
+    network: gold
+    source:
+      address: "0x700435CEC9789011b1b8898a9Eaa65222C3094Cf"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Moongrass
+    network: gold
+    source:
+      address: "0x12647CEEC053D386A7343b7739A1E1FDdadeF796"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Voidpop
+    network: gold
+    source:
+      address: "0xf4A785A80d91CADc149f778Ee17D35cD008203F7"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Pasteroid
+    network: gold
+    source:
+      address: "0x08fe9fC5dbDF7e1e2E18A6Ce1424DF3211F2532B"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Planetoid
+    network: gold
+    source:
+      address: "0x8D9E0945017316104B7757CaF6e561155649de9d"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Marspop
+    network: gold
+    source:
+      address: "0xCb2D616c214B390B2BeAB7DCBf31fCf0c2Ed6292"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Craterpop
+    network: gold
+    source:
+      address: "0x5194Ef3f413485c722500243a9F94f0A66c2a0d6"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Moonfruit
+    network: gold
+    source:
+      address: "0x13F349927a2AcB6319f62796B3BD4E469A3C3D9c"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Clusterberry
+    network: gold
+    source:
+      address: "0xA3BE8151bA8B2BC1b41D5ECBeAfA17bc786A5d46"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Marsquash
+    network: gold
+    source:
+      address: "0xBA668AcCBb210F1906417C591a103D9Ec54B057e"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Sunburst
+    network: gold
+    source:
+      address: "0x6E65ba4eD2f6d20EfBBd48182E0bB3944Bf482C8"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Earthmelon
+    network: gold
+    source:
+      address: "0x56D66D7637f5b6235Ad212043D35cc5e035dAC68"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Voidberry
+    network: gold
+    source:
+      address: "0x5f2BA0617f9211E7a4d353C33FA9de04c3684554"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Skyberry
+    network: gold
+    source:
+      address: "0xf259c01B34D715Ef7406C4a615C4bF5e03657aB6"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Dwarfberry
+    network: gold
+    source:
+      address: "0x35bF9E216911355A46f0CE5b5aA0239CfbD9AfbD"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Glowberry
+    network: gold
+    source:
+      address: "0xB4961bE9792DAbdAE991E2c8Daa30797eBf22E30"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Starberry
+    network: gold
+    source:
+      address: "0xedf6519922a9ed9b6e2b1432bF3cA1b9F0966514"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Cloudbloom
+    network: gold
+    source:
+      address: "0xA8fF5Bc8DB35121CDF96da983bd032Fcf157f6De"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Vinebloom
+    network: gold
+    source:
+      address: "0x38E476F067c1d303447b4b288e13247E12080a00"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Novabloom
+    network: gold
+    source:
+      address: "0xD11eC3649734DB4f6fFF9Aeae326C3522F8f20B8"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Galaxybloom
+    network: gold
+    source:
+      address: "0x9c82ca3332898bea9C9FA5f9642Ba4a4628E1321"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
+
+  - kind: ethereum/contract
+    name: Solarbloom
+    network: gold
+    source:
+      address: "0xcB58CfCb1dc3AbC1132459389DB4e20C2abDb9f2"
+      abi: GameToken
+      startBlock: 5400000
+    mapping:
+      file: ./src/GameToken.mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.8
+      language: wasm/assemblyscript
+      entities:
+        - Crop
+      abis:
+        - name: GameToken
+          file: ./abis/game/GameToken.abi.json
+      eventHandlers:
+        - event: ChangedPlotType(indexed bytes32,address,indexed uint256,indexed uint256)
+          handler: handleChangePlotType
+        - event: GameBurnedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyDecrease
+        - event: GameMintedToken(indexed bytes32,address,indexed address,indexed uint256)
+          handler: handleTokenSupplyIncrease
