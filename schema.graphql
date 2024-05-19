@@ -82,7 +82,7 @@ type Crop @entity {
   elementName: String!
   elementNameHash: Bytes!
 
-  maxSupply: BigInt!
+  maxSupply: String!
 }
 
 type YieldConfig @entity {

@@ -589,17 +589,17 @@ export class Crop extends Entity {
     this.set("elementNameHash", Value.fromBytes(value));
   }
 
-  get maxSupply(): BigInt {
+  get maxSupply(): string {
     let value = this.get("maxSupply");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBigInt();
+      return value.toString();
     }
   }
 
-  set maxSupply(value: BigInt) {
-    this.set("maxSupply", Value.fromBigInt(value));
+  set maxSupply(value: string) {
+    this.set("maxSupply", Value.fromString(value));
   }
 }
 
