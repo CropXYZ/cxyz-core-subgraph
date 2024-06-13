@@ -558,6 +558,29 @@ export class PlotCore extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
+  APP_KEY_SUGARCANE(): Bytes {
+    let result = super.call(
+      "APP_KEY_SUGARCANE",
+      "APP_KEY_SUGARCANE():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_APP_KEY_SUGARCANE(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "APP_KEY_SUGARCANE",
+      "APP_KEY_SUGARCANE():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
   APP_KEY_SYSTEM(): Bytes {
     let result = super.call("APP_KEY_SYSTEM", "APP_KEY_SYSTEM():(bytes32)", []);
 
@@ -568,6 +591,29 @@ export class PlotCore extends ethereum.SmartContract {
     let result = super.tryCall(
       "APP_KEY_SYSTEM",
       "APP_KEY_SYSTEM():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_DAPP_ACCOUNT_REGISTRY_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_DAPP_ACCOUNT_REGISTRY_ADDRESS",
+      "AS_DAPP_ACCOUNT_REGISTRY_ADDRESS():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_DAPP_ACCOUNT_REGISTRY_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_DAPP_ACCOUNT_REGISTRY_ADDRESS",
+      "AS_DAPP_ACCOUNT_REGISTRY_ADDRESS():(bytes32)",
       [],
     );
     if (result.reverted) {
@@ -591,6 +637,29 @@ export class PlotCore extends ethereum.SmartContract {
     let result = super.tryCall(
       "AS_ENGINE_ADDRESS",
       "AS_ENGINE_ADDRESS():(bytes32)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  AS_FRAME_CONTROLLER_ADDRESS(): Bytes {
+    let result = super.call(
+      "AS_FRAME_CONTROLLER_ADDRESS",
+      "AS_FRAME_CONTROLLER_ADDRESS():(bytes32)",
+      [],
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_AS_FRAME_CONTROLLER_ADDRESS(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "AS_FRAME_CONTROLLER_ADDRESS",
+      "AS_FRAME_CONTROLLER_ADDRESS():(bytes32)",
       [],
     );
     if (result.reverted) {
@@ -1096,6 +1165,29 @@ export class PlotCore extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  accountRegistry(): Address {
+    let result = super.call(
+      "accountRegistry",
+      "accountRegistry():(address)",
+      [],
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_accountRegistry(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "accountRegistry",
+      "accountRegistry():(address)",
+      [],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   addressStore(): Address {

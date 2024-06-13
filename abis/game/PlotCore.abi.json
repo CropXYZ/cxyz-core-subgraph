@@ -588,6 +588,19 @@
   },
   {
     "inputs": [],
+    "name": "APP_KEY_SUGARCANE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "APP_KEY_SYSTEM",
     "outputs": [
       {
@@ -601,7 +614,33 @@
   },
   {
     "inputs": [],
+    "name": "AS_DAPP_ACCOUNT_REGISTRY_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "AS_ENGINE_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "AS_FRAME_CONTROLLER_ADDRESS",
     "outputs": [
       {
         "internalType": "bytes32",
@@ -893,6 +932,19 @@
         "internalType": "string",
         "name": "",
         "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "accountRegistry",
+    "outputs": [
+      {
+        "internalType": "contract ISugarcaneAccountRegistryV1",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",

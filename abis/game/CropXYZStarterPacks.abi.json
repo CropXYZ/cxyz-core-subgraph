@@ -775,6 +775,19 @@
   },
   {
     "inputs": [],
+    "name": "APP_KEY_SYSTEM",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "AS_ROLE_REGISTRY_ADDRESS",
     "outputs": [
       {
@@ -839,7 +852,13 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "addressListing",
+        "type": "address[]"
+      }
+    ],
     "name": "activateAll",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -847,6 +866,29 @@
   },
   {
     "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "addressListing",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "tokenIdListing",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "activateList",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "addressListing",
+        "type": "address[]"
+      },
       {
         "internalType": "uint256",
         "name": "tokenId",
